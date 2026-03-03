@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { bodyFont } from "@/lib/typographies";
@@ -9,23 +9,20 @@ import { usePreloaderReady } from "@/components/PreloaderContext";
 const SMOOTH = [0.22, 1, 0.36, 1] as const;
 const SHARP  = [0.76, 0, 0.24, 1] as const;
 
+// This component is always loaded with ssr:false, so sessionStorage is safe
+// to read in the lazy initializer — it only ever runs in the browser.
 export default function Preloader() {
-  // Always start visible — consistent between SSR and client initial render.
-  // We check sessionStorage only inside useEffect (client-only).
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(
+    () => sessionStorage.getItem("preloader_seen") !== "1"
+  );
   const { setReady } = usePreloaderReady();
 
-  useLayoutEffect(() => {
-    // Already shown this session — hide before first paint, no flash
-    if (sessionStorage.getItem("preloader_seen") === "1") {
-      setReady();
-      setVisible(false);
-    }
-  }, []);
-
   useEffect(() => {
-    // Still visible means this is a fresh session — run the full sequence
-    if (!visible) return;
+    if (!visible) {
+      // Already seen this session — unlock animations immediately
+      setReady();
+      return;
+    }
 
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
@@ -39,7 +36,7 @@ export default function Preloader() {
       clearTimeout(timer);
       document.body.style.overflow = "";
     };
-  }, [visible]);
+  }, []);
 
   return (
     <AnimatePresence>

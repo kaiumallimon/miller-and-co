@@ -3,7 +3,7 @@ import "./globals.css";
 import { bodyFont } from "@/lib/typographies";
 import Footer from "@/components/custom/shared/footer";
 import WhatsAppFab from "@/components/custom/shared/whatsapp-fab";
-import Preloader from "@/components/Preloader";
+import PreloaderClient from "@/components/PreloaderClient";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`${bodyFont.className} antialiased`}
       >
         <PreloaderProvider>
-          <Preloader />
+          <PreloaderClient />
           {children}
           <Footer />
           <WhatsAppFab />
