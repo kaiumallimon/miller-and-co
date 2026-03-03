@@ -1,5 +1,6 @@
 import HomeHero from "@/components/custom/home/hero";
 import HelpSection from "@/components/custom/home/help-section";
+import ExpertiseSection from "@/components/custom/home/expertise-section";
 import CustomHeader from "@/components/custom/shared/header";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <CustomHeader/>
       <HomeHero />
       <HelpSection />
+      <ExpertiseSection />
     </div>
   );
 }
