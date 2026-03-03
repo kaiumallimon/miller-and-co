@@ -15,7 +15,6 @@ const navLinks = [
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
   { label: "Terms & Conditions", href: "/terms" },
-  { label: "Admin ", href: "/login" },
 ];
 
 const officeHours = [
@@ -105,7 +104,7 @@ export default function Footer() {
               <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
                 Navigation
               </h4>
-              <ul className="flex flex-col gap-3">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                 {navLinks.map((link) => (
                   <li key={link.label}>
                     <a
