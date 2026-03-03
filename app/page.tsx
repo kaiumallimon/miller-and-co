@@ -1,13 +1,13 @@
 import HomeHero from "@/components/custom/home/hero";
+import HelpSection from "@/components/custom/home/help-section";
 import CustomHeader from "@/components/custom/shared/header";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <div>
       <CustomHeader/>
-      <HomeHero></HomeHero>
-      <div className="w-full h-[1000px]"></div>
+      <HomeHero />
+      <HelpSection />
     </div>
   );
 }
