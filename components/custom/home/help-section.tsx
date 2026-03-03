@@ -4,6 +4,7 @@ import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import CountUp from "@/components/CountUp";
 
 const highlights = [
   "Personalised visa strategy tailored to your goals",
@@ -76,7 +77,7 @@ export default function HelpSection() {
                 Get in Touch
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
               </Button>
-              
+
             </div>
           </div>
 
@@ -99,7 +100,7 @@ export default function HelpSection() {
             {/* Floating stat card */}
             <div className="absolute -bottom-6 -left-6 z-20 bg-[#1a1a1a] px-6 py-5 shadow-xl">
               <p className={`${bodyFont.className} text-[#c8a96e] text-3xl font-semibold`}>
-                500+
+                <CountUp to={500} duration={2.5} />+
               </p>
               <p className={`${bodyFont.className} text-white/60 text-[10px] tracking-[0.2em] uppercase mt-1`}>
                 Successful Cases

@@ -1,10 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
+import CountUp from "@/components/CountUp";
 
 const stats = [
-  { value: "10,230", label: "Completed Cases" },
-  { value: "10,100", label: "Successful Cases" },
-  { value: "130", label: "In the Process of Approval" },
+  { value: 10230, label: "Completed Cases" },
+  { value: 10100, label: "Successful Cases" },
+  { value: 130, label: "In the Process of Approval" },
 ];
 
 export default function StatsSection() {
@@ -59,7 +62,7 @@ export default function StatsSection() {
               <span
                 className={`${bodyFont.className} text-5xl lg:text-6xl font-semibold text-[#c8a96e] leading-none group-hover:text-white transition-colors duration-500`}
               >
-                {stat.value}
+                <CountUp to={stat.value} separator="," duration={2.5} />
               </span>
               <span
                 className={`${bodyFont.className} text-[10px] tracking-[0.25em] uppercase text-[#1a1a1a]/40 text-center group-hover:text-white/50 transition-colors duration-500`}
