@@ -1,5 +1,6 @@
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Quote } from "lucide-react";
+import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
 const testimonials = [
   {
@@ -33,33 +34,43 @@ export default function TestimonialsSection() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32">
 
         {/* Section Header */}
-        <div className="flex flex-col items-center gap-4 mb-16">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-10 bg-[#c8a96e]" />
-            <span
-              className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+        <StaggerContainer className="flex flex-col items-center gap-4 mb-16" stagger={0.12} delayChildren={0.05}>
+          <StaggerItem>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-[#c8a96e]" />
+              <span
+                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+              >
+                Client Stories
+              </span>
+              <span className="h-px w-10 bg-[#c8a96e]" />
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <h2
+              className={`${headlineFont.className} text-white text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
             >
-              Client Stories
-            </span>
-            <span className="h-px w-10 bg-[#c8a96e]" />
-          </div>
-          <h2
-            className={`${headlineFont.className} text-white text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
-          >
-            Testimonials from{" "}
-            <span className="italic text-[#c8a96e]">Clients</span>
-          </h2>
-          <p
-            className={`${bodyFont.className} text-white/40 text-sm text-center max-w-md leading-relaxed mt-1`}
-          >
-            An honest look into how we work — straight from the people we&apos;ve helped.
-          </p>
-        </div>
+              Testimonials from{" "}
+              <span className="italic text-[#c8a96e]">Clients</span>
+            </h2>
+          </StaggerItem>
+          <StaggerItem>
+            <p
+              className={`${bodyFont.className} text-white/40 text-sm text-center max-w-md leading-relaxed mt-1`}
+            >
+              An honest look into how we work — straight from the people we&apos;ve helped.
+            </p>
+          </StaggerItem>
+        </StaggerContainer>
 
         {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
+        <StaggerContainer
+          className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5"
+          stagger={0.14}
+          delayChildren={0.05}
+        >
           {testimonials.map((t, i) => (
-            <div
+            <StaggerItem
               key={i}
               className="group relative flex flex-col justify-between gap-8 bg-[#1a1a1a] p-8 hover:bg-[#c8a96e]/5 transition-colors duration-300"
             >
@@ -100,22 +111,24 @@ export default function TestimonialsSection() {
                   </span>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Bottom note */}
-        <p
-          className={`${bodyFont.className} text-white/20 text-[10px] tracking-[0.2em] uppercase text-center mt-10`}
-        >
-          Join hundreds of satisfied clients —{" "}
-          <a
-            href="mailto:info@visa-australia.legal"
-            className="text-[#c8a96e]/50 hover:text-[#c8a96e] transition-colors duration-300"
+        <AnimateIn direction="up" delay={0.1}>
+          <p
+            className={`${bodyFont.className} text-white/20 text-[10px] tracking-[0.2em] uppercase text-center mt-10`}
           >
-            start your journey today
-          </a>
-        </p>
+            Join hundreds of satisfied clients —{" "}
+            <a
+              href="mailto:info@visa-australia.legal"
+              className="text-[#c8a96e]/50 hover:text-[#c8a96e] transition-colors duration-300"
+            >
+              start your journey today
+            </a>
+          </p>
+        </AnimateIn>
 
       </div>
     </section>

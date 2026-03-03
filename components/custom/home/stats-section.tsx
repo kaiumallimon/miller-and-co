@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import CountUp from "@/components/CountUp";
+import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
 const stats = [
   { value: 10230, label: "Completed Cases" },
@@ -18,26 +19,30 @@ export default function StatsSection() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-24 lg:pt-32">
 
         {/* Section header */}
-        <div className="flex flex-col items-center gap-4 mb-12">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-10 bg-[#c8a96e]" />
-            <span
-              className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+        <StaggerContainer className="flex flex-col items-center gap-4 mb-12" stagger={0.12} delayChildren={0.05}>
+          <StaggerItem>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-[#c8a96e]" />
+              <span
+                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+              >
+                Our Track Record
+              </span>
+              <span className="h-px w-10 bg-[#c8a96e]" />
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <h2
+              className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
             >
-              Our Track Record
-            </span>
-            <span className="h-px w-10 bg-[#c8a96e]" />
-          </div>
-          <h2
-            className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
-          >
-            Proven Results,{" "}
-            <span className="italic text-[#c8a96e]">Real People</span>
-          </h2>
-        </div>
+              Proven Results,{" "}
+              <span className="italic text-[#c8a96e]">Real People</span>
+            </h2>
+          </StaggerItem>
+        </StaggerContainer>
 
         {/* Full-width image */}
-        <div className="relative w-full h-70 sm:h-95 lg:h-115 overflow-hidden">
+        <AnimateIn direction="up" duration={0.8} delay={0.05} className="relative w-full h-70 sm:h-95 lg:h-115 overflow-hidden">
           {/* Gold border frame */}
           <div className="absolute -top-3 -right-3 w-full h-full border border-[#c8a96e]/25 z-0 pointer-events-none" />
           <div className="relative w-full h-full z-10">
@@ -50,12 +55,16 @@ export default function StatsSection() {
             />
             <div className="absolute inset-0 bg-linear-to-t from-[#1a1a1a]/40 via-transparent to-transparent" />
           </div>
-        </div>
+        </AnimateIn>
 
         {/* Stats strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[#1a1a1a]/10  border-t-0 bg-white">
+        <StaggerContainer
+          className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[#1a1a1a]/10 border-t-0 bg-white"
+          stagger={0.13}
+          delayChildren={0.05}
+        >
           {stats.map((stat, i) => (
-            <div
+            <StaggerItem
               key={i}
               className="group flex flex-col items-center justify-center gap-2 px-8 py-10 hover:bg-[#1a1a1a] border border-[#1a1a1a]/10 transition-colors duration-500"
             >
@@ -69,9 +78,9 @@ export default function StatsSection() {
               >
                 {stat.label}
               </span>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
       </div>
 

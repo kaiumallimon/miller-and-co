@@ -1,4 +1,5 @@
 import { headlineFont, bodyFont } from "@/lib/typographies";
+import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
 const expertiseAreas = [
   { label: "Start-Up Business Sponsored Visa", sub: "Sub 482" },
@@ -28,34 +29,44 @@ export default function ExpertiseSection() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32">
 
         {/* Section Header */}
-        <div className="flex flex-col items-center gap-4 mb-16">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-10 bg-[#c8a96e]" />
-            <span
-              className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+        <StaggerContainer className="flex flex-col items-center gap-4 mb-16" stagger={0.12} delayChildren={0.05}>
+          <StaggerItem>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-[#c8a96e]" />
+              <span
+                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+              >
+                What We Do
+              </span>
+              <span className="h-px w-10 bg-[#c8a96e]" />
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <h2
+              className={`${headlineFont.className} text-white text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
             >
-              What We Do
-            </span>
-            <span className="h-px w-10 bg-[#c8a96e]" />
-          </div>
-          <h2
-            className={`${headlineFont.className} text-white text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
-          >
-            Areas of{" "}
-            <span className="italic text-[#c8a96e]">Expertise</span>
-          </h2>
-          <p
-            className={`${bodyFont.className} text-white/40 text-sm text-center max-w-xl leading-relaxed mt-1`}
-          >
-            We offer comprehensive migration and legal services across a wide
-            range of visa categories and immigration pathways.
-          </p>
-        </div>
+              Areas of{" "}
+              <span className="italic text-[#c8a96e]">Expertise</span>
+            </h2>
+          </StaggerItem>
+          <StaggerItem>
+            <p
+              className={`${bodyFont.className} text-white/40 text-sm text-center max-w-xl leading-relaxed mt-1`}
+            >
+              We offer comprehensive migration and legal services across a wide
+              range of visa categories and immigration pathways.
+            </p>
+          </StaggerItem>
+        </StaggerContainer>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/5">
+        <StaggerContainer
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/5"
+          stagger={0.07}
+          delayChildren={0.05}
+        >
           {mainItems.map((item) => (
-            <div
+            <StaggerItem
               key={item.label}
               className="group relative flex flex-col justify-between gap-1 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default"
             >
@@ -74,12 +85,12 @@ export default function ExpertiseSection() {
                   {item.sub}
                 </span>
               )}
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Full-width bottom item */}
-        <div className="border-x border-b border-white/5 bg-white/5">
+        <AnimateIn direction="up" delay={0.1} className="border-x border-b border-white/5 bg-white/5">
           <div
             className="group relative flex flex-col sm:flex-row items-start sm:items-center justify-center gap-2 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default border-t border-white/5"
           >
@@ -97,20 +108,22 @@ export default function ExpertiseSection() {
               </span>
             )}
           </div>
-        </div>
+        </AnimateIn>
 
         {/* Bottom note */}
-        <p
-          className={`${bodyFont.className} text-white/20 text-[10px] tracking-[0.2em] uppercase text-center mt-10`}
-        >
-          Not sure which visa applies to you?{" "}
-          <a
-            href="mailto:info@visa-australia.legal"
-            className="text-[#c8a96e]/60 hover:text-[#c8a96e] transition-colors duration-300"
+        <AnimateIn direction="up" delay={0.15}>
+          <p
+            className={`${bodyFont.className} text-white/20 text-[10px] tracking-[0.2em] uppercase text-center mt-10`}
           >
-            Contact us for a free assessment
-          </a>
-        </p>
+            Not sure which visa applies to you?{" "}
+            <a
+              href="mailto:info@visa-australia.legal"
+              className="text-[#c8a96e]/60 hover:text-[#c8a96e] transition-colors duration-300"
+            >
+              Contact us for a free assessment
+            </a>
+          </p>
+        </AnimateIn>
 
       </div>
     </section>

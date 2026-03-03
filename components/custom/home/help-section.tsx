@@ -5,6 +5,7 @@ import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import CountUp from "@/components/CountUp";
+import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
 const highlights = [
   "Personalised visa strategy tailored to your goals",
@@ -22,67 +23,75 @@ export default function HelpSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           {/* Left: Text Content */}
-          <div className="flex flex-col gap-7">
+          <StaggerContainer className="flex flex-col gap-7" stagger={0.12} delayChildren={0.05}>
             {/* Eyebrow */}
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-[#c8a96e]" />
-              <span
-                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
-              >
-                Expert Guidance
-              </span>
-            </div>
+            <StaggerItem>
+              <div className="flex items-center gap-3">
+                <span className="h-px w-10 bg-[#c8a96e]" />
+                <span
+                  className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                >
+                  Expert Guidance
+                </span>
+              </div>
+            </StaggerItem>
 
             {/* Heading */}
-            <h2
-              className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold leading-tight`}
-            >
-              Let Us Help You{" "}
-              <span className="italic text-[#c8a96e]">Navigate</span> Your
-              Migration Journey
-            </h2>
+            <StaggerItem>
+              <h2
+                className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold leading-tight`}
+              >
+                Let Us Help You{" "}
+                <span className="italic text-[#c8a96e]">Navigate</span> Your
+                Migration Journey
+              </h2>
+            </StaggerItem>
 
             {/* Body */}
-            <p
-              className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}
-            >
-              Not sure which visa is right for you? Our experienced migration
-              lawyers take the guesswork out of the process. We assess your
-              situation, identify the best pathway, and handle every step — so
-              you can focus on your future.
-            </p>
+            <StaggerItem>
+              <p
+                className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}
+              >
+                Not sure which visa is right for you? Our experienced migration
+                lawyers take the guesswork out of the process. We assess your
+                situation, identify the best pathway, and handle every step — so
+                you can focus on your future.
+              </p>
+            </StaggerItem>
 
             {/* Highlights */}
-            <ul className="flex flex-col gap-3 mt-1">
+            <StaggerContainer as="ul" className="flex flex-col gap-3 mt-1" stagger={0.1} delayChildren={0}>
               {highlights.map((item) => (
-                <li
-                  key={item}
-                  className={`${bodyFont.className} flex items-start gap-3 text-sm text-[#1a1a1a]/70`}
-                >
-                  <CheckCircle className="w-4 h-4 text-[#c8a96e] shrink-0 mt-0.5" />
-                  {item}
-                </li>
+                <StaggerItem key={item} as="li">
+                  <span
+                    className={`${bodyFont.className} flex items-start gap-3 text-sm text-[#1a1a1a]/70`}
+                  >
+                    <CheckCircle className="w-4 h-4 text-[#c8a96e] shrink-0 mt-0.5" />
+                    {item}
+                  </span>
+                </StaggerItem>
               ))}
-            </ul>
+            </StaggerContainer>
 
             {/* CTA */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2">
-              <Button
-                size="lg"
-                className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-[#1a1a1a] text-white hover:bg-[#c8a96e] hover:text-[#1a1a1a] border border-[#1a1a1a] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
-                onClick={() =>
-                  (window.location.href = "mailto:info@visa-australia.legal")
-                }
-              >
-                Get in Touch
-                <ArrowRight className="w-3.5 h-3.5 ml-1" />
-              </Button>
-
-            </div>
-          </div>
+            <StaggerItem>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2">
+                <Button
+                  size="lg"
+                  className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-[#1a1a1a] text-white hover:bg-[#c8a96e] hover:text-[#1a1a1a] border border-[#1a1a1a] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
+                  onClick={() =>
+                    (window.location.href = "mailto:info@visa-australia.legal")
+                  }
+                >
+                  Get in Touch
+                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </Button>
+              </div>
+            </StaggerItem>
+          </StaggerContainer>
 
           {/* Right: Image */}
-          <div className="relative w-full aspect-[4/5] lg:aspect-auto lg:h-145">
+          <AnimateIn direction="left" duration={0.8} delay={0.15} className="relative w-full aspect-[4/5] lg:aspect-auto lg:h-145">
             {/* Gold border accent */}
             <div className="absolute -top-4 -right-4 w-full h-full border border-[#c8a96e]/30 z-0" />
 
@@ -98,15 +107,15 @@ export default function HelpSection() {
             </div>
 
             {/* Floating stat card */}
-            <div className="absolute -bottom-6 -left-6 z-20 bg-[#1a1a1a] px-6 py-5 shadow-xl">
+            <AnimateIn direction="up" delay={0.45} duration={0.65} className="absolute -bottom-6 -left-6 z-20 bg-[#1a1a1a] px-6 py-5 shadow-xl">
               <p className={`${bodyFont.className} text-[#c8a96e] text-3xl font-semibold`}>
                 <CountUp to={500} duration={2.5} />+
               </p>
               <p className={`${bodyFont.className} text-white/60 text-[10px] tracking-[0.2em] uppercase mt-1`}>
                 Successful Cases
               </p>
-            </div>
-          </div>
+            </AnimateIn>
+          </AnimateIn>
 
         </div>
       </div>
