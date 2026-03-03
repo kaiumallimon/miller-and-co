@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
-import { MapPin, Phone, Mail, Facebook, Twitter, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Our Services", href: "/services" },
   { label: "About Us", href: "/about" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+  { label: "Admin ", href: "/login" },
 ];
 
 const officeHours = [
@@ -17,7 +20,7 @@ const officeHours = [
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-[#faf8f5] pt-8">
+    <footer className="relative w-full bg-[#faf8f5]">
       {/* Main dark footer block */}
       <div className="relative bg-[#111111] overflow-hidden">
         {/* Background image with overlay */}
@@ -32,7 +35,7 @@ export default function Footer() {
         </div>
 
         {/* Subtle gold radial */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_#c8a96e06_0%,_transparent_60%)] pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,#c8a96e06_0%,transparent_60%)] pointer-events-none z-0" />
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
@@ -53,31 +56,31 @@ export default function Footer() {
               {/* Socials */}
               <div className="flex items-center gap-4 mt-1">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/EdwardMillerMigration"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/30 hover:text-[#c8a96e] transition-colors duration-300"
                   aria-label="Facebook"
                 >
-                  <Facebook className="w-4 h-4" />
+                  <FaFacebook className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://twitter.com/millermigration"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/30 hover:text-[#c8a96e] transition-colors duration-300"
                   aria-label="Twitter"
                 >
-                  <Twitter className="w-4 h-4" />
+                  <FaTwitter className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.linkedin.com/in/edward-miller-20120017"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/30 hover:text-[#c8a96e] transition-colors duration-300"
-                  aria-label="Instagram"
+                  aria-label="LinkedIn"
                 >
-                  <Instagram className="w-4 h-4" />
+                  <FaLinkedin className="w-4 h-4" />
                 </a>
               </div>
             </div>

@@ -6,7 +6,7 @@ import { ArrowRight, Phone } from "lucide-react";
 
 export default function CtaSection() {
   return (
-    <section className="relative w-full bg-[#faf8f5] px-6 lg:px-10 pb-0 pt-24 lg:pt-32">
+    <section className="relative w-full bg-[#faf8f5] px-6 lg:px-10 py-20">
       <div className="relative max-w-7xl mx-auto">
         <div className="relative bg-[#1a1a1a] overflow-hidden px-10 py-16 lg:px-20 lg:py-20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
 
@@ -15,7 +15,7 @@ export default function CtaSection() {
           <span className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#c8a96e]" />
 
           {/* Subtle radial glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#c8a96e08_0%,_transparent_70%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#c8a96e08_0%,transparent_70%)] pointer-events-none" />
 
           {/* Text */}
           <div className="relative flex flex-col gap-4 max-w-xl">
