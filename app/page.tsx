@@ -3,6 +3,7 @@ import HelpSection from "@/components/custom/home/help-section";
 import ExpertiseSection from "@/components/custom/home/expertise-section";
 import StatsSection from "@/components/custom/home/stats-section";
 import TestimonialsSection from "@/components/custom/home/testimonials-section";
+import FaqSection from "@/components/custom/home/faq-section";
 import CtaSection from "@/components/custom/home/cta-section";
 import CustomHeader from "@/components/custom/shared/header";
 
@@ -15,6 +16,7 @@ export default function Home() {
       <ExpertiseSection />
       <StatsSection />
       <TestimonialsSection />
+      <FaqSection />
       <CtaSection />
     </div>
   );
