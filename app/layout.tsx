@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { bodyFont } from "@/lib/typographies";
 import Footer from "@/components/custom/shared/footer";
+import WhatsAppFab from "@/components/custom/shared/whatsapp-fab";
+import PreloaderClient from "@/components/PreloaderClient";
+import { PreloaderProvider } from "@/components/PreloaderContext";
 
 export const metadata: Metadata = {
   title: "Miller & Co. ",
@@ -14,12 +17,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      {/* Prevent flash of content before preloader mounts on first visit */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          if (sessionStorage.getItem('preloader_seen') !== '1') {
+            document.documentElement.style.visibility = 'hidden';
+          }
+        ` }} />
+      </head>
       <body
         className={`${bodyFont.className} antialiased`}
       >
-        {children}
-        <Footer />
+        <PreloaderProvider>
+          <PreloaderClient />
+          {children}
+          <Footer />
+          <WhatsAppFab />
+        </PreloaderProvider>
       </body>
     </html>
   );

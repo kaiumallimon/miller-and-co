@@ -1,7 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
+import { useParallax } from "@/hooks/useParallax";
+import { motion } from "motion/react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -9,7 +14,7 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
-  { label: "Admin ", href: "/login" },
+  { label: "Terms & Conditions", href: "/terms" },
 ];
 
 const officeHours = [
@@ -19,18 +24,23 @@ const officeHours = [
 ];
 
 export default function Footer() {
+  const { ref: footerImgRef, y: footerImgY } = useParallax(40);
   return (
     <footer className="relative w-full bg-[#faf8f5]">
       {/* Main dark footer block */}
       <div className="relative bg-[#111111] overflow-hidden">
         {/* Background image with overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/4.png"
-            alt="Footer background"
-            fill
-            className="object-cover object-center opacity-15"
-          />
+        <div ref={footerImgRef} className="absolute inset-0 z-0 overflow-hidden">
+          <motion.div
+            style={{ y: footerImgY, position: "absolute", top: -40, bottom: -40, left: 0, right: 0 }}
+          >
+            <Image
+              src="/4.png"
+              alt="Footer background"
+              fill
+              className="object-cover object-center opacity-15"
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-[#111111]/80" />
         </div>
 
@@ -39,10 +49,14 @@ export default function Footer() {
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-12 border-b border-white/10">
+<StaggerContainer
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-12 border-b border-white/10"
+            stagger={0.13}
+            delayChildren={0.05}
+          >
 
             {/* Col 1 — Brand */}
-            <div className="flex flex-col gap-5 lg:col-span-1">
+            <StaggerItem className="flex flex-col gap-5 lg:col-span-1">
               <Image
                 src="/NEW-logo-TM-White1.png"
                 alt="Miller & Co"
@@ -83,14 +97,14 @@ export default function Footer() {
                   <FaLinkedin className="w-4 h-4" />
                 </a>
               </div>
-            </div>
+            </StaggerItem>
 
             {/* Col 2 — Navigation */}
-            <div className="flex flex-col gap-5">
+            <StaggerItem className="flex flex-col gap-5">
               <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
                 Navigation
               </h4>
-              <ul className="flex flex-col gap-3">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                 {navLinks.map((link) => (
                   <li key={link.label}>
                     <a
@@ -102,10 +116,10 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
 
             {/* Col 3 — Contact Details */}
-            <div className="flex flex-col gap-5">
+            <StaggerItem className="flex flex-col gap-5">
               <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
                 Contact Details
               </h4>
@@ -136,10 +150,10 @@ export default function Footer() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </StaggerItem>
 
             {/* Col 4 — Office Hours */}
-            <div className="flex flex-col gap-5">
+            <StaggerItem className="flex flex-col gap-5">
               <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
                 Office Hours
               </h4>
@@ -155,19 +169,19 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
 
-          </div>
+          </StaggerContainer>
 
           {/* Bottom bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8">
+          <AnimateIn direction="up" delay={0.1} duration={0.6} className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8">
             <p className={`${bodyFont.className} text-white/25 text-[10px] tracking-[0.15em] uppercase`}>
               © {new Date().getFullYear()} Miller &amp; Co Lawyers &amp; Migration Agents. All rights reserved.
             </p>
             <p className={`${bodyFont.className} text-white/15 text-[10px] tracking-[0.1em] uppercase`}>
               ABN — Migration &amp; Legal Services · Sydney, Australia
             </p>
-          </div>
+          </AnimateIn>
         </div>
       </div>
     </footer>

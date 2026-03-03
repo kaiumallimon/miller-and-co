@@ -4,8 +4,37 @@ import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import GradientText from "@/components/GradientText";
+import { motion, useScroll, useTransform } from "motion/react";
+import { usePreloaderReady } from "@/components/PreloaderContext";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: EASE },
+  },
+};
 
 export default function HomeHero() {
+  const { ready } = usePreloaderReady();
+
+  // Page-level parallax: bg image drifts up as user scrolls away from hero
+  const { scrollY } = useScroll();
+  const bgParallaxY = useTransform(scrollY, [0, 700], [0, 180]);
 
   const contactInfo = {
     phone: "+61 2 8095 6369",
@@ -16,49 +45,75 @@ export default function HomeHero() {
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
       {/* Background Image */}
-      <Image
-        src="/1.png"
-        alt="Miller & Co Hero Image"
-        fill
-        priority
-        className="object-cover object-center"
-      />
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0, scale: 1.04 }}
+        animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.04 }}
+        transition={{ duration: 1.4, ease: EASE }}
+        style={{ y: bgParallaxY }}
+      >
+        <motion.div
+          className="absolute inset-0"
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 1.8, ease: EASE }}
+        >
+          <Image
+            src="/1.png"
+            alt="Miller & Co Hero Image"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </motion.div>
+      </motion.div>
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-32">
-        <div className="max-w-2xl flex flex-col gap-6">
+      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-40 md:pt-32">
+        <motion.div
+          className="max-w-2xl flex flex-col gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={ready ? "visible" : "hidden"}
+        >
 
           {/* Eyebrow */}
-          <div className="w-fit shimmer-border rounded-full">
-            <span
-              className={`${bodyFont.className} inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-black/50 backdrop-blur-sm text-[#c8a96e] text-[8px] md:text-[10px] font-semibold tracking-[0.25em] uppercase`}
+          <motion.div variants={itemVariants}>
+            <GradientText
+              colors={["#c8a96e", "#FFFFFF", "#c8a96e"]}
+              animationSpeed={8}
+              showBorder={false}
+              className={`${bodyFont.className} mx-0! justify-start! text-[10px] font-semibold tracking-widest uppercase p-0`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c8a96e] animate-pulse" />
               Sydney&apos;s Trusted Migration Law Firm
-            </span>
-          </div>
+            </GradientText>
+          </motion.div>
 
           {/* Headline */}
-          <h1
+          <motion.h1
+            variants={itemVariants}
             className={`${headlineFont.className} text-white text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight`}
           >
             Expert Solutions for Your{" "}
             <span className="italic text-[#c8a96e]">Legal</span> and Migration
             Needs
-          </h1>
+          </motion.h1>
 
           {/* Subtext */}
-          <p
+          <motion.p
+            variants={itemVariants}
             className={`${bodyFont.className} text-white/70 text-sm leading-relaxed max-w-lg`}
           >
             Sydney based, top trusted Migration Law firm. We provide expert guidance and solutions for all your immigration needs. Trust our experienced team to navigate complex legal matters and ensure a smooth and successfull migration process.
-          </p>
+          </motion.p>
 
           {/* CTA */}
-          <div className="flex flex-col md:flex-row max-w-md md:max-w-2xl items-center gap-4 mt-2">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col md:flex-row max-w-md md:max-w-2xl items-center gap-4 mt-2"
+          >
             <Button
               variant="outline"
               size={"lg"}
@@ -74,10 +129,11 @@ export default function HomeHero() {
             >
               Book a Consultation
             </Button>
-          </div>
+          </motion.div>
 
           {/* Contact info strip */}
-          <div
+          <motion.div
+            variants={itemVariants}
             className={`${bodyFont.className} flex flex-row flex-wrap gap-x-8 gap-y-3 mt-6 pt-10 border-t border-white/20 text-white/60 text-xs`}
           >
             <a
@@ -98,8 +154,8 @@ export default function HomeHero() {
               <MapPin className="w-3.5 h-3.5 shrink-0" />
               Level 22, Westfield Tower Two, 101 Grafton Street, Bondi Junction
             </span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
