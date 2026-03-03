@@ -28,7 +28,7 @@ export default function HomeHero() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20">
+      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-32">
         <div className="max-w-2xl flex flex-col gap-6">
 
           {/* Eyebrow */}
