@@ -47,6 +47,6 @@ body {
     #c8a96e 95%,
     transparent 100%
   );
-  padding: 2px;
+  padding: 1.5px;
   animation: shimmer-rotate 3s linear infinite;
 }

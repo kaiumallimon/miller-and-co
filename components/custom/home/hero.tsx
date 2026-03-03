@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
-import { Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function HomeHero() {
 
@@ -72,7 +72,7 @@ export default function HomeHero() {
 
           {/* Contact info strip */}
           <div
-            className={`${bodyFont.className} flex flex-col md:flex-row gap-4 sm:gap-8 mt-6 pt-6 border-t border-white/20 text-white/60 text-xs`}
+            className={`${bodyFont.className} flex flex-row flex-wrap gap-x-8 gap-y-3 mt-6 pt-10 border-t border-white/20 text-white/60 text-xs`}
           >
             <a
               href="tel:+61280956369"
@@ -85,16 +85,11 @@ export default function HomeHero() {
               href="mailto:info@visa-australia.legal"
               className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors duration-300"
             >
-              <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+              <Mail className="w-3.5 h-3.5 shrink-0" />
               info@visa-australia.legal
             </a>
             <span className="flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
+              <MapPin className="w-3.5 h-3.5 shrink-0" />
               Level 22, Westfield Tower Two, 101 Grafton Street, Bondi Junction
             </span>
           </div>
