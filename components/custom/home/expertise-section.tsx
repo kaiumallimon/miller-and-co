@@ -1,0 +1,118 @@
+import { headlineFont, bodyFont } from "@/lib/typographies";
+
+const expertiseAreas = [
+  { label: "Start-Up Business Sponsored Visa", sub: "Sub 482" },
+  { label: "Employer Sponsored Visa", sub: "Sub 482" },
+  { label: "Employer Sponsored Permanent Visas", sub: "Sub 186" },
+  { label: "Training Visa", sub: "Sub 407" },
+  { label: "Skilled Visas", sub: "Sub 189, 190, 489, 491" },
+  { label: "Investment Visas", sub: "Sub 188, 888" },
+  { label: "Partner Visas", sub: "Sub 820/801, 309/100, 300" },
+  { label: "Global Talent Visa", sub: "Sub 858" },
+  { label: "Visa Refusal & AAT Appeal", sub: null },
+  { label: "Carer Visas", sub: "Sub 836/116" },
+  { label: "Australian Citizenship", sub: null },
+  { label: "Legal Advice", sub: null },
+  { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas" },
+];
+
+export default function ExpertiseSection() {
+  const mainItems = expertiseAreas.slice(0, 12);
+  const wideItem = expertiseAreas[12];
+
+  return (
+    <section className="relative w-full bg-[#1a1a1a] overflow-hidden">
+      {/* Background radial accent */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_#c8a96e08_0%,_transparent_65%)]" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32">
+
+        {/* Section Header */}
+        <div className="flex flex-col items-center gap-4 mb-16">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-[#c8a96e]" />
+            <span
+              className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+            >
+              What We Do
+            </span>
+            <span className="h-px w-10 bg-[#c8a96e]" />
+          </div>
+          <h2
+            className={`${headlineFont.className} text-white text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
+          >
+            Areas of{" "}
+            <span className="italic text-[#c8a96e]">Expertise</span>
+          </h2>
+          <p
+            className={`${bodyFont.className} text-white/40 text-sm text-center max-w-xl leading-relaxed mt-1`}
+          >
+            We offer comprehensive migration and legal services across a wide
+            range of visa categories and immigration pathways.
+          </p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/5">
+          {mainItems.map((item) => (
+            <div
+              key={item.label}
+              className="group relative flex flex-col justify-between gap-1 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default"
+            >
+              {/* Gold left accent on hover */}
+              <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
+
+              <p
+                className={`${headlineFont.className} text-white text-lg sm:text-xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}
+              >
+                {item.label}
+              </p>
+              {item.sub && (
+                <span
+                  className={`${bodyFont.className} text-white/30 text-[10px] tracking-[0.2em] uppercase`}
+                >
+                  {item.sub}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Full-width bottom item */}
+        <div className="border-x border-b border-white/5 bg-white/5">
+          <div
+            className="group relative flex flex-col sm:flex-row items-start sm:items-center justify-center gap-2 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default border-t border-white/5"
+          >
+            <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
+            <p
+              className={`${headlineFont.className} text-white text-lg sm:text-xl font-medium group-hover:text-[#c8a96e] transition-colors duration-300`}
+            >
+              {wideItem.label}
+            </p>
+            {wideItem.sub && (
+              <span
+                className={`${bodyFont.className} text-white/30 text-[10px] tracking-[0.2em] uppercase sm:ml-2`}
+              >
+                — {wideItem.sub}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Bottom note */}
+        <p
+          className={`${bodyFont.className} text-white/20 text-[10px] tracking-[0.2em] uppercase text-center mt-10`}
+        >
+          Not sure which visa applies to you?{" "}
+          <a
+            href="mailto:info@visa-australia.legal"
+            className="text-[#c8a96e]/60 hover:text-[#c8a96e] transition-colors duration-300"
+          >
+            Contact us for a free assessment
+          </a>
+        </p>
+
+      </div>
+    </section>
+  );
+}
