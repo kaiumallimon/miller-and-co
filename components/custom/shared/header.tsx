@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -42,7 +43,7 @@ export default function CustomHeader() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-[#1a1a1a] shadow-2xl border-b border-white/10"
+            ? "bg-[#1a1a1a]/75 backdrop-blur-md border-b border-white/10"
             : "bg-transparent"
         }`}
       >
@@ -80,7 +81,7 @@ export default function CustomHeader() {
               {/* CTA */}
               <button
                 onClick={() => handleNavigate("/contact")}
-                className={`${bodyFont.className} ml-4 px-6 py-2.5 bg-[#c0392b] hover:bg-[#a93226] text-white text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 rounded-sm shadow-lg hover:shadow-[#c0392b]/30 hover:shadow-xl`}
+                className={`${bodyFont.className} ml-4 px-6 py-2.5 bg-primary hover:bg-primary/85 text-white text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 rounded-sm shadow-lg hover:shadow-primary/30 hover:shadow-xl`}
               >
                 Book a Consultation
               </button>
@@ -149,7 +150,7 @@ export default function CustomHeader() {
 
           <button
             onClick={() => handleNavigate("/contact")}
-            className={`${bodyFont.className} px-10 py-3.5 bg-[#c0392b] hover:bg-[#a93226] text-white text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 rounded-sm`}
+            className={`${bodyFont.className} px-10 py-3.5 bg-primary hover:bg-primary/85 text-white text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 rounded-sm`}
           >
             Book a Consultation
           </button>
