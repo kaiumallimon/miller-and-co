@@ -50,8 +50,6 @@ export default function Preloader() {
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: SHARP, delay: 0.1 }}
         >
-          {/* Subtle radial gold glow behind logo */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#c8a96e0a_0%,transparent_65%)] pointer-events-none" />
 
           {/* Corner accents — top-left */}
           <motion.span
@@ -100,7 +98,7 @@ export default function Preloader() {
 
             {/* Tagline */}
             <motion.p
-              className={`${bodyFont.className} text-white/30 text-[9px] tracking-[0.4em] uppercase`}
+              className={`${bodyFont.className} text-white/30 text-[9px] tracking-[0.2em] uppercase`}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.85, ease: SMOOTH }}
