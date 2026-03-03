@@ -73,7 +73,7 @@ export default function CustomHeader() {
                 >
                   {link.label}
                   {isActive(link.href) && (
-                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#c8a96e] rounded-full" />
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#c8a96e] rounded-full" />
                   )}
                 </button>
               ))}
@@ -81,7 +81,7 @@ export default function CustomHeader() {
               {/* CTA */}
               <button
                 onClick={() => handleNavigate("/contact")}
-                className={`${bodyFont.className} ml-4 px-6 py-2.5 bg-primary hover:bg-primary/85 text-white text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 rounded-sm shadow-lg hover:shadow-primary/30 hover:shadow-xl`}
+                className={`${bodyFont.className}  inline-flex items-center gap-2 px-4 py-3 bg-primary text-white text-xs font-bold tracking-[0.2em] uppercase hover:bg-primary/85 justify-center transition-all duration-300`}
               >
                 Book a Consultation
               </button>
@@ -94,18 +94,18 @@ export default function CustomHeader() {
               className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 group"
             >
               <span
-                className={`block h-[2px] w-6 bg-white transition-all duration-300 origin-center ${
-                  isMobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
+                className={`block h-0.5 w-6 bg-white transition-all duration-300 origin-center ${
+                  isMobileMenuOpen ? "rotate-45 translate-y-1.75" : ""
                 }`}
               />
               <span
-                className={`block h-[2px] w-6 bg-white transition-all duration-300 ${
+                className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
                   isMobileMenuOpen ? "opacity-0 scale-x-0" : ""
                 }`}
               />
               <span
-                className={`block h-[2px] w-6 bg-white transition-all duration-300 origin-center ${
-                  isMobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+                className={`block h-0.5 w-6 bg-white transition-all duration-300 origin-center ${
+                  isMobileMenuOpen ? "-rotate-45 -translate-y-1.75" : ""
                 }`}
               />
             </button>

@@ -26,3 +26,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes shimmer-rotate {
+  from { --shimmer-angle: 0deg; }
+  to   { --shimmer-angle: 360deg; }
+}
+
+@property --shimmer-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.shimmer-border {
+  background: conic-gradient(
+    from var(--shimmer-angle),
+    transparent 70%,
+    #c8a96e 85%,
+    #fff8e7 90%,
+    #c8a96e 95%,
+    transparent 100%
+  );
+  padding: 2px;
+  animation: shimmer-rotate 3s linear infinite;
+}
