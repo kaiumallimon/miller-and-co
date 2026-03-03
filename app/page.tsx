@@ -7,6 +7,7 @@ export default function Home() {
     <div>
       <CustomHeader/>
       <HomeHero></HomeHero>
+      <div className="w-full h-[1000px]"></div>
     </div>
   );
 }

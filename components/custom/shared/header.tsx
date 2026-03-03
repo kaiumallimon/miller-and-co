@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import Image from "next/image";
+import { Phone, Mail, ArrowRight, X, Menu } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -40,50 +41,85 @@ export default function CustomHeader() {
 
   return (
     <>
+      {/* Top announcement bar */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 overflow-hidden ${
+          isScrolled ? "h-0 opacity-0" : "h-9 opacity-100"
+        }`}
+      >
+        <div className="bg-primary backdrop-blur-md h-9 flex items-center">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full flex items-center justify-between">
+            <div className={`${bodyFont.className} flex items-center gap-6 text-white text-[10px] tracking-[0.12em]`}>
+              <a href="tel:+61280956369" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300">
+                <Phone className="w-3 h-3" />
+                +61 2 8095 6369
+              </a>
+              <a href="mailto:info@visa-australia.legal" className="hidden sm:flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300">
+                <Mail className="w-3 h-3" />
+                info@visa-australia.legal
+              </a>
+            </div>
+            <span className={`${bodyFont.className} hidden md:block text-white text-xs`}>
+              Sydney&apos;s Trusted Migration Law Firm
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled ? "top-0" : "top-9"
+        } ${
           isScrolled
-            ? "bg-[#1a1a1a]/75 backdrop-blur-md border-b border-white/10"
-            : "bg-transparent"
+            ? "bg-[#0f0f0f]/90 backdrop-blur-xl shadow-2xl shadow-black/40 border-b border-white/8"
+            : "bg-linear-to-b from-black/50 to-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex items-center justify-between h-20">
+          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
 
             {/* Logo */}
-            <Image
-              src="/NEW-logo-TM-White1.png"
-              alt="Miller & Co Logo"
-              width={150}
-              height={40}
-              className="object-contain"
-            />
+            <button onClick={() => handleNavigate("/")} className="relative group shrink-0" aria-label="Home">
+              <Image
+                src="/NEW-logo-TM-White1.png"
+                alt="Miller & Co Logo"
+                width={140}
+                height={36}
+                className="object-contain transition-opacity duration-300 group-hover:opacity-80"
+              />
+            </button>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center">
               {NAV_LINKS.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNavigate(link.href)}
-                  className={`${bodyFont.className} relative px-4 py-2 text-xs font-semibold tracking-[0.15em] uppercase transition-colors duration-300 ${
-                    isActive(link.href)
-                      ? "text-[#c8a96e]"
-                      : "text-white/80 hover:text-white"
+                  className={`${bodyFont.className} relative px-4 py-2 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors duration-300 group ${
+                    isActive(link.href) ? "text-[#c8a96e]" : "text-white/70 hover:text-white"
                   }`}
                 >
                   {link.label}
-                  {isActive(link.href) && (
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#c8a96e] rounded-full" />
-                  )}
+                  {/* Animated underline */}
+                  <span
+                    className={`absolute bottom-0 left-4 right-4 h-[1.5px] bg-[#c8a96e] rounded-full transition-all duration-300 origin-left ${
+                      isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
                 </button>
               ))}
+
+              {/* Divider */}
+              <span className="w-px h-5 bg-white/15 mx-4" />
 
               {/* CTA */}
               <button
                 onClick={() => handleNavigate("/contact")}
-                className={`${bodyFont.className}  inline-flex items-center gap-2 px-4 py-3 bg-primary text-white text-xs font-bold tracking-[0.2em] uppercase hover:bg-primary/85 justify-center transition-all duration-300`}
+                className={`${bodyFont.className} group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 hover:bg-primary/90 hover:gap-3 hover:shadow-lg hover:shadow-primary/25`}
               >
                 Book a Consultation
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </button>
             </nav>
 
@@ -91,69 +127,74 @@ export default function CustomHeader() {
             <button
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
-              className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 group"
+              className="md:hidden flex items-center justify-center w-10 h-10 text-white hover:text-[#c8a96e] transition-colors duration-300"
             >
-              <span
-                className={`block h-0.5 w-6 bg-white transition-all duration-300 origin-center ${
-                  isMobileMenuOpen ? "rotate-45 translate-y-1.75" : ""
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  isMobileMenuOpen ? "opacity-0 scale-x-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-6 bg-white transition-all duration-300 origin-center ${
-                  isMobileMenuOpen ? "-rotate-45 -translate-y-1.75" : ""
-                }`}
-              />
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu — slide from right */}
       <div
-        className={`fixed inset-0 z-40 bg-[#111111] flex flex-col transition-all duration-500 md:hidden ${
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ${
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col justify-center items-center flex-1 gap-8 px-8">
-          {/* Logo in mobile menu */}
-          <div className="flex flex-col items-center gap-1 mb-4">
-            <span className={`${headlineFont.className} text-white text-3xl font-semibold tracking-wide`}>
-              Miller &amp; Co
-            </span>
-            <span className={`${bodyFont.className} text-[#c8a96e] text-[10px] tracking-[0.3em] uppercase`}>
-              Lawyers &amp; Migration Agents
-            </span>
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closeMobileMenu} />
+
+        {/* Panel */}
+        <div
+          className={`absolute top-0 right-0 h-full w-4/5 max-w-sm bg-[#0f0f0f] border-l border-white/10 flex flex-col transition-transform duration-500 ${
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Panel header */}
+          <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+            <Image src="/NEW-logo-TM-White1.png" alt="Miller & Co" width={120} height={32} className="object-contain" />
+            <button onClick={closeMobileMenu} className="text-white/50 hover:text-white transition-colors">
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          <div className="w-16 h-[1px] bg-[#c8a96e]/40" />
+          {/* Nav links */}
+          <nav className="flex flex-col flex-1 px-6 py-8 gap-1">
+            {NAV_LINKS.map((link, i) => (
+              <button
+                key={link.href}
+                onClick={() => handleNavigate(link.href)}
+                style={{ transitionDelay: isMobileMenuOpen ? `${i * 60}ms` : "0ms" }}
+                className={`${bodyFont.className} flex items-center justify-between px-4 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 rounded-sm group ${
+                  isActive(link.href)
+                    ? "text-[#c8a96e] bg-[#c8a96e]/8"
+                    : "text-white/60 hover:text-white hover:bg-white/5"
+                } ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"}`}
+              >
+                {link.label}
+                <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 ${isActive(link.href) ? "text-[#c8a96e]" : "text-white/20"}`} />
+              </button>
+            ))}
+          </nav>
 
-          {NAV_LINKS.map((link) => (
+          {/* Bottom contact + CTA */}
+          <div className="px-6 pb-8 flex flex-col gap-4 border-t border-white/10 pt-6">
             <button
-              key={link.href}
-              onClick={() => handleNavigate(link.href)}
-              className={`${bodyFont.className} text-base font-semibold tracking-[0.2em] uppercase transition-colors duration-300 ${
-                isActive(link.href) ? "text-[#c8a96e]" : "text-white/70 hover:text-white"
-              }`}
+              onClick={() => handleNavigate("/contact")}
+              className={`${bodyFont.className} w-full flex items-center justify-center gap-2 py-3.5 bg-primary hover:bg-primary/90 text-white text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300`}
             >
-              {link.label}
+              Book a Consultation
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
-          ))}
-
-          <div className="w-16 h-[1px] bg-[#c8a96e]/40" />
-
-          <button
-            onClick={() => handleNavigate("/contact")}
-            className={`${bodyFont.className} px-10 py-3.5 bg-primary hover:bg-primary/85 text-white text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 rounded-sm`}
-          >
-            Book a Consultation
-          </button>
+            <div className={`${bodyFont.className} flex flex-col gap-2 text-white/40 text-[10px]`}>
+              <a href="tel:+61280956369" className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors">
+                <Phone className="w-3 h-3" /> +61 2 8095 6369
+              </a>
+              <a href="mailto:info@visa-australia.legal" className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors">
+                <Mail className="w-3 h-3" /> info@visa-australia.legal
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
