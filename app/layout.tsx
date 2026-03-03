@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { bodyFont } from "@/lib/typographies";
+import Footer from "@/components/custom/shared/footer";
 
 export const metadata: Metadata = {
   title: "Miller & Co. ",
@@ -18,6 +19,7 @@ export default function RootLayout({
         className={`${bodyFont.className} antialiased`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );
