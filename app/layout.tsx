@@ -7,8 +7,63 @@ import PreloaderClient from "@/components/PreloaderClient";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 
 export const metadata: Metadata = {
-  title: "Miller & Co. ",
-  description: "Sydney based, top trusted Migration Law firm. We provide expert guidance and solutions for all your immigration needs. Trust our experienced team to navigate complex legal matters and ensure a smooth and successful migration process.",
+  metadataBase: new URL("https://www.visa-australia.legal"),
+  title: {
+    default: "Miller & Co. | Sydney Migration Law Firm",
+    template: "%s | Miller & Co.",
+  },
+  description:
+    "Miller & Co. is a trusted Sydney-based migration law firm specialising in employer-sponsored visas, skilled visas, partner visas, investment visas, global talent visas, AAT appeals, and Australian citizenship. With over 10,000 successful cases, our experienced team delivers expert immigration solutions.",
+  keywords: [
+    "migration law firm Sydney",
+    "Australian visa lawyer",
+    "employer sponsored visa",
+    "subclass 482 visa",
+    "subclass 186 visa",
+    "skilled visa Australia",
+    "partner visa Australia",
+    "global talent visa",
+    "investment visa Australia",
+    "AAT appeal migration",
+    "Australian citizenship",
+    "Bondi Junction immigration lawyer",
+    "Miller and Co migration",
+    "visa-australia.legal",
+  ],
+  authors: [{ name: "Miller & Co.", url: "https://www.visa-australia.legal" }],
+  creator: "Miller & Co.",
+  publisher: "Miller & Co.",
+  applicationName: "Miller & Co. Migration Law",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_AU",
+    url: "https://www.visa-australia.legal",
+    siteName: "Miller & Co.",
+    title: "Miller & Co. | Sydney Migration Law Firm",
+    description:
+      "Sydney's trusted migration law firm with over 10,000 successful cases. Expert guidance on employer-sponsored visas, skilled visas, partner visas, investment visas, global talent visas, and more.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Miller & Co. | Sydney Migration Law Firm",
+    description:
+      "Sydney's trusted migration law firm with over 10,000 successful cases. Expert guidance on all Australian visa categories.",
+  },
+  alternates: {
+    canonical: "https://www.visa-australia.legal",
+  },
+  category: "Legal Services",
 };
 
 export default function RootLayout({
