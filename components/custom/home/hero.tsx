@@ -4,6 +4,8 @@ import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ShinyText from "@/components/ShinyText";
+import GradientText from "@/components/GradientText";
 
 export default function HomeHero() {
 
@@ -28,18 +30,33 @@ export default function HomeHero() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-32">
+      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-40 md:pt-32">
         <div className="max-w-2xl flex flex-col gap-6">
 
           {/* Eyebrow */}
-          <div className="w-fit shimmer-border rounded-full">
-            <span
-              className={`${bodyFont.className} inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-black/50 backdrop-blur-sm text-[#c8a96e] text-[8px] md:text-[10px] font-semibold tracking-[0.25em] uppercase`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c8a96e] animate-pulse" />
-              Sydney&apos;s Trusted Migration Law Firm
-            </span>
-          </div>
+          {/* <ShinyText
+            text=""
+            speed={1}
+            delay={1}
+            color="#ffffff"
+            shineColor="#c8a96e"
+            spread={300}
+            direction="right"
+            yoyo={false}
+            pauseOnHover={false}
+            disabled={false}
+            className="text-xs md:text-sm"
+          /> */}
+
+          <GradientText
+            colors={["#c8a96e", "#FFFFFF", "#c8a96e"]}
+            animationSpeed={8}
+            showBorder={false}
+            className={`${bodyFont.className} mx-0! justify-start! text-[10px] font-semibold tracking-widest uppercase p-0`}
+          >
+            Sydney&apos;s Trusted Migration Law Firm
+          </GradientText>
+
 
           {/* Headline */}
           <h1
