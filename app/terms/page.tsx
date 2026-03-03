@@ -465,7 +465,7 @@ export default function TermsPage() {
                 {/* Section header */}
                 <div className="flex items-center gap-5 px-8 py-5 border-b border-[#e8e0d4] bg-[#faf8f5]">
                   <span
-                    className={`${headlineFont.className} text-[#c8a96e] text-3xl font-semibold leading-none select-none`}
+                    className={`${bodyFont.className} text-[#c8a96e] text-3xl font-semibold leading-none select-none`}
                   >
                     {section.number}
                   </span>
@@ -489,10 +489,9 @@ export default function TermsPage() {
       </section>
 
       {/* ── CTA Strip ───────────────────────────────────────────────────── */}
-      <section className="w-full bg-[#1a1a1a] px-6 lg:px-10 py-16">
+      <section className="relative w-full bg-[#1a1a1a] px-6 lg:px-10 py-16">
         <AnimateIn direction="up" duration={0.65}>
-          <div className="relative max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <span className="absolute -top-1 left-0 w-10 h-10 border-t border-l border-[#c8a96e]/30" />
+          <div className="max-w-7xl px-6 lg:px-10 mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <p
                 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase mb-2`}
