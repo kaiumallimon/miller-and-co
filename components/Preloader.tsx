@@ -4,17 +4,20 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { bodyFont } from "@/lib/typographies";
+import { usePreloaderReady } from "@/components/PreloaderContext";
 
 const SMOOTH = [0.22, 1, 0.36, 1] as const;
 const SHARP  = [0.76, 0, 0.24, 1] as const;
 
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
+  const { setReady } = usePreloaderReady();
 
   // Lock scroll while preloader is active
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
+      setReady();             // ungate page animations
       setVisible(false);
       document.body.style.overflow = "";
     }, 2600);

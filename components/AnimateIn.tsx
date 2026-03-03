@@ -2,6 +2,7 @@
 
 import { motion, useInView, Variants } from "motion/react";
 import { useRef, ReactNode } from "react";
+import { usePreloaderReady } from "@/components/PreloaderContext";
 
 // ─── Shared easing ────────────────────────────────────────────────────────────
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -39,15 +40,17 @@ export function AnimateIn({
   once = true,
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const { ready } = usePreloaderReady();
   const isInView = useInView(ref, { once, margin: "-80px 0px" });
   const offset = directionOffset(direction, distance);
+  const shouldAnimate = ready && isInView;
 
   return (
     <motion.div
       ref={ref}
       className={className}
       initial={{ opacity: 0, ...offset }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset }}
+      animate={shouldAnimate ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset }}
       transition={{ duration, delay, ease: EASE }}
     >
       {children}
@@ -72,7 +75,9 @@ export function StaggerContainer({
   once = true,
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const { ready } = usePreloaderReady();
   const isInView = useInView(ref, { once, margin: "-80px 0px" });
+  const shouldAnimate = ready && isInView;
 
   const containerVariants: Variants = {
     hidden: {},
@@ -90,7 +95,7 @@ export function StaggerContainer({
       className={className}
       variants={containerVariants}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      animate={shouldAnimate ? "visible" : "hidden"}
     >
       {children}
     </motion.div>

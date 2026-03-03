@@ -4,6 +4,7 @@ import { bodyFont } from "@/lib/typographies";
 import Footer from "@/components/custom/shared/footer";
 import WhatsAppFab from "@/components/custom/shared/whatsapp-fab";
 import Preloader from "@/components/Preloader";
+import { PreloaderProvider } from "@/components/PreloaderContext";
 
 export const metadata: Metadata = {
   title: "Miller & Co. ",
@@ -20,10 +21,12 @@ export default function RootLayout({
       <body
         className={`${bodyFont.className} antialiased`}
       >
-        <Preloader />
-        {children}
-        <Footer />
-        <WhatsAppFab />
+        <PreloaderProvider>
+          <Preloader />
+          {children}
+          <Footer />
+          <WhatsAppFab />
+        </PreloaderProvider>
       </body>
     </html>
   );
