@@ -6,6 +6,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GradientText from "@/components/GradientText";
 import { motion } from "motion/react";
+import { usePreloaderReady } from "@/components/PreloaderContext";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -29,6 +30,7 @@ const itemVariants = {
 };
 
 export default function HomeHero() {
+  const { ready } = usePreloaderReady();
 
   const contactInfo = {
     phone: "+61 2 8095 6369",
@@ -42,7 +44,7 @@ export default function HomeHero() {
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0, scale: 1.04 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.04 }}
         transition={{ duration: 1.4, ease: EASE }}
       >
         <Image
@@ -63,7 +65,7 @@ export default function HomeHero() {
           className="max-w-2xl flex flex-col gap-6"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={ready ? "visible" : "hidden"}
         >
 
           {/* Eyebrow */}
