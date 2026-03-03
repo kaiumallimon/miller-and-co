@@ -340,10 +340,6 @@ export default function TermsPage() {
       <section className="relative w-full bg-[#1a1a1a] overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
         {/* Radial glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,#c8a96e08_0%,transparent_65%)] pointer-events-none" />
-        {/* Top-left corner accent */}
-        <span className="absolute top-8 left-8 w-16 h-16 border-t border-l border-[#c8a96e]/20" />
-        {/* Bottom-right corner accent */}
-        <span className="absolute bottom-8 right-8 w-16 h-16 border-b border-r border-[#c8a96e]/20" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
           <StaggerContainer className="flex flex-col gap-5" stagger={0.12} delayChildren={0.1}>
