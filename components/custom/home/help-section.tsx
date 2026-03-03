@@ -60,15 +60,15 @@ export default function HelpSection() {
             </StaggerItem>
 
             {/* Highlights */}
-            <StaggerContainer as="ul" className="flex flex-col gap-3 mt-1" stagger={0.1} delayChildren={0}>
+            <StaggerContainer className="flex flex-col gap-3 mt-1" stagger={0.1} delayChildren={0}>
               {highlights.map((item) => (
-                <StaggerItem key={item} as="li">
-                  <span
+                <StaggerItem key={item}>
+                  <div
                     className={`${bodyFont.className} flex items-start gap-3 text-sm text-[#1a1a1a]/70`}
                   >
                     <CheckCircle className="w-4 h-4 text-[#c8a96e] shrink-0 mt-0.5" />
                     {item}
-                  </span>
+                  </div>
                 </StaggerItem>
               ))}
             </StaggerContainer>

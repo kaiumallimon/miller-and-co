@@ -1,14 +1,24 @@
 "use client";
 
 import { motion, useInView, Variants } from "motion/react";
-import { useRef, ReactNode, ElementType } from "react";
+import { useRef, ReactNode } from "react";
 
 // ─── Shared easing ────────────────────────────────────────────────────────────
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-// ─── AnimateIn ────────────────────────────────────────────────────────────────
-// Single element that fades / slides in when it enters the viewport.
+// Resolve initial offset from direction
+function directionOffset(
+  direction: "up" | "down" | "left" | "right" | "none",
+  distance: number
+): { x?: number; y?: number } {
+  if (direction === "up") return { y: distance };
+  if (direction === "down") return { y: -distance };
+  if (direction === "left") return { x: distance };
+  if (direction === "right") return { x: -distance };
+  return {};
+}
 
+// ─── AnimateIn ────────────────────────────────────────────────────────────────
 interface AnimateInProps {
   children: ReactNode;
   className?: string;
@@ -17,7 +27,6 @@ interface AnimateInProps {
   direction?: "up" | "down" | "left" | "right" | "none";
   distance?: number;
   once?: boolean;
-  as?: ElementType;
 }
 
 export function AnimateIn({
@@ -28,54 +37,31 @@ export function AnimateIn({
   direction = "up",
   distance = 28,
   once = true,
-  as: Tag = "div",
 }: AnimateInProps) {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref as React.RefObject<Element>, {
-    once,
-    margin: "-80px 0px",
-  });
-
-  const offset =
-    direction === "up"
-      ? { y: distance }
-      : direction === "down"
-      ? { y: -distance }
-      : direction === "left"
-      ? { x: distance }
-      : direction === "right"
-      ? { x: -distance }
-      : {};
-
-  const MotionTag = motion.create(Tag as "div");
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once, margin: "-80px 0px" });
+  const offset = directionOffset(direction, distance);
 
   return (
-    <MotionTag
+    <motion.div
       ref={ref}
       className={className}
       initial={{ opacity: 0, ...offset }}
-      animate={
-        isInView
-          ? { opacity: 1, x: 0, y: 0 }
-          : { opacity: 0, ...offset }
-      }
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset }}
       transition={{ duration, delay, ease: EASE }}
     >
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }
 
 // ─── StaggerContainer ─────────────────────────────────────────────────────────
-// Wrapper that orchestrates staggered entrance of its StaggerItem children.
-
 interface StaggerContainerProps {
   children: ReactNode;
   className?: string;
   stagger?: number;
   delayChildren?: number;
   once?: boolean;
-  as?: ElementType;
 }
 
 export function StaggerContainer({
@@ -84,15 +70,9 @@ export function StaggerContainer({
   stagger = 0.11,
   delayChildren = 0,
   once = true,
-  as: Tag = "div",
 }: StaggerContainerProps) {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref as React.RefObject<Element>, {
-    once,
-    margin: "-80px 0px",
-  });
-
-  const MotionTag = motion.create(Tag as "div");
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once, margin: "-80px 0px" });
 
   const containerVariants: Variants = {
     hidden: {},
@@ -105,7 +85,7 @@ export function StaggerContainer({
   };
 
   return (
-    <MotionTag
+    <motion.div
       ref={ref}
       className={className}
       variants={containerVariants}
@@ -113,20 +93,17 @@ export function StaggerContainer({
       animate={isInView ? "visible" : "hidden"}
     >
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }
 
 // ─── StaggerItem ──────────────────────────────────────────────────────────────
-// Must be a direct child of StaggerContainer.
-
 interface StaggerItemProps {
   children: ReactNode;
   className?: string;
   direction?: "up" | "down" | "left" | "right" | "none";
   distance?: number;
   duration?: number;
-  as?: ElementType;
 }
 
 export function StaggerItem({
@@ -135,20 +112,8 @@ export function StaggerItem({
   direction = "up",
   distance = 24,
   duration = 0.65,
-  as: Tag = "div",
 }: StaggerItemProps) {
-  const offset =
-    direction === "up"
-      ? { y: distance }
-      : direction === "down"
-      ? { y: -distance }
-      : direction === "left"
-      ? { x: distance }
-      : direction === "right"
-      ? { x: -distance }
-      : {};
-
-  const MotionTag = motion.create(Tag as "div");
+  const offset = directionOffset(direction, distance);
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, ...offset },
@@ -161,8 +126,8 @@ export function StaggerItem({
   };
 
   return (
-    <MotionTag className={className} variants={itemVariants}>
+    <motion.div className={className} variants={itemVariants}>
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }
