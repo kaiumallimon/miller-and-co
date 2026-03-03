@@ -80,7 +80,7 @@ export default function CustomHeader() {
           <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
 
             {/* Logo */}
-            <button onClick={() => handleNavigate("/")} className="relative group shrink-0" aria-label="Home">
+            <a href="/" className="cursor-pointer relative group shrink-0" aria-label="Home">
               <Image
                 src="/NEW-logo-TM-White1.png"
                 alt="Miller & Co Logo"
@@ -88,7 +88,7 @@ export default function CustomHeader() {
                 height={36}
                 className="object-contain transition-opacity duration-300 group-hover:opacity-80"
               />
-            </button>
+            </a>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center">
