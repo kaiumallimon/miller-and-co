@@ -35,13 +35,13 @@ export default function Footer() {
             style={{ y: footerImgY, position: "absolute", top: -40, bottom: -40, left: 0, right: 0 }}
           >
             <Image
-              src="/4.png"
+              src="/5.png"
               alt="Footer background"
               fill
               className="object-cover object-center opacity-15"
             />
           </motion.div>
-          <div className="absolute inset-0 bg-[#111111]/80" />
+          <div className="absolute inset-0 bg-[#111111]/20" />
         </div>
 
         {/* Subtle gold radial */}
