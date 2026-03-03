@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {/* Prevent flash of content before preloader mounts on first visit */}
       <head>
         <script dangerouslySetInnerHTML={{ __html: `
