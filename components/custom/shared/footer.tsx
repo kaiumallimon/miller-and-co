@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
+import { useParallax } from "@/hooks/useParallax";
+import { motion } from "motion/react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -20,18 +24,23 @@ const officeHours = [
 ];
 
 export default function Footer() {
+  const { ref: footerImgRef, y: footerImgY } = useParallax(40);
   return (
     <footer className="relative w-full bg-[#faf8f5]">
       {/* Main dark footer block */}
       <div className="relative bg-[#111111] overflow-hidden">
         {/* Background image with overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/4.png"
-            alt="Footer background"
-            fill
-            className="object-cover object-center opacity-15"
-          />
+        <div ref={footerImgRef} className="absolute inset-0 z-0 overflow-hidden">
+          <motion.div
+            style={{ y: footerImgY, position: "absolute", top: -40, bottom: -40, left: 0, right: 0 }}
+          >
+            <Image
+              src="/4.png"
+              alt="Footer background"
+              fill
+              className="object-cover object-center opacity-15"
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-[#111111]/80" />
         </div>
 

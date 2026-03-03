@@ -5,7 +5,7 @@ import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GradientText from "@/components/GradientText";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { usePreloaderReady } from "@/components/PreloaderContext";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -32,6 +32,10 @@ const itemVariants = {
 export default function HomeHero() {
   const { ready } = usePreloaderReady();
 
+  // Page-level parallax: bg image drifts up as user scrolls away from hero
+  const { scrollY } = useScroll();
+  const bgParallaxY = useTransform(scrollY, [0, 700], [0, 180]);
+
   const contactInfo = {
     phone: "+61 2 8095 6369",
     email: "info@visa-australia.legal",
@@ -46,14 +50,21 @@ export default function HomeHero() {
         initial={{ opacity: 0, scale: 1.04 }}
         animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.04 }}
         transition={{ duration: 1.4, ease: EASE }}
+        style={{ y: bgParallaxY }}
       >
-        <Image
-          src="/1.png"
-          alt="Miller & Co Hero Image"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+        <motion.div
+          className="absolute inset-0"
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 1.8, ease: EASE }}
+        >
+          <Image
+            src="/1.png"
+            alt="Miller & Co Hero Image"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </motion.div>
       </motion.div>
 
       {/* Dark overlay */}

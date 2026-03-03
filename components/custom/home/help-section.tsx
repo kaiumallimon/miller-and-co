@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import CountUp from "@/components/CountUp";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
+import { useParallax } from "@/hooks/useParallax";
+import { motion } from "motion/react";
 
 const highlights = [
   "Personalised visa strategy tailored to your goals",
@@ -14,6 +16,7 @@ const highlights = [
 ];
 
 export default function HelpSection() {
+  const { ref: imgRef, y: imgY } = useParallax(45);
   return (
     <section className="relative w-full bg-[#faf8f5] overflow-hidden">
       {/* Subtle background texture */}
@@ -95,13 +98,19 @@ export default function HelpSection() {
             {/* Gold border accent */}
             <div className="absolute -top-4 -right-4 w-full h-full border border-[#c8a96e]/30 z-0" />
 
-            <div className="relative w-full h-full overflow-hidden z-10">
-              <Image
-                src="/2.png"
-                alt="Miller & Co – Expert Migration Lawyers"
-                fill
-                className="object-cover object-center"
-              />
+            <div ref={imgRef} className="relative w-full h-full overflow-hidden z-10">
+              <motion.div
+                style={{ y: imgY, position: "absolute", top: -45, bottom: -45, left: 0, right: 0 }}
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Image
+                  src="/2.png"
+                  alt="Miller & Co – Expert Migration Lawyers"
+                  fill
+                  className="object-cover object-center"
+                />
+              </motion.div>
               {/* Subtle gradient overlay on image */}
               <div className="absolute inset-0 bg-linear-to-t from-[#1a1a1a]/30 via-transparent to-transparent" />
             </div>

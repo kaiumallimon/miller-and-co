@@ -10,13 +10,25 @@ const SMOOTH = [0.22, 1, 0.36, 1] as const;
 const SHARP  = [0.76, 0, 0.24, 1] as const;
 
 export default function Preloader() {
-  const [visible, setVisible] = useState(true);
+  // Start hidden if already shown this session
+  const alreadySeen =
+    typeof window !== "undefined" &&
+    sessionStorage.getItem("preloader_seen") === "1";
+
+  const [visible, setVisible] = useState(!alreadySeen);
   const { setReady } = usePreloaderReady();
 
   // Lock scroll while preloader is active
   useEffect(() => {
+    // If it was already seen, mark ready immediately and bail
+    if (alreadySeen) {
+      setReady();
+      return;
+    }
+
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
+      sessionStorage.setItem("preloader_seen", "1");
       setReady();             // ungate page animations
       setVisible(false);
       document.body.style.overflow = "";
