@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function HomeHero() {
 
@@ -56,18 +59,21 @@ export default function HomeHero() {
 
           {/* CTA */}
           <div className="flex flex-col md:flex-row max-w-md md:max-w-2xl items-center gap-4 mt-2">
-            <a
-              href="/services"
-              className={`${bodyFont.className} inline-flex items-center gap-2 px-7 py-3.5 border border-white text-white text-xs font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 w-full text-center justify-center`}
+            <Button
+              variant="outline"
+              size={"lg"}
+              className={`${bodyFont.className} w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none`}
             >
               See Our Services
-            </a>
-            <a
-              href="/contact"
-              className={`${bodyFont.className} inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white text-xs font-bold tracking-[0.2em] uppercase hover:bg-primary/85 w-full justify-center transition-all duration-300`}
+            </Button>
+            <Button
+              variant="outline"
+              size={"lg"}
+              className={`${bodyFont.className} w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] border-[#c8a96e] hover:border-[#c8a96e]/70 text-[#1a1a1a] hover:bg-[#c8a96e]/70 transition-all duration-300 rounded-none cursor-pointer`}
+              onClick={() => window.location.href = `mailto:${contactInfo.email}`}
             >
               Book a Consultation
-            </a>
+            </Button>
           </div>
 
           {/* Contact info strip */}
