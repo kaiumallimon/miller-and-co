@@ -18,6 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* Prevent flash of content before preloader mounts on first visit */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          if (sessionStorage.getItem('preloader_seen') !== '1') {
+            document.documentElement.style.visibility = 'hidden';
+          }
+        ` }} />
+      </head>
       <body
         className={`${bodyFont.className} antialiased`}
       >

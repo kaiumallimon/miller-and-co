@@ -24,6 +24,8 @@ export default function Preloader() {
       return;
     }
 
+    // Preloader is now mounted and covering the page — safe to un-hide
+    document.documentElement.style.visibility = "";
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
       sessionStorage.setItem("preloader_seen", "1");
