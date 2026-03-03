@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { bodyFont } from "@/lib/typographies";
@@ -10,34 +10,36 @@ const SMOOTH = [0.22, 1, 0.36, 1] as const;
 const SHARP  = [0.76, 0, 0.24, 1] as const;
 
 export default function Preloader() {
-  // Start hidden if already shown this session
-  const alreadySeen =
-    typeof window !== "undefined" &&
-    sessionStorage.getItem("preloader_seen") === "1";
-
-  const [visible, setVisible] = useState(!alreadySeen);
+  // Always start visible — consistent between SSR and client initial render.
+  // We check sessionStorage only inside useEffect (client-only).
+  const [visible, setVisible] = useState(true);
   const { setReady } = usePreloaderReady();
 
-  // Lock scroll while preloader is active
-  useEffect(() => {
-    // If it was already seen, mark ready immediately and bail
-    if (alreadySeen) {
+  useLayoutEffect(() => {
+    // Already shown this session — hide before first paint, no flash
+    if (sessionStorage.getItem("preloader_seen") === "1") {
       setReady();
-      return;
+      setVisible(false);
     }
+  }, []);
+
+  useEffect(() => {
+    // Still visible means this is a fresh session — run the full sequence
+    if (!visible) return;
 
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
       sessionStorage.setItem("preloader_seen", "1");
-      setReady();             // ungate page animations
+      setReady();
       setVisible(false);
       document.body.style.overflow = "";
     }, 2600);
+
     return () => {
       clearTimeout(timer);
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [visible]);
 
   return (
     <AnimatePresence>
