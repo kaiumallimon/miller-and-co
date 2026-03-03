@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { bodyFont } from "@/lib/typographies";
 import { MessageCircle, X } from "lucide-react";
+import { usePreloaderReady } from "@/components/PreloaderContext";
 
 const WHATSAPP_NUMBER = "61280956369"; // +61 2 8095 6369 in international format
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -12,6 +13,9 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 
 export default function WhatsAppFab() {
   const [tooltipVisible, setTooltipVisible] = useState(false);
+  const { ready } = usePreloaderReady();
+
+  if (!ready) return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-9999 flex flex-col items-end gap-3">
