@@ -181,16 +181,16 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8"
           >
-            <p className={`${bodyFont.className} text-white/25 text-[10px] tracking-[0.15em] uppercase`}>
+            <p className={`${bodyFont.className} text-white/40 text-[10px] tracking-[0.15em] uppercase`}>
               © {new Date().getFullYear()} Miller &amp; Co Lawyers &amp; Migration Agents. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <p className={`${bodyFont.className} text-white/15 text-[10px] tracking-widest uppercase`}>
+              <p className={`${bodyFont.className} text-white/40 text-[10px] tracking-widest uppercase`}>
                 ABN — Migration &amp; Legal Services · Sydney, Australia
               </p>
               <a
-                href="/admin/login"
-                className={`${bodyFont.className} text-white/15 hover:text-white/40 text-[10px] tracking-widest uppercase transition-colors duration-300`}
+                href="/login"
+                className={`${bodyFont.className} text-white/40 hover:text-white/70 text-[10px] tracking-widest uppercase transition-colors duration-300`}
               >
                 Admin
               </a>
