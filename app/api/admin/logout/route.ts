@@ -4,10 +4,11 @@ import { cookies } from "next/headers";
 
 // GET — used by server-side redirects (e.g. expired/disabled session)
 // Clears the session cookie then sends the browser to /login
-export async function GET() {
-  const response = NextResponse.redirect(
-    new URL("/login", process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000")
-  );
+export async function GET(request: Request) {
+  // Derive base URL from the actual incoming request so it works on any
+  // domain (localhost, Vercel preview, custom domain) without relying on env vars.
+  const { origin } = new URL(request.url);
+  const response = NextResponse.redirect(`${origin}/login`);
   response.cookies.set("session", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
