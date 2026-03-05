@@ -13,7 +13,9 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const user = await getSessionUser();
-  if (!user) redirect("/login");
+  // Redirect through the logout endpoint so the stale session cookie is
+  // cleared before the browser lands on /login — prevents redirect loops.
+  if (!user) redirect("/api/admin/logout");
 
   return (
     <AdminShell email={user.email ?? ""}>

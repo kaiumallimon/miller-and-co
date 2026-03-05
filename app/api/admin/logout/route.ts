@@ -2,6 +2,22 @@ import { NextResponse } from "next/server";
 import { adminAuth } from "@/lib/firebase/admin";
 import { cookies } from "next/headers";
 
+// GET — used by server-side redirects (e.g. expired/disabled session)
+// Clears the session cookie then sends the browser to /login
+export async function GET() {
+  const response = NextResponse.redirect(
+    new URL("/login", process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000")
+  );
+  response.cookies.set("session", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    sameSite: "lax",
+    maxAge: 0,
+  });
+  return response;
+}
+
 export async function POST() {
   try {
     const cookieStore = await cookies();
