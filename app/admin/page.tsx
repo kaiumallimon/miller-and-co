@@ -1,12 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { bodyFont, headlineFont } from "@/lib/typographies";
-import { Button } from "@/components/ui/button";
-import { LogOut, Loader2, Mail, Users, Clock, ShieldCheck } from "lucide-react";
-import { signOut } from "firebase/auth";
-import { auth } from "@/lib/firebase/client";
+import { headlineFont } from "@/lib/typographies";
+import { Mail, Clock, ShieldCheck, Database } from "lucide-react";
 import { motion } from "motion/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -22,53 +17,15 @@ const fadeUp = {
 };
 
 const stats = [
-  {
-    icon: Mail,
-    label: "Contact Form",
-    value: "Active",
-    sub: "SMTP connected",
-    gold: true,
-  },
-  {
-    icon: ShieldCheck,
-    label: "Auth Status",
-    value: "Enabled",
-    sub: "Firebase Auth",
-    gold: true,
-  },
-  {
-    icon: Users,
-    label: "Admin Users",
-    value: "Firestore",
-    sub: "admins collection",
-    gold: false,
-  },
-  {
-    icon: Clock,
-    label: "Session",
-    value: "Browser",
-    sub: "Clears on close",
-    gold: false,
-  },
+  { icon: Mail,        label: "Contact Form",  value: "Active",   sub: "SMTP connected",     gold: true },
+  { icon: ShieldCheck, label: "Auth Status",    value: "Enabled",  sub: "Firebase Auth",       gold: true },
+  { icon: Database,    label: "Admin Storage",  value: "Firestore", sub: "admins collection",  gold: false },
+  { icon: Clock,       label: "Session",        value: "Browser",  sub: "Clears on close",     gold: false },
 ];
 
 export default function AdminDashboard() {
-  const router = useRouter();
-  const [loggingOut, setLoggingOut] = useState(false);
-
-  const handleLogout = async () => {
-    setLoggingOut(true);
-    try {
-      await fetch("/api/admin/logout", { method: "POST" });
-      await signOut(auth);
-      router.push("/login");
-    } catch {
-      setLoggingOut(false);
-    }
-  };
-
   return (
-    <div className="p-6 md:p-10 max-w-5xl mx-auto">
+    <div className="p-6 md:p-10 max-w-5xl">
       <motion.div
         variants={stagger}
         initial="hidden"
@@ -76,39 +33,18 @@ export default function AdminDashboard() {
         className="flex flex-col gap-10"
       >
         {/* Page heading */}
-        <motion.div
-          variants={fadeUp}
-          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
-        >
-          <div className="flex flex-col gap-1.5">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-[#c8a96e] font-semibold">
-              Dashboard
-            </p>
-            <h1
-              className={`${headlineFont.className} text-3xl md:text-4xl font-semibold text-white leading-tight`}
-            >
-              Welcome{" "}
-              <span className="italic text-[#c8a96e]">Back</span>
-            </h1>
-            <p className="text-white/30 text-sm mt-0.5">
-              Miller &amp; Co. administration panel
-            </p>
-          </div>
-
-          <Button
-            onClick={handleLogout}
-            disabled={loggingOut}
-            variant="outline"
-            size="sm"
-            className={`${bodyFont.className} text-xs tracking-widest uppercase border-white/10 text-white/50 bg-transparent hover:bg-white/5 hover:text-white rounded-none transition-all duration-200 cursor-pointer disabled:opacity-40`}
+        <motion.div variants={fadeUp} className="flex flex-col gap-1.5">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-[#c8a96e] font-semibold">
+            Overview
+          </p>
+          <h1
+            className={`${headlineFont.className} text-3xl md:text-4xl font-semibold text-white leading-tight`}
           >
-            {loggingOut ? (
-              <Loader2 className="w-3.5 h-3.5 mr-2 animate-spin" />
-            ) : (
-              <LogOut className="w-3.5 h-3.5 mr-2" />
-            )}
-            Sign Out
-          </Button>
+            Welcome <span className="italic text-[#c8a96e]">Back</span>
+          </h1>
+          <p className="text-white/30 text-sm mt-0.5">
+            Miller &amp; Co. administration panel
+          </p>
         </motion.div>
 
         {/* Divider */}
