@@ -118,7 +118,7 @@ export default function AboutHero() {
           initial={{ opacity: 0 }}
           animate={ready ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.9, ease: EASE }}
-          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-white/30 text-[10px] tracking-widest uppercase flex items-center gap-2`}
+          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
         >
           <span>Home</span>
           <span className="text-[#c8a96e]">/</span>
