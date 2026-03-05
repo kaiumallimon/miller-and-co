@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { bodyFont } from "@/lib/typographies";
-import Footer from "@/components/custom/shared/footer";
-import WhatsAppFab from "@/components/custom/shared/whatsapp-fab";
 import PreloaderClient from "@/components/PreloaderClient";
 import { PreloaderProvider } from "@/components/PreloaderContext";
+import ConditionalShell from "@/components/ConditionalShell";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.visa-australia.legal"),
@@ -87,8 +86,7 @@ export default function RootLayout({
         <PreloaderProvider>
           <PreloaderClient />
           {children}
-          <Footer />
-          <WhatsAppFab />
+          <ConditionalShell />
         </PreloaderProvider>
       </body>
     </html>
