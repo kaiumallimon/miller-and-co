@@ -7,6 +7,8 @@ import { headlineFont, bodyFont } from "@/lib/typographies";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle } from "lucide-react";
 import { motion } from "motion/react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase/client";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -36,20 +38,37 @@ export default function LoginPage() {
     setErrorMsg("");
 
     try {
+      // Step 1: sign in with Firebase Auth client SDK
+      const credential = await signInWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
+      // Step 2: get ID token and exchange for a server session cookie
+      const idToken = await credential.user.getIdToken();
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ idToken }),
       });
       const data = await res.json();
       if (!res.ok) {
-        setErrorMsg(data.error ?? "Invalid credentials.");
+        setErrorMsg(data.error ?? "Sign-in failed.");
         setStatus("error");
         return;
       }
       router.push("/admin");
-    } catch {
-      setErrorMsg("Network error. Please try again.");
+    } catch (err: unknown) {
+      const code = (err as { code?: string })?.code ?? "";
+      const msg =
+        code === "auth/invalid-credential" ||
+        code === "auth/user-not-found" ||
+        code === "auth/wrong-password"
+          ? "Invalid email or password."
+          : code === "auth/too-many-requests"
+          ? "Too many attempts. Please try again later."
+          : "Sign-in failed. Please try again.";
+      setErrorMsg(msg);
       setStatus("error");
     }
   };
