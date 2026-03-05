@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { adminDb } from "@/lib/firebase/admin";
 import { FieldValue } from "firebase-admin/firestore";
+import { writeLog } from "@/lib/logger";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface ContactPayload {
@@ -206,6 +207,16 @@ export async function POST(req: NextRequest) {
         html,
       }),
     ]);
+
+    // Log the new contact submission
+    await writeLog({
+      action: "contact_submitted",
+      category: "contact",
+      actor: "system",
+      target: safeEmail,
+      details: `New enquiry from ${safeName} — "${safeSubject}".`,
+      ip: req.headers.get("x-forwarded-for") ?? undefined,
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {

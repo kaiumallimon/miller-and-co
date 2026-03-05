@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase/admin";
 import { getSessionUser } from "@/lib/auth/session";
+import { writeLog } from "@/lib/logger";
 
 // ── GET — list all admins from Firestore ─────────────────────────────────────
 export async function GET() {
@@ -66,6 +67,15 @@ export async function POST(req: NextRequest) {
       createdAt: now,
       lastLogin: null,
       active: true,
+    });
+
+    await writeLog({
+      action: "account_created",
+      category: "admin",
+      actor: requester.email ?? requester.uid,
+      target: user.email ?? email,
+      details: `New admin account created for ${user.email ?? email}.`,
+      ip: req.headers.get("x-forwarded-for") ?? undefined,
     });
 
     return NextResponse.json({ uid: user.uid, email: user.email }, { status: 201 });

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth } from "@/lib/firebase/admin";
 import { getSessionUser } from "@/lib/auth/session";
+import { writeLog } from "@/lib/logger";
 import nodemailer from "nodemailer";
 
 // ── POST — send password reset email ─────────────────────────────────────────
@@ -65,6 +66,14 @@ export async function POST(
           </div>
         </div>
       `,
+    });
+
+    await writeLog({
+      action: "password_reset_sent",
+      category: "admin",
+      actor: requester.email ?? requester.uid,
+      target: email,
+      details: `Password reset email sent to ${email}.`,
     });
 
     return NextResponse.json({ success: true });

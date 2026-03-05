@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase/admin";
 import { getSessionUser } from "@/lib/auth/session";
+import { writeLog } from "@/lib/logger";
 
 // ── PATCH — toggle active / inactive ─────────────────────────────────────────
 export async function PATCH(
@@ -34,6 +35,15 @@ export async function PATCH(
     await adminAuth.updateUser(uid, { disabled: !newActive });
     await docRef.update({ active: newActive });
 
+    const targetEmail = doc.data()?.email ?? uid;
+    await writeLog({
+      action: newActive ? "account_activated" : "account_deactivated",
+      category: "admin",
+      actor: requester.email ?? requester.uid,
+      target: targetEmail,
+      details: `Account ${newActive ? "activated" : "deactivated"} for ${targetEmail}.`,
+    });
+
     return NextResponse.json({ active: newActive });
   } catch (err) {
     console.error("[Accounts PATCH]", err);
@@ -62,8 +72,26 @@ export async function DELETE(
   }
 
   try {
+    // Fetch email before deletion so it can be logged
+    let targetEmail = uid;
+    try {
+      const userRecord = await adminAuth.getUser(uid);
+      targetEmail = userRecord.email ?? uid;
+    } catch {
+      // proceed without email
+    }
+
     await adminAuth.deleteUser(uid);
     await adminDb.collection("admins").doc(uid).delete();
+
+    await writeLog({
+      action: "account_deleted",
+      category: "admin",
+      actor: requester.email ?? requester.uid,
+      target: targetEmail,
+      details: `Admin account deleted for ${targetEmail}.`,
+    });
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[Accounts DELETE]", err);
