@@ -35,6 +35,7 @@ const NAV = [
   {
     section: "System",
     items: [
+      { label: "Admin Accounts", href: "/admin/accounts", icon: Users, exact: false },
       { label: "Settings", href: "/admin/settings", icon: Settings, exact: false },
     ],
   },
