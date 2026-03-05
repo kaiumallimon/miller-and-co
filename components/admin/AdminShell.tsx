@@ -17,6 +17,8 @@ import {
   ChevronRight,
   Users,
   ScrollText,
+  Newspaper,
+  PenLine,
 } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
@@ -31,6 +33,13 @@ const NAV = [
     section: "Enquiries",
     items: [
       { label: "Contact Submissions", href: "/admin/submissions", icon: Mail, exact: false },
+    ],
+  },
+  {
+    section: "Blogs",
+    items: [
+      { label: "All Posts", href: "/admin/blogs", icon: Newspaper, exact: true },
+      { label: "New Post", href: "/admin/blogs/new", icon: PenLine, exact: false },
     ],
   },
   {
@@ -159,7 +168,7 @@ function SidebarContent({
           ) : (
             <LogOut className="w-4 h-4 shrink-0" />
           )}
-          <span className="font-medium tracking-wide text-xs uppercase tracking-[0.15em]">
+          <span className="font-medium text-xs uppercase tracking-[0.15em]">
             {loggingOut ? "Signing out…" : "Sign Out"}
           </span>
         </button>
