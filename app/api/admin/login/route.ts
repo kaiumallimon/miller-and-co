@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase/admin";
+import { writeLog } from "@/lib/logger";
 
 export async function POST(req: NextRequest) {
   try {
@@ -36,6 +37,15 @@ export async function POST(req: NextRequest) {
     } else {
       await adminRef.update({ lastLogin: now });
     }
+
+    // Log the login event
+    await writeLog({
+      action: "admin_login",
+      category: "auth",
+      actor: decoded.email ?? decoded.uid,
+      details: "Administrator signed in.",
+      ip: req.headers.get("x-forwarded-for") ?? undefined,
+    });
 
     // Set the cookie — deliberately no maxAge/expires so it's a session cookie
     const response = NextResponse.json({ success: true });
