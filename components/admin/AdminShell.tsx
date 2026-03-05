@@ -15,6 +15,7 @@ import {
   Menu,
   X,
   ChevronRight,
+  Users,
 } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
