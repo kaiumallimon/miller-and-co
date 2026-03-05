@@ -35,17 +35,12 @@ function isRateLimited(ip: string): boolean {
 
 // ─── Origin / Referer guard ────────────────────────────────────────────────────
 function isAllowedOrigin(req: NextRequest): boolean {
+  // Always allow in development
+  if (process.env.NODE_ENV === "development") return true;
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const origin = req.headers.get("origin") ?? "";
   const referer = req.headers.get("referer") ?? "";
-
-  // Allow localhost in development
-  if (process.env.NODE_ENV === "development") {
-    return (
-      origin.startsWith("http://localhost") ||
-      referer.startsWith("http://localhost")
-    );
-  }
 
   return origin === siteUrl || referer.startsWith(siteUrl);
 }
@@ -77,11 +72,13 @@ export async function POST(req: NextRequest) {
   // 1. Content-type guard
   const contentType = req.headers.get("content-type") ?? "";
   if (!contentType.includes("application/json")) {
+    console.warn("[contact] Rejected: invalid content-type:", contentType);
     return NextResponse.json({ error: "Invalid content type." }, { status: 415 });
   }
 
   // 2. Origin / Referer guard
   if (!isAllowedOrigin(req)) {
+    console.warn("[contact] Rejected: origin:", req.headers.get("origin"), "referer:", req.headers.get("referer"));
     return NextResponse.json({ error: "Forbidden." }, { status: 403 });
   }
 
@@ -89,6 +86,7 @@ export async function POST(req: NextRequest) {
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   if (isRateLimited(ip)) {
+    console.warn("[contact] Rate limited IP:", ip);
     return NextResponse.json(
       { error: "Too many requests. Please wait a moment and try again." },
       { status: 429 }
@@ -107,7 +105,7 @@ export async function POST(req: NextRequest) {
 
   // 5. Honeypot check — bots fill hidden fields, humans don't
   if (_honeypot && _honeypot.length > 0) {
-    // Silently succeed to fool bots
+    console.warn("[contact] Honeypot triggered — blocked bot submission");
     return NextResponse.json({ success: true });
   }
 

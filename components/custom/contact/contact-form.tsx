@@ -31,7 +31,7 @@ export default function ContactForm() {
     phone: "",
     subject: "",
     message: "",
-    _honeypot: "", // hidden — must stay empty
+    website: "", // honeypot — hidden, must stay empty
   });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -51,7 +51,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, _honeypot: form.website }),  // map to API field
       });
 
       const data = await res.json();
@@ -63,7 +63,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
-      setForm({ name: "", email: "", phone: "", subject: "", message: "", _honeypot: "" });
+      setForm({ name: "", email: "", phone: "", subject: "", message: "", website: "" });
     } catch {
       setErrorMsg("Network error. Please check your connection and try again.");
       setStatus("error");
@@ -120,13 +120,13 @@ export default function ContactForm() {
             {/* Honeypot — hidden from real users, traps bots */}
             <input
               type="text"
-              name="_honeypot"
-              value={form._honeypot}
+              name="website"
+              value={form.website}
               onChange={handleChange}
               tabIndex={-1}
               aria-hidden="true"
-              autoComplete="off"
-              style={{ position: "absolute", opacity: 0, pointerEvents: "none", width: 0, height: 0 }}
+              autoComplete="new-password"
+              style={{ position: "absolute", left: "-9999px", top: "-9999px", width: "1px", height: "1px", overflow: "hidden" }}
             />
 
             <StaggerContainer className="flex flex-col gap-4" stagger={0.07} delayChildren={0.05}>
