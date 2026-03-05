@@ -374,7 +374,7 @@ export default function SubmissionsPage() {
             <motion.div key="drawer"
               initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-[#141414] border-t border-white/10 rounded-t-2xl flex flex-col"
+              className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-[#141414] border-t border-white/10 rounded-t-2xl flex flex-col overflow-hidden"
               style={{ maxHeight: "82dvh" }}>
               <div className="flex justify-center pt-3 pb-1 shrink-0">
                 <div className="w-10 h-1 rounded-full bg-white/15" />
