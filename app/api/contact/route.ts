@@ -168,8 +168,13 @@ export async function POST(req: NextRequest) {
           <div style="background:#faf8f5;padding:20px;border-left:3px solid #c8a96e;font-size:14px;line-height:1.7;white-space:pre-wrap;">${safeMessage}</div>
         </div>
       </div>
-      <div style="padding:20px 40px;background:#faf8f5;border:1px solid #e5e5e5;border-top:none;font-size:11px;color:#999;text-align:center;">
-        This email was sent from the contact form on visa-australia.legal
+      <div style="padding:20px 40px;background:#faf8f5;border:1px solid #e5e5e5;border-top:none;">
+        <p style="margin:0 0 6px;font-size:13px;color:#1a1a1a;">
+          To reply to this enquiry, email <a href="mailto:${safeEmail}" style="color:#c8a96e;font-weight:600;">${safeEmail}</a> directly.
+        </p>
+        <p style="margin:0;font-size:11px;color:#aaa;">
+          ⚠ Do not reply to this email — it was sent from an unmonitored address. This message was submitted via the contact form on visa-australia.legal.
+        </p>
       </div>
     </div>
   `;
