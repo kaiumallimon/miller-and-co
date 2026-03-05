@@ -10,7 +10,12 @@ interface PostData {
   content: string;
   status: "draft" | "published";
   tags: string[];
+  category: string;
   coverImage: string;
+  coverImagePublicId: string;
+  featured: boolean;
+  allowComments: boolean;
+  seo: { metaTitle: string; metaDescription: string; ogImage: string };
 }
 
 export default function EditPostPage({ params }: { params: Promise<{ id: string }> }) {

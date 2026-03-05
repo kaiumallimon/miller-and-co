@@ -27,11 +27,22 @@ export async function GET(
       content: d.content ?? "",
       status: d.status ?? "draft",
       author: d.author ?? "",
+      authorUid: d.authorUid ?? "",
+      category: d.category ?? "",
       tags: d.tags ?? [],
       coverImage: d.coverImage ?? null,
+      coverImagePublicId: d.coverImagePublicId ?? null,
+      readingTime: d.readingTime ?? 1,
+      wordCount: d.wordCount ?? 0,
+      views: d.views ?? 0,
+      featured: d.featured ?? false,
+      allowComments: d.allowComments ?? true,
+      seo: d.seo ?? { metaTitle: "", metaDescription: "", ogImage: null },
       publishedAt: d.publishedAt ?? null,
+      scheduledAt: d.scheduledAt ?? null,
       createdAt: d.createdAt ?? null,
       updatedAt: d.updatedAt ?? null,
+      lastEditedBy: d.lastEditedBy ?? null,
     });
   } catch (err) {
     console.error("[blogs/:id GET]", err);
@@ -56,13 +67,23 @@ export async function PATCH(
     }
 
     const body = await req.json();
-    const { title, excerpt, content, status, tags, coverImage } = body as {
+    const {
+      title, excerpt, content, status, tags, category,
+      coverImage, coverImagePublicId, featured,
+      allowComments, seo, scheduledAt,
+    } = body as {
       title?: string;
       excerpt?: string;
       content?: string;
       status?: string;
       tags?: string[];
-      coverImage?: string;
+      category?: string;
+      coverImage?: string | null;
+      coverImagePublicId?: string | null;
+      featured?: boolean;
+      allowComments?: boolean;
+      seo?: { metaTitle?: string; metaDescription?: string; ogImage?: string | null };
+      scheduledAt?: string | null;
     };
 
     if (title !== undefined && !title.trim()) {
@@ -72,12 +93,32 @@ export async function PATCH(
     const now = new Date().toISOString();
     const existing = doc.data()!;
 
-    const updates: Record<string, unknown> = { updatedAt: now };
+    const updates: Record<string, unknown> = {
+      updatedAt: now,
+      lastEditedBy: user.email ?? user.uid,
+    };
     if (title !== undefined) updates.title = title.trim();
     if (excerpt !== undefined) updates.excerpt = excerpt.trim();
-    if (content !== undefined) updates.content = content.trim();
+    if (content !== undefined) {
+      updates.content = content.trim();
+      updates.contentText = content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 500);
+      updates.readingTime = Math.max(1, Math.round(content.replace(/<[^>]*>/g, " ").trim().split(/\s+/).filter(Boolean).length / 200));
+      updates.wordCount = content.replace(/<[^>]*>/g, " ").trim().split(/\s+/).filter(Boolean).length;
+    }
     if (tags !== undefined) updates.tags = Array.isArray(tags) ? tags.filter(Boolean) : [];
-    if (coverImage !== undefined) updates.coverImage = coverImage?.trim() ?? null;
+    if (category !== undefined) updates.category = category.trim();
+    if (coverImage !== undefined) updates.coverImage = coverImage?.trim() || null;
+    if (coverImagePublicId !== undefined) updates.coverImagePublicId = coverImagePublicId?.trim() || null;
+    if (featured !== undefined) updates.featured = featured;
+    if (allowComments !== undefined) updates.allowComments = allowComments;
+    if (scheduledAt !== undefined) updates.scheduledAt = scheduledAt ?? null;
+    if (seo !== undefined) {
+      updates.seo = {
+        metaTitle: seo.metaTitle?.trim() ?? existing.seo?.metaTitle ?? "",
+        metaDescription: seo.metaDescription?.trim() ?? existing.seo?.metaDescription ?? "",
+        ogImage: seo.ogImage ?? existing.seo?.ogImage ?? null,
+      };
+    }
 
     if (status !== undefined && (status === "draft" || status === "published")) {
       updates.status = status;
