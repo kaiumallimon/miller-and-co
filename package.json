@@ -11,6 +11,8 @@
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^12.10.0",
+    "firebase-admin": "^13.7.0",
     "gsap": "^3.14.2",
     "lucide-react": "^0.576.0",
     "motion": "^12.34.4",
