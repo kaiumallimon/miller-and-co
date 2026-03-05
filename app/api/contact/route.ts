@@ -177,8 +177,11 @@ export async function POST(req: NextRequest) {
   `;
 
   try {
+    // Verify SMTP connection before attempting send
+    await transporter.verify();
+
     await transporter.sendMail({
-      from: `"${process.env.CONTACT_FROM_NAME}" <${email}>`,
+      from: `"${process.env.CONTACT_FROM_NAME}" <${process.env.CONTACT_FROM_ADDRESS}>`,
       to: process.env.CONTACT_RECIPIENT,
       replyTo: safeEmail,
       subject: `[Miller & Co] ${safeSubject}`,
@@ -187,7 +190,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("[contact] SMTP error:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[contact] SMTP error:", message);
     return NextResponse.json(
       { error: "Failed to send your message. Please try again later." },
       { status: 500 }
