@@ -157,8 +157,8 @@ export default function MeetEdwardSection() {
               {credentials.map((cred) => {
                 const Icon = cred.icon;
                 return (
-                  <StaggerItem key={cred.label}>
-                    <div className="flex items-start gap-3 p-4 border border-[#1a1a1a]/8 bg-white/60 hover:bg-white transition-colors duration-300 group">
+                  <StaggerItem key={cred.label} className="h-full">
+                    <div className="h-full flex items-start gap-3 p-4 border border-[#1a1a1a]/8 bg-white/60 hover:bg-white transition-colors duration-300 group">
                       <div className="mt-0.5 w-8 h-8 flex items-center justify-center bg-[#c8a96e]/10 shrink-0">
                         <Icon className="w-3.5 h-3.5 text-[#c8a96e]" />
                       </div>
