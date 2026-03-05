@@ -14,16 +14,12 @@ export async function GET(req: NextRequest) {
   const category = searchParams.get("category") ?? "";
 
   try {
-    let query = adminDb
+    const snapshot = await adminDb
       .collection("logs")
-      .orderBy("createdAt", "desc");
+      .orderBy("createdAt", "desc")
+      .get();
 
-    if (category && ["auth", "admin", "contact"].includes(category)) {
-      query = query.where("category", "==", category) as typeof query;
-    }
-
-    const snapshot = await query.get();
-    const all = snapshot.docs.map((doc) => {
+    let all = snapshot.docs.map((doc) => {
       const d = doc.data();
       return {
         id: doc.id,
@@ -36,6 +32,11 @@ export async function GET(req: NextRequest) {
         createdAt: d.createdAt?.toDate?.()?.toISOString() ?? null,
       };
     });
+
+    // Filter by category in-memory (avoids requiring a Firestore composite index)
+    if (category && ["auth", "admin", "contact"].includes(category)) {
+      all = all.filter((log) => log.category === category);
+    }
 
     const total = all.length;
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
