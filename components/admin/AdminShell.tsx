@@ -104,7 +104,7 @@ function SidebarContent({
                   key={href}
                   href={href}
                   onClick={onLinkClick}
-                  className={`group relative flex items-center gap-3 px-3 py-2.5 text-sm transition-all duration-200
+                  className={`group relative flex items-center gap-3 px-3 py-2.5 text-xs transition-all duration-200
                     ${active
                       ? "text-[#c8a96e]"
                       : "text-white/40 hover:text-white/80"
