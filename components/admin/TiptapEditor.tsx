@@ -17,7 +17,7 @@ import { Table } from "@tiptap/extension-table";
 import TableRow from "@tiptap/extension-table-row";
 import TableHeader from "@tiptap/extension-table-header";
 import TableCell from "@tiptap/extension-table-cell";
-import { useRef, useCallback, useState } from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
 import {
   Bold, Italic, Underline as UnderlineIcon, Strikethrough,
   Heading1, Heading2, Heading3, Heading4,
@@ -214,6 +214,8 @@ export default function TiptapEditor({
 }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  // Track last content we set externally so we don't loop on the user's own keystrokes
+  const externalContentRef = useRef(content);
 
   const editor = useEditor({
     extensions: [
@@ -238,7 +240,9 @@ export default function TiptapEditor({
     ],
     content,
     onUpdate({ editor }) {
-      onChange(editor.getHTML());
+      const html = editor.getHTML();
+      externalContentRef.current = html; // mark as internal so the effect below won't re-set it
+      onChange(html);
     },
     editorProps: {
       attributes: {
@@ -247,6 +251,15 @@ export default function TiptapEditor({
     },
     immediatelyRender: false,
   });
+
+  // When the parent loads async data (edit mode), push the new content into the editor
+  useEffect(() => {
+    if (!editor) return;
+    if (content !== externalContentRef.current) {
+      externalContentRef.current = content;
+      editor.commands.setContent(content || "");
+    }
+  }, [content, editor]);
 
   const handleImageUpload = useCallback(async (file: File) => {
     if (!editor) return;
