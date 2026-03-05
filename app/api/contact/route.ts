@@ -178,7 +178,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await transporter.sendMail({
-      from: `"${process.env.CONTACT_FROM_NAME}" <${process.env.CONTACT_FROM_ADDRESS}>`,
+      from: `"${process.env.CONTACT_FROM_NAME}" <${email}>`,
       to: process.env.CONTACT_RECIPIENT,
       replyTo: safeEmail,
       subject: `[Miller & Co] ${safeSubject}`,
