@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { adminDb } from "@/lib/firebase/admin";
+import { FieldValue } from "firebase-admin/firestore";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface ContactPayload {
@@ -183,18 +185,32 @@ export async function POST(req: NextRequest) {
     // Verify SMTP connection before attempting send
     await transporter.verify();
 
-    await transporter.sendMail({
-      from: `"${process.env.CONTACT_FROM_NAME}" <${process.env.CONTACT_FROM_ADDRESS}>`,
-      to: process.env.CONTACT_RECIPIENT,
-      replyTo: safeEmail,
-      subject: `[Miller & Co] ${safeSubject}`,
-      html,
-    });
+    // Save to Firestore + send email in parallel
+    await Promise.all([
+      // Persist to Firestore so admin panel can view it
+      adminDb.collection("contacts").add({
+        name: safeName,
+        email: safeEmail,
+        phone: safePhone,
+        subject: safeSubject,
+        message: safeMessage,
+        read: false,
+        createdAt: FieldValue.serverTimestamp(),
+      }),
+      // Send notification email
+      transporter.sendMail({
+        from: `"${process.env.CONTACT_FROM_NAME}" <${process.env.CONTACT_FROM_ADDRESS}>`,
+        to: process.env.CONTACT_RECIPIENT,
+        replyTo: safeEmail,
+        subject: `[Miller & Co] ${safeSubject}`,
+        html,
+      }),
+    ]);
 
     return NextResponse.json({ success: true });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error("[contact] SMTP error:", message);
+    console.error("[contact] error:", message);
     return NextResponse.json(
       { error: "Failed to send your message. Please try again later." },
       { status: 500 }
