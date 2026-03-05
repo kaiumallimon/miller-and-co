@@ -57,12 +57,21 @@ export default function HomeHero() {
           whileHover={{ scale: 1.04 }}
           transition={{ duration: 1.8, ease: EASE }}
         >
+          {/* Mobile image */}
+          <Image
+            src="/1-mobile.png"
+            alt="Miller & Co Hero Image"
+            fill
+            priority
+            className="object-cover object-center md:hidden"
+          />
+          {/* Desktop image */}
           <Image
             src="/1.png"
             alt="Miller & Co Hero Image"
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-center hidden md:block"
           />
         </motion.div>
       </motion.div>
@@ -71,7 +80,7 @@ export default function HomeHero() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-40 md:pt-32">
+      <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-6 lg:px-10 pt-52 md:pt-44">
         <motion.div
           className="max-w-2xl flex flex-col gap-6"
           variants={containerVariants}

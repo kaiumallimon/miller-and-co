@@ -40,13 +40,22 @@ export default function AboutHero() {
         animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.04 }}
         transition={{ duration: 1.4, ease: EASE }}
       >
-        <Image
-          src="/1.png"
-          alt="Miller & Co – About Us"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+          {/* Mobile image */}
+          <Image
+            src="/1-mobile.png"
+            alt="Miller & Co – About Us"
+            fill
+            priority
+            className="object-cover object-center md:hidden"
+          />
+          {/* Desktop image */}
+          <Image
+            src="/1.png"
+            alt="Miller & Co – About Us"
+            fill
+            priority
+            className="object-cover object-center hidden md:block"
+          />
       </motion.div>
 
       {/* Dark overlay */}
@@ -56,7 +65,7 @@ export default function AboutHero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,#c8a96e10_0%,transparent_65%)] pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center min-h-[60vh] lg:min-h-[70vh] max-w-7xl mx-auto px-6 lg:px-10 pt-40 pb-20">
+      <div className="relative z-10 flex flex-col justify-center min-h-[60vh] lg:min-h-[70vh] max-w-7xl mx-auto px-6 lg:px-10 pt-48 pb-20">
         <motion.div
           className="flex flex-col gap-5 max-w-2xl"
           variants={containerVariants}

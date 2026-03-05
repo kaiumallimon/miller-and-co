@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import Image from "next/image";
 import { Phone, Mail, ArrowRight, X, Menu } from "lucide-react";
+import { motion } from "motion/react";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -15,11 +16,43 @@ const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const topBarVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
+};
+
+const headerContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.22 } },
+};
+
+const headerItemVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+};
+
+const navContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.38 } },
+};
+
+const navItemVariants = {
+  hidden: { opacity: 0, y: -8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
+};
+
 export default function CustomHeader() {
   const { isScrolled } = useScroll({ threshold: 80 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -47,7 +80,12 @@ export default function CustomHeader() {
           isScrolled ? "h-0 opacity-0" : "h-9 opacity-100"
         }`}
       >
-        <div className="bg-primary backdrop-blur-md h-9 flex items-center">
+        <motion.div
+          className="bg-primary backdrop-blur-md h-9 flex items-center"
+          variants={topBarVariants}
+          initial="hidden"
+          animate={mounted ? "visible" : "hidden"}
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full flex items-center justify-center md:justify-between">
             <div className={`${bodyFont.className} flex items-center gap-6 text-white text-xs`}>
               <a href="tel:+61280956369" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300 font-medium">
@@ -63,7 +101,7 @@ export default function CustomHeader() {
               Sydney&apos;s Trusted Migration Law Firm
             </span>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Main header */}
@@ -77,24 +115,38 @@ export default function CustomHeader() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
+          <motion.div
+            className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-20" : "h-24"}`}
+            variants={headerContainerVariants}
+            initial="hidden"
+            animate={mounted ? "visible" : "hidden"}
+          >
 
             {/* Logo */}
-            <a href="/" className="cursor-pointer relative group shrink-0" aria-label="Home">
+            <motion.a
+              href="/"
+              variants={headerItemVariants}
+              className="cursor-pointer relative group shrink-0"
+              aria-label="Home"
+            >
               <Image
                 src="/NEW-logo-TM-White1.png"
                 alt="Miller & Co Logo"
-                width={140}
-                height={36}
+                width={170}
+                height={48}
                 className="object-contain transition-opacity duration-300 group-hover:opacity-80"
               />
-            </a>
+            </motion.a>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center">
+            <motion.nav
+              className="hidden md:flex items-center"
+              variants={navContainerVariants}
+            >
               {NAV_LINKS.map((link) => (
-                <button
+                <motion.button
                   key={link.href}
+                  variants={navItemVariants}
                   onClick={() => handleNavigate(link.href)}
                   className={`${bodyFont.className} relative px-4 py-2 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors duration-300 group ${
                     isActive(link.href) ? "text-[#c8a96e]" : "text-white/70 hover:text-white"
@@ -107,31 +159,33 @@ export default function CustomHeader() {
                       isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                     }`}
                   />
-                </button>
+                </motion.button>
               ))}
 
               {/* Divider */}
-              <span className="w-px h-5 bg-white/15 mx-4" />
+              <motion.span variants={navItemVariants} className="w-px h-5 bg-white/15 mx-4" />
 
               {/* CTA */}
-              <button
+              <motion.button
+                variants={navItemVariants}
                 onClick={() => handleNavigate("/contact")}
                 className={`${bodyFont.className} group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 hover:bg-primary/90 hover:gap-3 hover:shadow-lg hover:shadow-primary/25`}
               >
                 Book a Consultation
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </button>
-            </nav>
+              </motion.button>
+            </motion.nav>
 
             {/* Mobile hamburger */}
-            <button
+            <motion.button
+              variants={headerItemVariants}
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
               className="md:hidden flex items-center justify-center w-10 h-10 text-white hover:text-[#c8a96e] transition-colors duration-300"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </header>
 
