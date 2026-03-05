@@ -178,9 +178,17 @@ export default function Footer() {
             <p className={`${bodyFont.className} text-white/25 text-[10px] tracking-[0.15em] uppercase`}>
               © {new Date().getFullYear()} Miller &amp; Co Lawyers &amp; Migration Agents. All rights reserved.
             </p>
-            <p className={`${bodyFont.className} text-white/15 text-[10px] tracking-[0.1em] uppercase`}>
-              ABN — Migration &amp; Legal Services · Sydney, Australia
-            </p>
+            <div className="flex items-center gap-6">
+              <p className={`${bodyFont.className} text-white/15 text-[10px] tracking-[0.1em] uppercase`}>
+                ABN — Migration &amp; Legal Services · Sydney, Australia
+              </p>
+              <a
+                href="/admin/login"
+                className={`${bodyFont.className} text-white/15 hover:text-white/40 text-[10px] tracking-[0.1em] uppercase transition-colors duration-300`}
+              >
+                Admin
+              </a>
+            </div>
           </AnimateIn>
         </div>
       </div>
