@@ -7,6 +7,7 @@ import {
   Mail, MailOpen, Trash2, Loader2, AlertCircle, CheckCircle2,
   X, ChevronLeft, ChevronRight, Phone, User, MessageSquare, Inbox,
 } from "lucide-react";
+import { Drawer, DrawerContent } from "@/components/ui/drawer";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -198,7 +199,7 @@ export default function SubmissionsPage() {
   // ── Select card (auto-marks read) ───────────────────────────────────────────
   const handleSelect = async (sub: Submission) => {
     setSelected(sub);
-    setDrawerOpen(true);
+    if (window.innerWidth < 1024) setDrawerOpen(true);
     if (!sub.read) {
       try {
         await fetch(`/api/admin/submissions/${sub.id}`, {
@@ -363,36 +364,23 @@ export default function SubmissionsPage() {
       </motion.div>
 
       {/* ── Mobile bottom drawer ── */}
-      <AnimatePresence>
-        {drawerOpen && selected && (
-          <>
-            <motion.div key="bd" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/60 lg:hidden"
-              onClick={() => setDrawerOpen(false)} />
-
-            <motion.div key="drawer"
-              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
-              transition={{ duration: 0.35, ease: EASE }}
-              className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-[#141414] border-t border-white/10 rounded-t-2xl flex flex-col overflow-hidden"
-              style={{ maxHeight: "82dvh" }}>
-              <div className="flex justify-center pt-3 pb-1 shrink-0">
-                <div className="w-10 h-1 rounded-full bg-white/15" />
-              </div>
-              <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
-                <MessageDetail
-                  sub={selected}
-                  onToggleRead={handleToggleRead}
-                  onDelete={handleDelete}
-                  togglingRead={togglingRead}
-                  deleting={deleting}
-                  onClose={() => setDrawerOpen(false)}
-                />
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+        <DrawerContent
+          className="bg-[#141414] border-t border-white/10 rounded-t-2xl p-0 outline-none flex flex-col [&>div:first-child]:bg-white/15"
+          style={{ height: "82dvh", maxHeight: "82dvh" }}
+        >
+          {selected && (
+            <MessageDetail
+              sub={selected}
+              onToggleRead={handleToggleRead}
+              onDelete={handleDelete}
+              togglingRead={togglingRead}
+              deleting={deleting}
+              onClose={() => setDrawerOpen(false)}
+            />
+          )}
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 }
