@@ -7,7 +7,8 @@ import {
   Mail, MailOpen, Trash2, Loader2, AlertCircle, CheckCircle2,
   X, ChevronLeft, ChevronRight, Phone, User, MessageSquare, Inbox,
 } from "lucide-react";
-import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -369,6 +370,9 @@ export default function SubmissionsPage() {
           className="bg-[#141414] border-t border-white/10 rounded-t-2xl p-0 outline-none flex flex-col [&>div:first-child]:bg-white/15"
           style={{ height: "82dvh", maxHeight: "82dvh" }}
         >
+          <VisuallyHidden.Root>
+            <DrawerTitle>{selected?.subject ?? "Submission"}</DrawerTitle>
+          </VisuallyHidden.Root>
           {selected && (
             <MessageDetail
               sub={selected}
