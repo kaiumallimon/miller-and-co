@@ -10,8 +10,24 @@ export async function GET() {
   }
 
   try {
-    const snapshot = await adminDb.collection("admins").orderBy("createdAt", "desc").get();
-    const admins = snapshot.docs.map((doc) => doc.data());
+    const snapshot = await adminDb.collection("admins").get();
+    const admins = snapshot.docs
+      .map((doc) => {
+        const d = doc.data();
+        // Backfill missing fields from legacy docs
+        return {
+          uid: d.uid ?? doc.id,
+          email: d.email ?? "",
+          createdAt: d.createdAt ?? null,
+          lastLogin: d.lastLogin ?? null,
+          active: d.active !== undefined ? d.active : true,
+        };
+      })
+      .sort((a, b) => {
+        if (!a.createdAt) return 1;
+        if (!b.createdAt) return -1;
+        return b.createdAt.localeCompare(a.createdAt);
+      });
     return NextResponse.json({ admins });
   } catch (err) {
     console.error("[Accounts GET]", err);
@@ -49,6 +65,7 @@ export async function POST(req: NextRequest) {
       email: user.email ?? email,
       createdAt: now,
       lastLogin: null,
+      active: true,
     });
 
     return NextResponse.json({ uid: user.uid, email: user.email }, { status: 201 });

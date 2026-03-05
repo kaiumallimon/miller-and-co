@@ -20,18 +20,22 @@ export async function POST(req: NextRequest) {
       expiresIn,
     });
 
-    // Upsert the admin record in Firestore
-    await adminDb
-      .collection("admins")
-      .doc(decoded.uid)
-      .set(
-        {
-          uid: decoded.uid,
-          email: decoded.email ?? null,
-          lastLogin: new Date().toISOString(),
-        },
-        { merge: true }
-      );
+    // Upsert the admin record in Firestore.
+    // Only set createdAt on first write — never overwrite it on subsequent logins.
+    const adminRef = adminDb.collection("admins").doc(decoded.uid);
+    const existing = await adminRef.get();
+    const now = new Date().toISOString();
+    if (!existing.exists) {
+      await adminRef.set({
+        uid: decoded.uid,
+        email: decoded.email ?? null,
+        createdAt: now,
+        lastLogin: now,
+        active: true,
+      });
+    } else {
+      await adminRef.update({ lastLogin: now });
+    }
 
     // Set the cookie — deliberately no maxAge/expires so it's a session cookie
     const response = NextResponse.json({ success: true });

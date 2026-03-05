@@ -4,151 +4,99 @@ import { useState, useEffect, useCallback } from "react";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  UserPlus,
-  Trash2,
-  KeyRound,
-  Loader2,
-  AlertCircle,
-  CheckCircle2,
-  X,
-  Mail,
-  Eye,
-  EyeOff,
-  ShieldAlert,
+  UserPlus, Trash2, KeyRound, Loader2, AlertCircle, CheckCircle2,
+  X, Eye, EyeOff, ShieldAlert, Users, UserCheck, UserX,
+  ToggleLeft, ToggleRight,
 } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const fadeUp = { hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } } };
+const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.05, delayChildren: 0.05 } } };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
-};
+interface AdminAccount { uid: string; email: string; createdAt: string | null; lastLogin: string | null; active: boolean; }
+type ToastState = { type: "success" | "error"; message: string } | null;
 
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
-};
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-interface AdminAccount {
-  uid: string;
-  email: string;
-  createdAt: string | null;
-  lastLogin: string | null;
-}
-
-type ToastType = "success" | "error";
-
-// ─── Inline toast ─────────────────────────────────────────────────────────────
-function Toast({ type, message, onClose }: { type: ToastType; message: string; onClose: () => void }) {
-  useEffect(() => {
-    const t = setTimeout(onClose, 4000);
-    return () => clearTimeout(t);
-  }, [onClose]);
-
+function Toast({ type, message, onClose }: { type: "success" | "error"; message: string; onClose: () => void }) {
+  useEffect(() => { const t = setTimeout(onClose, 4000); return () => clearTimeout(t); }, [onClose]);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.3, ease: EASE }}
+    <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.25, ease: EASE }}
       className={`flex items-center gap-3 px-4 py-3 text-sm border ${
-        type === "success"
-          ? "bg-emerald-950/40 border-emerald-500/20 text-emerald-400"
-          : "bg-red-950/40 border-red-500/20 text-red-400"
-      }`}
-    >
-      {type === "success" ? (
-        <CheckCircle2 className="w-4 h-4 shrink-0" />
-      ) : (
-        <AlertCircle className="w-4 h-4 shrink-0" />
-      )}
+        type === "success" ? "bg-emerald-950/40 border-emerald-500/20 text-emerald-400" : "bg-red-950/40 border-red-500/20 text-red-400"
+      }`}>
+      {type === "success" ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
       <span className="flex-1">{message}</span>
-      <button onClick={onClose} className="text-current/50 hover:text-current transition-colors cursor-pointer">
-        <X className="w-3.5 h-3.5" />
-      </button>
+      <button onClick={onClose} className="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"><X className="w-3.5 h-3.5" /></button>
     </motion.div>
   );
 }
 
-// ─── Confirm dialog ───────────────────────────────────────────────────────────
-function ConfirmDialog({
-  message,
-  onConfirm,
-  onCancel,
-  loading,
-}: {
-  message: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-  loading: boolean;
-}) {
+function ConfirmDialog({ email, onConfirm, onCancel, loading }: { email: string; onConfirm: () => void; onCancel: () => void; loading: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.97 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.97 }}
-      transition={{ duration: 0.2, ease: EASE }}
-      className="fixed inset-0 z-50 flex items-center justify-center px-4"
-    >
-      <div className="absolute inset-0 bg-black/70" onClick={onCancel} />
-      <div className="relative bg-[#141414] border border-white/10 p-6 w-full max-w-sm flex flex-col gap-5">
+    <motion.div key="confirm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center px-4">
+      <div className="absolute inset-0 bg-black/75" onClick={onCancel} />
+      <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.2, ease: EASE }}
+        className="relative bg-[#141414] border border-white/10 p-6 w-full max-w-sm flex flex-col gap-5 z-10">
         <span className="absolute top-0 left-0 w-8 h-8 border-t border-l border-red-500/30" />
         <span className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-red-500/30" />
-
         <div className="flex items-start gap-3">
           <ShieldAlert className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
-          <div className="flex flex-col gap-1">
-            <p className={`${headlineFont.className} text-white text-lg font-semibold`}>
-              Confirm Deletion
+          <div>
+            <p className={`${headlineFont.className} text-white text-lg font-semibold`}>Confirm Deletion</p>
+            <p className={`${bodyFont.className} text-white/40 text-sm mt-1`}>
+              <span className="text-white/60">{email}</span> will be permanently removed and can no longer sign in.
             </p>
-            <p className={`${bodyFont.className} text-white/40 text-sm`}>{message}</p>
           </div>
         </div>
-
         <div className="flex gap-3">
-          <button
-            onClick={onCancel}
-            className={`${bodyFont.className} flex-1 px-4 py-2.5 text-xs tracking-[0.15em] uppercase font-semibold text-white/40 border border-white/10 hover:border-white/20 hover:text-white/60 transition-all duration-200 cursor-pointer`}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={onConfirm}
-            disabled={loading}
-            className={`${bodyFont.className} flex-1 px-4 py-2.5 text-xs tracking-[0.15em] uppercase font-semibold bg-red-500/15 border border-red-500/30 text-red-400 hover:bg-red-500/25 transition-all duration-200 disabled:opacity-40 cursor-pointer`}
-          >
+          <button onClick={onCancel} className={`${bodyFont.className} flex-1 py-2.5 text-xs tracking-[0.15em] uppercase font-semibold border border-white/10 text-white/40 hover:text-white/60 hover:border-white/20 transition-all duration-200 cursor-pointer`}>Cancel</button>
+          <button onClick={onConfirm} disabled={loading} className={`${bodyFont.className} flex-1 py-2.5 text-xs tracking-[0.15em] uppercase font-semibold bg-red-500/15 border border-red-500/30 text-red-400 hover:bg-red-500/25 transition-all duration-200 disabled:opacity-40 cursor-pointer`}>
             {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin mx-auto" /> : "Delete"}
           </button>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
 
-// ─── Main page ────────────────────────────────────────────────────────────────
+function SkeletonRow() {
+  return (
+    <tr className="border-b border-white/4">
+      <td className="px-5 py-4">
+        <div className="flex items-center gap-3">
+          <div className="w-7 h-7 rounded-full bg-white/6 animate-pulse shrink-0" />
+          <div className="h-3 bg-white/6 rounded-sm animate-pulse w-40" />
+        </div>
+      </td>
+      <td className="px-5 py-4"><div className="h-5 bg-white/6 rounded-sm animate-pulse w-16" /></td>
+      <td className="px-5 py-4"><div className="h-3 bg-white/6 rounded-sm animate-pulse w-24" /></td>
+      <td className="px-5 py-4"><div className="h-3 bg-white/6 rounded-sm animate-pulse w-24" /></td>
+      <td className="px-5 py-4">
+        <div className="flex gap-2">
+          <div className="h-7 w-24 bg-white/6 rounded-sm animate-pulse" />
+          <div className="h-7 w-16 bg-white/6 rounded-sm animate-pulse" />
+          <div className="h-7 w-16 bg-white/6 rounded-sm animate-pulse" />
+        </div>
+      </td>
+    </tr>
+  );
+}
+
 export default function AccountsPage() {
   const [accounts, setAccounts] = useState<AdminAccount[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // Create form
   const [showForm, setShowForm] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPw, setShowPw] = useState(false);
   const [creating, setCreating] = useState(false);
-
-  // Per-row actions
+  const [togglingUid, setTogglingUid] = useState<string | null>(null);
   const [resettingUid, setResettingUid] = useState<string | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<AdminAccount | null>(null);
   const [deletingUid, setDeletingUid] = useState<string | null>(null);
+  const [toast, setToast] = useState<ToastState>(null);
+  const showToast = (type: "success" | "error", message: string) => setToast({ type, message });
 
-  // Toast
-  const [toast, setToast] = useState<{ type: ToastType; message: string } | null>(null);
-
-  const showToast = (type: ToastType, message: string) => setToast({ type, message });
-
-  // ── Fetch ───────────────────────────────────────────────────────────────────
   const fetchAccounts = useCallback(async () => {
     setLoading(true);
     try {
@@ -162,19 +110,17 @@ export default function AccountsPage() {
       setLoading(false);
     }
   }, []);
+  useEffect(() => { fetchAccounts(); }, [fetchAccounts]);
 
-  useEffect(() => {
-    fetchAccounts();
-  }, [fetchAccounts]);
+  const total = accounts.length;
+  const activeCount = accounts.filter((a) => a.active).length;
+  const inactiveCount = total - activeCount;
 
-  // ── Create ──────────────────────────────────────────────────────────────────
   const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setCreating(true);
+    e.preventDefault(); setCreating(true);
     try {
       const res = await fetch("/api/admin/accounts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: newEmail, password: newPassword }),
       });
       const data = await res.json();
@@ -182,14 +128,33 @@ export default function AccountsPage() {
       showToast("success", `Account created for ${newEmail}`);
       setNewEmail(""); setNewPassword(""); setShowForm(false);
       await fetchAccounts();
-    } catch {
-      showToast("error", "Failed to create account.");
-    } finally {
-      setCreating(false);
-    }
+    } catch { showToast("error", "Failed to create account."); }
+    finally { setCreating(false); }
   };
 
-  // ── Delete ──────────────────────────────────────────────────────────────────
+  const handleToggle = async (acc: AdminAccount) => {
+    setTogglingUid(acc.uid);
+    try {
+      const res = await fetch(`/api/admin/accounts/${acc.uid}`, { method: "PATCH" });
+      const data = await res.json();
+      if (!res.ok) { showToast("error", data.error); return; }
+      showToast("success", `${acc.email} is now ${data.active ? "active" : "inactive"}.`);
+      setAccounts((prev) => prev.map((a) => a.uid === acc.uid ? { ...a, active: data.active } : a));
+    } catch { showToast("error", "Failed to update account."); }
+    finally { setTogglingUid(null); }
+  };
+
+  const handleReset = async (acc: AdminAccount) => {
+    setResettingUid(acc.uid);
+    try {
+      const res = await fetch(`/api/admin/accounts/${acc.uid}/reset-password`, { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) { showToast("error", data.error); return; }
+      showToast("success", `Password reset email sent to ${acc.email}`);
+    } catch { showToast("error", "Failed to send reset email."); }
+    finally { setResettingUid(null); }
+  };
+
   const handleDelete = async () => {
     if (!deleteTarget) return;
     setDeletingUid(deleteTarget.uid);
@@ -199,255 +164,164 @@ export default function AccountsPage() {
       if (!res.ok) { showToast("error", data.error); return; }
       showToast("success", `Account ${deleteTarget.email} deleted.`);
       setDeleteTarget(null);
-      await fetchAccounts();
-    } catch {
-      showToast("error", "Failed to delete account.");
-    } finally {
-      setDeletingUid(null);
-    }
+      setAccounts((prev) => prev.filter((a) => a.uid !== deleteTarget.uid));
+    } catch { showToast("error", "Failed to delete account."); }
+    finally { setDeletingUid(null); }
   };
 
-  // ── Password reset ──────────────────────────────────────────────────────────
-  const handleReset = async (uid: string, email: string) => {
-    setResettingUid(uid);
-    try {
-      const res = await fetch(`/api/admin/accounts/${uid}/reset-password`, { method: "POST" });
-      const data = await res.json();
-      if (!res.ok) { showToast("error", data.error); return; }
-      showToast("success", `Password reset email sent to ${email}`);
-    } catch {
-      showToast("error", "Failed to send reset email.");
-    } finally {
-      setResettingUid(null);
-    }
-  };
-
-  // ── Helpers ─────────────────────────────────────────────────────────────────
   const fmt = (iso: string | null) => {
     if (!iso) return "—";
-    return new Date(iso).toLocaleDateString("en-AU", {
-      day: "2-digit", month: "short", year: "numeric",
-    });
+    return new Date(iso).toLocaleDateString("en-AU", { day: "2-digit", month: "short", year: "numeric" });
   };
 
-  const inputClass = `${bodyFont.className} w-full bg-[#1a1a1a] border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8a96e] transition-colors duration-200`;
+  const inputClass = `${bodyFont.className} w-full bg-[#1a1a1a] border border-white/8 px-4 py-2.5 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#c8a96e] transition-colors duration-200`;
+  const actionBtn = (color: "gold" | "red" | "default") =>
+    `${bodyFont.className} flex items-center gap-1.5 px-3 py-1.5 text-[11px] tracking-[0.1em] uppercase font-semibold border transition-all duration-200 disabled:opacity-40 cursor-pointer ${
+      color === "gold" ? "border-white/8 text-white/35 hover:text-[#c8a96e] hover:border-[#c8a96e]/30"
+      : color === "red" ? "border-white/8 text-white/35 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/8"
+      : "border-white/8 text-white/35 hover:text-white/60 hover:border-white/20"
+    }`;
 
   return (
-    <div className="p-6 md:p-10 max-w-5xl">
-      {/* ── Confirm dialog ── */}
+    <div className="p-6 md:p-8 flex flex-col gap-6">
       <AnimatePresence>
-        {deleteTarget && (
-          <ConfirmDialog
-            message={`"${deleteTarget.email}" will be permanently removed and can no longer log in.`}
-            onConfirm={handleDelete}
-            onCancel={() => setDeleteTarget(null)}
-            loading={!!deletingUid}
-          />
+        {deleteTarget && <ConfirmDialog email={deleteTarget.email} onConfirm={handleDelete} onCancel={() => setDeleteTarget(null)} loading={!!deletingUid} />}
+      </AnimatePresence>
+
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className={`${headlineFont.className} text-2xl font-semibold text-white leading-tight`}>
+            Admin <span className="italic text-[#c8a96e]">Accounts</span>
+          </h1>
+          <p className={`${bodyFont.className} text-white/30 text-sm mt-0.5`}>
+            Manage administrator access to the Miller &amp; Co. panel
+          </p>
+        </div>
+        <button onClick={() => setShowForm((v) => !v)}
+          className={`${bodyFont.className} shrink-0 flex items-center gap-2 px-4 py-2 text-xs font-bold tracking-[0.15em] uppercase transition-all duration-200 cursor-pointer ${
+            showForm ? "bg-white/6 text-white/40 border border-white/10" : "bg-[#c8a96e] text-[#0f0f0f] hover:bg-[#c8a96e]/85"
+          }`}>
+          {showForm ? <><X className="w-3.5 h-3.5" />Cancel</> : <><UserPlus className="w-3.5 h-3.5" />Add Admin</>}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showForm && (
+          <motion.div key="form" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3, ease: EASE }} className="overflow-hidden">
+            <div className="relative bg-[#141414] border border-white/6 p-5">
+              <span className="absolute top-0 left-0 w-7 h-7 border-t border-l border-[#c8a96e]/30" />
+              <span className="absolute bottom-0 right-0 w-7 h-7 border-b border-r border-[#c8a96e]/30" />
+              <p className={`${bodyFont.className} text-[10px] tracking-[0.25em] uppercase text-[#c8a96e] font-semibold mb-4`}>New Admin Account</p>
+              <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30`}>Email Address</label>
+                  <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder="admin@example.com" required autoComplete="off" className={inputClass} />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30`}>Password <span className="normal-case tracking-normal text-white/15">(min. 8)</span></label>
+                  <div className="relative">
+                    <input type={showPw ? "text" : "password"} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="••••••••" required minLength={8} autoComplete="new-password" className={`${inputClass} pr-10`} />
+                    <button type="button" onClick={() => setShowPw((p) => !p)} tabIndex={-1} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors cursor-pointer">
+                      {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex items-end">
+                  <button type="submit" disabled={creating} className={`${bodyFont.className} w-full flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold tracking-[0.15em] uppercase bg-[#c8a96e] text-[#0f0f0f] hover:bg-[#c8a96e]/85 transition-all disabled:opacity-50 cursor-pointer`}>
+                    {creating ? <><Loader2 className="w-3.5 h-3.5 animate-spin" />Creating…</> : <><UserPlus className="w-3.5 h-3.5" />Create</>}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.div variants={stagger} initial="hidden" animate="visible" className="flex flex-col gap-8">
-
-        {/* ── Header ── */}
-        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-          <div className="flex flex-col gap-1.5">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-[#c8a96e] font-semibold">
-              System
-            </p>
-            <h1 className={`${headlineFont.className} text-3xl md:text-4xl font-semibold text-white leading-tight`}>
-              Admin <span className="italic text-[#c8a96e]">Accounts</span>
-            </h1>
-            <p className="text-white/30 text-sm mt-0.5">
-              Manage administrator access to the Miller &amp; Co. panel
-            </p>
-          </div>
-
-          <button
-            onClick={() => setShowForm((v) => !v)}
-            className={`${bodyFont.className} flex items-center gap-2 px-5 py-2.5 text-xs font-bold tracking-[0.15em] uppercase transition-all duration-200 cursor-pointer ${
-              showForm
-                ? "bg-white/6 text-white/50 border border-white/10"
-                : "bg-[#c8a96e] text-[#0f0f0f] hover:bg-[#c8a96e]/85"
-            }`}
-          >
-            {showForm ? (
-              <><X className="w-3.5 h-3.5" /> Cancel</>
-            ) : (
-              <><UserPlus className="w-3.5 h-3.5" /> Add Admin</>
-            )}
-          </button>
-        </motion.div>
-
-        {/* ── Toast ── */}
-        <AnimatePresence>
-          {toast && (
-            <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />
-          )}
-        </AnimatePresence>
-
-        {/* ── Create form ── */}
-        <AnimatePresence>
-          {showForm && (
-            <motion.div
-              key="create-form"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: EASE }}
-              className="overflow-hidden"
-            >
-              <div className="relative bg-[#141414] border border-white/6 p-6">
-                <span className="absolute top-0 left-0 w-8 h-8 border-t border-l border-[#c8a96e]/30" />
-                <span className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-[#c8a96e]/30" />
-
-                <p className="text-[10px] tracking-[0.25em] uppercase text-[#c8a96e] font-semibold mb-5">
-                  New Admin Account
-                </p>
-
-                <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Email */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30`}>
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      value={newEmail}
-                      onChange={(e) => setNewEmail(e.target.value)}
-                      placeholder="admin@example.com"
-                      required
-                      autoComplete="off"
-                      className={inputClass}
-                    />
-                  </div>
-
-                  {/* Password */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30`}>
-                      Password <span className="normal-case tracking-normal text-white/20">(min. 8 chars)</span>
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder="••••••••"
-                        required
-                        minLength={8}
-                        autoComplete="new-password"
-                        className={`${inputClass} pr-11`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword((p) => !p)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors cursor-pointer"
-                        tabIndex={-1}
-                      >
-                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Submit spans both cols */}
-                  <div className="sm:col-span-2 flex justify-end pt-1">
-                    <button
-                      type="submit"
-                      disabled={creating}
-                      className={`${bodyFont.className} flex items-center gap-2 px-6 py-2.5 text-xs font-bold tracking-[0.15em] uppercase bg-[#c8a96e] text-[#0f0f0f] hover:bg-[#c8a96e]/85 transition-all duration-200 disabled:opacity-50 cursor-pointer`}
-                    >
-                      {creating ? (
-                        <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Creating…</>
-                      ) : (
-                        <><UserPlus className="w-3.5 h-3.5" /> Create Account</>
-                      )}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* ── Divider ── */}
-        <motion.div variants={fadeUp} className="h-px bg-white/6" />
-
-        {/* ── Accounts list ── */}
-        <motion.div variants={stagger} className="flex flex-col gap-3">
-          {loading ? (
-            <div className="flex items-center justify-center py-16 text-white/20">
-              <Loader2 className="w-5 h-5 animate-spin mr-3" />
-              <span className={`${bodyFont.className} text-sm`}>Loading accounts…</span>
+      <motion.div variants={stagger} initial="hidden" animate="visible" className="grid grid-cols-3 gap-4">
+        {[
+          { icon: Users,     label: "Total Accounts", value: loading ? "—" : total,         gold: false },
+          { icon: UserCheck, label: "Active",          value: loading ? "—" : activeCount,   gold: true  },
+          { icon: UserX,     label: "Inactive",        value: loading ? "—" : inactiveCount, gold: false },
+        ].map(({ icon: Icon, label, value, gold }) => (
+          <motion.div key={label} variants={fadeUp} className="relative bg-[#141414] border border-white/6 px-5 py-4 flex items-center gap-4">
+            {gold && <><span className="absolute top-0 left-0 w-6 h-6 border-t border-l border-[#c8a96e]/25" /><span className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-[#c8a96e]/25" /></>}
+            <Icon className={`w-5 h-5 shrink-0 ${gold ? "text-[#c8a96e]" : "text-white/20"}`} />
+            <div>
+              <p className={`${headlineFont.className} text-xl font-semibold ${gold ? "text-[#c8a96e]" : "text-white"}`}>{value}</p>
+              <p className={`${bodyFont.className} text-white/25 text-[11px] tracking-wide`}>{label}</p>
             </div>
-          ) : accounts.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-16 gap-3 text-white/20">
-              <Mail className="w-8 h-8" />
-              <p className={`${bodyFont.className} text-sm`}>No admin accounts found.</p>
-            </div>
-          ) : (
-            accounts.map((account) => (
-              <motion.div
-                key={account.uid}
-                variants={fadeUp}
-                className="relative bg-[#141414] border border-white/6 px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-4"
-              >
-                {/* Avatar + info */}
-                <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <div className="w-9 h-9 rounded-full bg-[#c8a96e]/12 border border-[#c8a96e]/25 flex items-center justify-center shrink-0">
-                    <span className={`${headlineFont.className} text-[#c8a96e] text-sm font-semibold`}>
-                      {account.email.charAt(0).toUpperCase()}
-                    </span>
-                  </div>
-                  <div className="flex flex-col min-w-0">
-                    <span className="text-white/80 text-sm font-medium truncate">{account.email}</span>
-                    <div className={`${bodyFont.className} flex items-center gap-3 mt-0.5`}>
-                      <span className="text-white/25 text-[11px]">
-                        Created {fmt(account.createdAt)}
-                      </span>
-                      {account.lastLogin && (
-                        <>
-                          <span className="text-white/15 text-[11px]">·</span>
-                          <span className="text-white/25 text-[11px]">
-                            Last login {fmt(account.lastLogin)}
-                          </span>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center gap-2 shrink-0">
-                  {/* Reset password */}
-                  <button
-                    onClick={() => handleReset(account.uid, account.email)}
-                    disabled={resettingUid === account.uid}
-                    title="Send password reset email"
-                    className={`${bodyFont.className} flex items-center gap-2 px-3 py-2 text-[11px] tracking-[0.12em] uppercase font-semibold border border-white/8 text-white/35 hover:text-[#c8a96e] hover:border-[#c8a96e]/30 transition-all duration-200 disabled:opacity-40 cursor-pointer`}
-                  >
-                    {resettingUid === account.uid ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    ) : (
-                      <KeyRound className="w-3.5 h-3.5" />
-                    )}
-                    <span className="hidden sm:inline">Reset Password</span>
-                  </button>
-
-                  {/* Delete */}
-                  <button
-                    onClick={() => setDeleteTarget(account)}
-                    title="Delete account"
-                    className={`${bodyFont.className} flex items-center gap-2 px-3 py-2 text-[11px] tracking-[0.12em] uppercase font-semibold border border-white/8 text-white/35 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/8 transition-all duration-200 cursor-pointer`}
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Delete</span>
-                  </button>
-                </div>
-              </motion.div>
-            ))
-          )}
-        </motion.div>
-
+          </motion.div>
+        ))}
       </motion.div>
+
+      <div className="bg-[#141414] border border-white/6 overflow-hidden flex flex-col">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[720px]">
+            <thead>
+              <tr className="border-b border-white/6">
+                {["Administrator", "Status", "Created", "Last Login", "Actions"].map((h) => (
+                  <th key={h} className={`${bodyFont.className} px-5 py-3 text-left text-[10px] tracking-[0.2em] uppercase text-white/25 font-semibold whitespace-nowrap`}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                Array.from({ length: 3 }).map((_, i) => <SkeletonRow key={i} />)
+              ) : accounts.length === 0 ? (
+                <tr><td colSpan={5} className={`${bodyFont.className} px-5 py-16 text-center text-white/20 text-sm`}>No admin accounts found.</td></tr>
+              ) : (
+                accounts.map((acc) => (
+                  <tr key={acc.uid} className="border-b border-white/4 hover:bg-white/[0.02] transition-colors duration-150">
+                    <td className="px-5 py-3.5">
+                      <div className="flex items-center gap-3">
+                        <div className="w-7 h-7 rounded-full bg-[#c8a96e]/12 border border-[#c8a96e]/20 flex items-center justify-center shrink-0">
+                          <span className={`${headlineFont.className} text-[#c8a96e] text-xs font-semibold`}>{acc.email.charAt(0).toUpperCase()}</span>
+                        </div>
+                        <span className="text-white/70 text-sm truncate max-w-[220px]">{acc.email}</span>
+                      </div>
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] tracking-[0.12em] uppercase font-semibold border ${
+                        acc.active ? "bg-emerald-950/40 border-emerald-500/20 text-emerald-400" : "bg-white/4 border-white/10 text-white/25"
+                      }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${acc.active ? "bg-emerald-400" : "bg-white/20"}`} />
+                        {acc.active ? "Active" : "Inactive"}
+                      </span>
+                    </td>
+                    <td className={`${bodyFont.className} px-5 py-3.5 text-white/30 text-[13px] whitespace-nowrap`}>{fmt(acc.createdAt)}</td>
+                    <td className={`${bodyFont.className} px-5 py-3.5 text-white/30 text-[13px] whitespace-nowrap`}>{fmt(acc.lastLogin)}</td>
+                    <td className="px-5 py-3.5">
+                      <div className="flex items-center gap-1.5">
+                        <button onClick={() => handleToggle(acc)} disabled={togglingUid === acc.uid} className={actionBtn("default")}>
+                          {togglingUid === acc.uid ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : acc.active ? <ToggleRight className="w-3.5 h-3.5 text-emerald-400" /> : <ToggleLeft className="w-3.5 h-3.5" />}
+                          {acc.active ? "Deactivate" : "Activate"}
+                        </button>
+                        <button onClick={() => handleReset(acc)} disabled={resettingUid === acc.uid} className={actionBtn("gold")}>
+                          {resettingUid === acc.uid ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <KeyRound className="w-3.5 h-3.5" />}
+                          Reset
+                        </button>
+                        <button onClick={() => setDeleteTarget(acc)} className={actionBtn("red")}>
+                          <Trash2 className="w-3.5 h-3.5" />Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        {!loading && accounts.length > 0 && (
+          <div className={`${bodyFont.className} border-t border-white/6 px-5 py-2.5 text-[11px] text-white/20 flex items-center justify-between`}>
+            <span>{total} account{total !== 1 ? "s" : ""} total</span>
+            <span>{activeCount} active · {inactiveCount} inactive</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
