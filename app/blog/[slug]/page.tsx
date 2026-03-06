@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { adminDb } from "@/lib/firebase/admin";
 import CustomHeader from "@/components/custom/shared/header";
 import Footer from "@/components/custom/shared/footer";
-import CtaSection from "@/components/custom/home/cta-section";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 import { ArrowLeft, Clock, Calendar, Tag, BookOpen, User } from "lucide-react";
@@ -156,10 +155,10 @@ export default async function BlogPostPage({
               </StaggerItem>
               <StaggerItem>
                 <div className={`${bodyFont.className} flex flex-wrap items-center gap-4 text-[11px] text-white/40`}>
-                  {post.authorName && (
+                  {post.author && (
                     <span className="flex items-center gap-1.5">
                       <User className="w-3 h-3" />
-                      {post.authorName}
+                      {post.author}
                     </span>
                   )}
                   {post.publishedAt && (
@@ -208,10 +207,10 @@ export default async function BlogPostPage({
               )}
               <StaggerItem>
                 <div className={`${bodyFont.className} flex flex-wrap items-center gap-4 text-[11px] text-white/30 mt-1`}>
-                  {post.authorName && (
+                  {post.author && (
                     <span className="flex items-center gap-1.5">
                       <User className="w-3 h-3" />
-                      {post.authorName}
+                      {post.author}
                     </span>
                   )}
                   {post.publishedAt && (
@@ -340,7 +339,6 @@ export default async function BlogPostPage({
         </div>
       </AnimateIn>
 
-      <CtaSection />
       <Footer />
     </div>
   );
