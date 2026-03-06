@@ -1,22 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { bodyFont } from "@/lib/typographies";
 import { Link2, Check, Twitter, Linkedin } from "lucide-react";
 
 export default function BlogShareBar({ title, slug }: { title: string; slug: string }) {
   const [copied, setCopied] = useState(false);
+  const [fullUrl, setFullUrl] = useState(`/blog/${slug}`);
 
-  const url =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/blog/${slug}`
-      : `/blog/${slug}`;
+  // Resolve the full absolute URL only on the client after hydration
+  useEffect(() => {
+    setFullUrl(`${window.location.origin}/blog/${slug}`);
+  }, [slug]);
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(
-        typeof window !== "undefined" ? window.location.href : url
-      );
+      await navigator.clipboard.writeText(fullUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -24,8 +23,8 @@ export default function BlogShareBar({ title, slug }: { title: string; slug: str
     }
   };
 
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
-  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(fullUrl)}`;
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`;
 
   return (
     <div className="flex flex-col gap-3 p-5 bg-[#141414] border border-white/6">
