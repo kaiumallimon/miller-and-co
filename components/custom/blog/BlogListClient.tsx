@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Clock, Calendar, Search, ArrowRight, BookOpen, Tag,
+  Clock, Calendar, Search, ArrowRight, BookOpen, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import type { BlogPost } from "@/app/blog/page";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const PAGE_SIZE = 20;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function formatDate(iso: string | null) {
