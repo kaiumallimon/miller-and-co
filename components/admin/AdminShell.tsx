@@ -20,6 +20,7 @@ import {
   Newspaper,
   PenLine,
   Cloud,
+  HelpCircle,
 } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
@@ -41,6 +42,12 @@ const NAV = [
     items: [
       { label: "All Posts", href: "/admin/blogs", icon: Newspaper, exact: true },
       { label: "New Post", href: "/admin/blogs/new", icon: PenLine, exact: false },
+    ],
+  },
+  {
+    section: "Content",
+    items: [
+      { label: "FAQs", href: "/admin/faqs", icon: HelpCircle, exact: false },
     ],
   },
   {

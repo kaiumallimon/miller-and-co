@@ -6,7 +6,12 @@ import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn
 import { motion, AnimatePresence } from "motion/react";
 import { Plus, Minus } from "lucide-react";
 
-const faqs = [
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+const FALLBACK_FAQS: FaqItem[] = [
   {
     q: "Is there a guarantee of success?",
     a: "We are not in the position of granting visas. The decision to grant or refuse a visa solely belongs to the Department of Immigration (DOHA). However, we do guarantee that we will do all that it takes — starting from preparation of documents, submissions and all communication with your allocated DOHA case manager — in order to receive the most favourable outcome. We will fight for you till the end!",
@@ -27,7 +32,8 @@ const faqs = [
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export default function FaqSection() {
+export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
+  const items = faqs && faqs.length > 0 ? faqs : FALLBACK_FAQS;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
@@ -90,7 +96,7 @@ export default function FaqSection() {
 
           {/* ── Right: Accordion ──────────────────────────────────────── */}
           <div className="flex flex-col gap-0 lg:flex-1 divide-y divide-[#e8e0d4] border-t border-b border-[#e8e0d4]">
-            {faqs.map((faq, i) => (
+            {items.map((faq, i) => (
               <AnimateIn key={i} direction="up" delay={i * 0.07} duration={0.55}>
                 <div>
                   <button
