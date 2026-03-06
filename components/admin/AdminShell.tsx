@@ -21,6 +21,7 @@ import {
   PenLine,
   Cloud,
   HelpCircle,
+  Layers,
 } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
@@ -48,6 +49,7 @@ const NAV = [
     section: "Content",
     items: [
       { label: "FAQs", href: "/admin/faqs", icon: HelpCircle, exact: false },
+      { label: "Expertise", href: "/admin/expertise", icon: Layers, exact: false },
     ],
   },
   {
@@ -114,7 +116,7 @@ function SidebarContent({
       </div>
 
       {/* Nav — scrollable */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden px-3 py-4 flex flex-col gap-5">
+      <div className="sidebar-scroll flex-1 overflow-y-auto overflow-x-hidden px-3 py-4 flex flex-col gap-5 [scrollbar-width:thin] [scrollbar-color:#c8a96e_transparent] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#c8a96e]">
         {NAV.map(({ section, items }) => (
           <div key={section} className="flex flex-col gap-1">
             <p className="text-[9px] tracking-[0.25em] uppercase text-white/20 font-semibold px-2 mb-1">

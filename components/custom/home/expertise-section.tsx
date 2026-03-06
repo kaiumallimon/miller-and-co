@@ -1,7 +1,13 @@
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
-const expertiseAreas = [
+export interface ExpertiseItem {
+  label: string;
+  sub: string | null;
+  isWide?: boolean;
+}
+
+const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Start-Up Business Sponsored Visa", sub: "Sub 482" },
   { label: "Employer Sponsored Visa", sub: "Sub 482" },
   { label: "Employer Sponsored Permanent Visas", sub: "Sub 186" },
@@ -14,12 +20,13 @@ const expertiseAreas = [
   { label: "Carer Visas", sub: "Sub 836/116" },
   { label: "Australian Citizenship", sub: null },
   { label: "Legal Advice", sub: null },
-  { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas" },
+  { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas", isWide: true },
 ];
 
-export default function ExpertiseSection() {
-  const mainItems = expertiseAreas.slice(0, 12);
-  const wideItem = expertiseAreas[12];
+export default function ExpertiseSection({ items }: { items?: ExpertiseItem[] }) {
+  const resolved = items && items.length > 0 ? items : FALLBACK_EXPERTISE;
+  const mainItems = resolved.filter((i) => !i.isWide);
+  const wideItem = resolved.find((i) => i.isWide) ?? resolved[resolved.length - 1];
 
   return (
     <section className="relative w-full bg-[#1a1a1a] overflow-hidden">
