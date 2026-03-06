@@ -45,7 +45,7 @@ function Btn({
       onClick={onClick}
       disabled={disabled}
       title={title}
-      className={`p-1.5 rounded transition-all cursor-pointer disabled:opacity-30 disabled:cursor-default ${
+      className={`p-1.5 rounded transition-all cursor-pointer disabled:opacity-30 disabled:cursor-default shrink-0 ${
         active
           ? "bg-[#c8a96e]/20 text-[#c8a96e]"
           : "text-white/40 hover:text-white/80 hover:bg-white/6"
@@ -87,7 +87,7 @@ function Toolbar({
   }, [editor]);
 
   return (
-    <div className={`${bodyFont.className} flex flex-wrap items-center gap-0.5 px-3 py-2 border-b border-white/8 bg-[#111] sticky top-0 z-10`}>
+    <div className={`${bodyFont.className} flex items-center gap-0.5 px-2 sm:px-3 py-2 border-b border-white/8 bg-[#111] sticky top-0 z-10 overflow-x-auto scrollbar-none`}>
       {/* Undo / Redo */}
       <Btn onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} title="Undo">
         <Undo className="w-3.5 h-3.5" />

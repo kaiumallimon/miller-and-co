@@ -15,7 +15,7 @@ import {
 const TiptapEditor = dynamic(() => import("./TiptapEditor"), {
   ssr: false,
   loading: () => (
-    <div className="border border-white/8 bg-[#141414] flex items-center justify-center min-h-[420px]">
+    <div className="border border-white/8 bg-[#141414] flex items-center justify-center min-h-105">
       <Loader2 className="w-5 h-5 text-white/20 animate-spin" />
     </div>
   ),
@@ -256,41 +256,41 @@ export default function PostEditor({
       </div>
 
       {/* ── Top bar ───────────────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-white/6 shrink-0 gap-4">
-        <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/6 shrink-0 gap-3 flex-wrap">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <button
             onClick={() => router.push("/admin/blogs")}
-            className="text-white/30 hover:text-white/70 transition-colors cursor-pointer"
+            className="text-white/30 hover:text-white/70 transition-colors cursor-pointer shrink-0"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
-          <h1 className={`${headlineFont.className} text-lg font-semibold text-[#faf8f5]`}>
+          <h1 className={`${headlineFont.className} text-base sm:text-lg font-semibold text-[#faf8f5] truncate`}>
             {isEdit ? "Edit Post" : "New Post"}
           </h1>
-          <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 ${
+          <span className={`shrink-0 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 ${
             form.status === "published" ? "bg-emerald-500/10 text-emerald-400" : "bg-white/6 text-white/30"
           }`}>
             {form.status}
           </span>
           {form.featured && (
-            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 bg-[#c8a96e]/10 text-[#c8a96e]">
+            <span className="hidden sm:inline shrink-0 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 bg-[#c8a96e]/10 text-[#c8a96e]">
               Featured
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => handleSave("draft")}
             disabled={saving}
-            className={`${bodyFont.className} flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider border border-white/10 text-white/40 hover:text-white/70 hover:border-white/20 transition-all cursor-pointer disabled:opacity-40`}
+            className={`${bodyFont.className} flex items-center gap-1.5 px-3 sm:px-4 py-2 text-xs font-semibold uppercase tracking-wider border border-white/10 text-white/40 hover:text-white/70 hover:border-white/20 transition-all cursor-pointer disabled:opacity-40`}
           >
             {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <FileText className="w-3.5 h-3.5" />}
-            Save Draft
+            <span className="hidden sm:inline">Save Draft</span>
           </button>
           <button
             onClick={() => handleSave("published")}
             disabled={saving}
-            className={`${bodyFont.className} flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-[#c8a96e] text-[#0f0f0f] hover:bg-[#d4b87a] transition-colors cursor-pointer disabled:opacity-40`}
+            className={`${bodyFont.className} flex items-center gap-1.5 px-3 sm:px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-[#c8a96e] text-[#0f0f0f] hover:bg-[#d4b87a] transition-colors cursor-pointer disabled:opacity-40`}
           >
             {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Globe className="w-3.5 h-3.5" />}
             {form.status === "published" ? "Update" : "Publish"}
@@ -308,7 +308,7 @@ export default function PostEditor({
           <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] h-full">
 
             {/* ── Main ─────────────────────────────────────────────────── */}
-            <div className="flex flex-col gap-5 p-6 border-r border-white/6">
+            <div className="flex flex-col gap-5 p-4 md:p-6 border-r border-white/6">
 
               {/* Title */}
               <div className="flex flex-col gap-1.5">
@@ -317,7 +317,7 @@ export default function PostEditor({
                   value={form.title}
                   onChange={(e) => set("title", e.target.value)}
                   placeholder="Enter a compelling headline…"
-                  className={`${bodyFont.className} w-full bg-[#1a1a1a] border border-white/8 text-white/90 text-xl px-4 py-3 placeholder:text-white/15 focus:outline-none focus:border-[#c8a96e]/40 transition-colors`}
+                  className={`${bodyFont.className} w-full bg-[#1a1a1a] border border-white/8 text-white/90 text-lg sm:text-xl px-4 py-3 placeholder:text-white/15 focus:outline-none focus:border-[#c8a96e]/40 transition-colors`}
                 />
               </div>
 
@@ -351,7 +351,7 @@ export default function PostEditor({
             <div className="flex flex-col xl:sticky xl:top-0 xl:h-screen xl:overflow-y-auto border-t xl:border-t-0 border-white/6">
 
               {/* Cover Image */}
-              <div className="flex flex-col gap-3 p-5 border-b border-white/6">
+              <div className="flex flex-col gap-3 p-4 md:p-5 border-b border-white/6">
                 <Label>Cover Image</Label>
                 {form.coverImage ? (
                   <div className="flex flex-col gap-2">
@@ -404,7 +404,7 @@ export default function PostEditor({
               </div>
 
               {/* Category */}
-              <div className="flex flex-col gap-2 p-5 border-b border-white/6">
+              <div className="flex flex-col gap-2 p-4 md:p-5 border-b border-white/6">
                 <Label>Category</Label>
                 <input
                   value={form.category}
@@ -415,7 +415,7 @@ export default function PostEditor({
               </div>
 
               {/* Tags */}
-              <div className="flex flex-col gap-2 p-5 border-b border-white/6">
+              <div className="flex flex-col gap-2 p-4 md:p-5 border-b border-white/6">
                 <Label>Tags</Label>
                 <div className="flex gap-1.5">
                   <input
@@ -448,7 +448,7 @@ export default function PostEditor({
               </div>
 
               {/* Toggles */}
-              <div className="flex flex-col gap-0 p-5 border-b border-white/6">
+              <div className="flex flex-col gap-0 p-4 md:p-5 border-b border-white/6">
                 <Label>Settings</Label>
                 <div className="mt-2 divide-y divide-white/5">
                   <Toggle value={form.featured} onChange={(v) => set("featured", v)} label="Featured Post" hint="Shown prominently on the blog homepage" />
@@ -457,7 +457,7 @@ export default function PostEditor({
               </div>
 
               {/* SEO */}
-              <div className="flex flex-col gap-3 p-5">
+              <div className="flex flex-col gap-3 p-4 md:p-5">
                 <div className="flex items-center gap-2">
                   <Label>SEO Settings</Label>
                   <Search className="w-3 h-3 text-white/20" />
