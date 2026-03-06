@@ -163,7 +163,6 @@ export default function DisclaimerPage() {
         </AnimateIn>
       </section>
 
-      <Footer />
     </div>
   );
 }
