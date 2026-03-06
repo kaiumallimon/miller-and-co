@@ -166,10 +166,82 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
   );
 }
 
+// ─── Pagination bar ───────────────────────────────────────────────────────────
+function Pagination({
+  page,
+  totalPages,
+  onPrev,
+  onNext,
+  onPage,
+}: {
+  page: number;
+  totalPages: number;
+  onPrev: () => void;
+  onNext: () => void;
+  onPage: (p: number) => void;
+}) {
+  if (totalPages <= 1) return null;
+
+  // Build page number list: always show first, last, current ±1, with ellipsis
+  const pages: (number | "…")[] = [];
+  const range = new Set<number>();
+  range.add(1);
+  range.add(totalPages);
+  for (let i = Math.max(1, page - 1); i <= Math.min(totalPages, page + 1); i++) range.add(i);
+  const sorted = Array.from(range).sort((a, b) => a - b);
+  for (let i = 0; i < sorted.length; i++) {
+    if (i > 0 && sorted[i] - sorted[i - 1] > 1) pages.push("…");
+    pages.push(sorted[i]);
+  }
+
+  return (
+    <div className={`${bodyFont.className} flex items-center justify-center gap-1 mt-10`}>
+      <button
+        onClick={onPrev}
+        disabled={page === 1}
+        className="flex items-center justify-center w-8 h-8 border border-white/8 text-white/30 hover:text-white hover:border-white/20 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        aria-label="Previous page"
+      >
+        <ChevronLeft className="w-3.5 h-3.5" />
+      </button>
+
+      {pages.map((p, i) =>
+        p === "…" ? (
+          <span key={`ellipsis-${i}`} className="w-8 h-8 flex items-center justify-center text-white/20 text-xs">
+            …
+          </span>
+        ) : (
+          <button
+            key={p}
+            onClick={() => onPage(p)}
+            className={`w-8 h-8 flex items-center justify-center text-xs border transition-colors ${
+              p === page
+                ? "bg-[#c8a96e] text-[#0f0f0f] border-[#c8a96e] font-semibold"
+                : "border-white/8 text-white/30 hover:text-white hover:border-white/20"
+            }`}
+          >
+            {p}
+          </button>
+        )
+      )}
+
+      <button
+        onClick={onNext}
+        disabled={page === totalPages}
+        className="flex items-center justify-center w-8 h-8 border border-white/8 text-white/30 hover:text-white hover:border-white/20 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        aria-label="Next page"
+      >
+        <ChevronRight className="w-3.5 h-3.5" />
+      </button>
+    </div>
+  );
+}
+
 // ─── BlogListClient ───────────────────────────────────────────────────────────
 export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
 
   const categories = useMemo(() => {
     const cats = Array.from(new Set(posts.map((p) => p.category).filter(Boolean)));
@@ -194,11 +266,36 @@ export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
     return list;
   }, [posts, activeCategory, search]);
 
-  // Split: first featured post (if any), rest as grid
-  const featuredPost = filtered.find((p) => p.featured);
+  // Reset to page 1 whenever filters change
+  useEffect(() => { setPage(1); }, [activeCategory, search]);
+
+  // Split: first featured post (if any) only shown on page 1
+  const featuredPost = page === 1 ? filtered.find((p) => p.featured) : undefined;
   const gridPosts = featuredPost
     ? filtered.filter((p) => p.id !== featuredPost.id)
     : filtered;
+
+  const totalPages = Math.max(1, Math.ceil(gridPosts.length / PAGE_SIZE));
+  const pageStart = (page - 1) * PAGE_SIZE;
+  const pageGridPosts = gridPosts.slice(pageStart, pageStart + PAGE_SIZE);
+
+  // Counts for the status line
+  const shownCount = (featuredPost ? 1 : 0) + pageGridPosts.length;
+  const fromItem = featuredPost
+    ? 1
+    : pageStart + 1;
+  const toItem = featuredPost
+    ? Math.min(pageStart + PAGE_SIZE + 1, gridPosts.length + 1)
+    : Math.min(pageStart + PAGE_SIZE, gridPosts.length);
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handlePageChange(p: number) {
+    setPage(p);
+    scrollToTop();
+  }
 
   return (
     <section className="relative w-full bg-[#0f0f0f] pb-24">
@@ -252,26 +349,35 @@ export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
           </div>
         ) : (
           <div className="pt-10 flex flex-col gap-10">
-            {/* Featured */}
+            {/* Featured — page 1 only */}
             {featuredPost && <FeaturedCard post={featuredPost} />}
 
             {/* Grid */}
-            {gridPosts.length > 0 && (
+            {pageGridPosts.length > 0 && (
               <AnimatePresence mode="popLayout">
                 <motion.div
                   layout
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
-                  {gridPosts.map((post, i) => (
+                  {pageGridPosts.map((post, i) => (
                     <PostCard key={post.id} post={post} index={i} />
                   ))}
                 </motion.div>
               </AnimatePresence>
             )}
 
+            {/* Pagination */}
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onPrev={() => handlePageChange(page - 1)}
+              onNext={() => handlePageChange(page + 1)}
+              onPage={handlePageChange}
+            />
+
             {/* Count */}
             <p className={`${bodyFont.className} text-center text-[10px] text-white/15 mt-2`}>
-              Showing {filtered.length} article{filtered.length !== 1 ? "s" : ""}
+              Showing {fromItem}–{toItem} of {filtered.length} article{filtered.length !== 1 ? "s" : ""}
               {activeCategory !== "All" && ` in "${activeCategory}"`}
               {search && ` matching "${search}"`}
             </p>
