@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { headlineFont, bodyFont } from "@/lib/typographies";
-import { MapPin, Phone, Mail } from "lucide-react";
-import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { FaFacebook, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 import { useParallax } from "@/hooks/useParallax";
 import { motion } from "motion/react";
 
@@ -13,8 +14,14 @@ const navLinks = [
   { label: "Our Services", href: "/services" },
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Admin Portal", href: "/admin" },
+];
+
+const legalLinks = [
   { label: "Terms & Conditions", href: "/terms" },
+  { label: "Disclaimer", href: "/disclaimer" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 
 const officeHours = [
@@ -26,7 +33,7 @@ const officeHours = [
 export default function Footer() {
   const { ref: footerImgRef, y: footerImgY } = useParallax(40);
   return (
-    <footer className="relative w-full bg-[#faf8f5]">
+    <footer className="relative w-full">
       {/* Main dark footer block */}
       <div className="relative bg-[#111111] overflow-hidden">
         {/* Background image with overlay */}
@@ -38,95 +45,120 @@ export default function Footer() {
               src="/5.png"
               alt="Footer background"
               fill
-              className="object-cover object-center opacity-15"
+              className="object-cover object-center opacity-10"
             />
           </motion.div>
-          <div className="absolute inset-0 bg-[#111111]/20" />
+          <div className="absolute inset-0 bg-[#111111]/30" />
         </div>
 
         {/* Subtle gold radial */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,#c8a96e06_0%,transparent_60%)] pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,#c8a96e07_0%,transparent_60%)] pointer-events-none z-0" />
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
-<StaggerContainer
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-12 border-b border-white/10"
-            stagger={0.13}
+
+          <StaggerContainer
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/8"
+            stagger={0.1}
             delayChildren={0.05}
           >
-
-            {/* Col 1 — Brand */}
-            <StaggerItem className="flex flex-col gap-5 lg:col-span-1">
+            {/* Col 1 — Brand (spans 3) */}
+            <StaggerItem className="lg:col-span-3 flex flex-col gap-5">
               <Image
                 src="/NEW-logo-TM-White1.png"
                 alt="Miller & Co"
-                width={160}
-                height={60}
+                width={150}
+                height={55}
                 className="object-contain object-left"
               />
-              <p className={`${bodyFont.className} text-white/40 text-xs leading-relaxed`}>
-                Sydney&apos;s trusted migration law firm. Expert, personalised legal guidance for your immigration journey.
+              <p className={`${bodyFont.className} text-white/35 text-xs leading-relaxed`}>
+                Sydney&apos;s trusted migration law firm. Expert, personalised legal guidance for every immigration journey.
               </p>
-              {/* Socials */}
-              <div className="flex items-center gap-4 mt-1">
+              {/* Socials — original brand colors */}
+              <div className="flex items-center gap-3 mt-1">
                 <a
                   href="https://www.facebook.com/EdwardMillerMigration"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/30 hover:text-[#c8a96e] transition-colors duration-300"
                   aria-label="Facebook"
+                  className="w-8 h-8 flex items-center justify-center bg-white/5 hover:bg-[#1877F2]/20 border border-white/8 hover:border-[#1877F2]/40 transition-all duration-300"
                 >
-                  <FaFacebook className="w-4 h-4" />
+                  <FaFacebook className="w-3.5 h-3.5 text-white/40 hover:text-[#1877F2]" style={{ color: '#1877F2' }} />
                 </a>
                 <a
                   href="https://twitter.com/millermigration"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/30 hover:text-[#c8a96e] transition-colors duration-300"
-                  aria-label="Twitter"
+                  aria-label="X / Twitter"
+                  className="w-8 h-8 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/8 hover:border-white/20 transition-all duration-300"
                 >
-                  <FaTwitter className="w-4 h-4" />
+                  <FaXTwitter className="w-3.5 h-3.5" style={{ color: '#e7e7e7' }} />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/edward-miller-20120017"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/30 hover:text-[#c8a96e] transition-colors duration-300"
                   aria-label="LinkedIn"
+                  className="w-8 h-8 flex items-center justify-center bg-white/5 hover:bg-[#0A66C2]/20 border border-white/8 hover:border-[#0A66C2]/40 transition-all duration-300"
                 >
-                  <FaLinkedin className="w-4 h-4" />
+                  <FaLinkedin className="w-3.5 h-3.5" style={{ color: '#0A66C2' }} />
                 </a>
+              </div>
+
+              {/* Registration note */}
+              <div className={`${bodyFont.className} flex flex-col gap-1 pt-2 border-t border-white/6`}>
+                <span className="text-[#c8a96e] text-[9px] tracking-[0.25em] uppercase font-semibold">Registered Migration Lawyer</span>
+                <span className="text-white/25 text-[10px]">LPN: 5511850</span>
               </div>
             </StaggerItem>
 
-            {/* Col 2 — Navigation */}
-            <StaggerItem className="flex flex-col gap-5">
+            {/* Col 2 — Navigation (spans 2) */}
+            <StaggerItem className="lg:col-span-2 flex flex-col gap-5">
               <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
                 Navigation
               </h4>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+              <ul className="flex flex-col gap-3">
                 {navLinks.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
-                      className={`${bodyFont.className} text-white/50 text-sm hover:text-[#c8a96e] transition-colors duration-300`}
+                      className={`${bodyFont.className} text-white/45 text-sm hover:text-[#c8a96e] transition-colors duration-300`}
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </StaggerItem>
 
-            {/* Col 3 — Contact Details */}
-            <StaggerItem className="flex flex-col gap-5">
+            {/* Col 3 — Legal (spans 2) */}
+            <StaggerItem className="lg:col-span-2 flex flex-col gap-5">
               <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
-                Contact Details
+                Legal
+              </h4>
+              <ul className="flex flex-col gap-3">
+                {legalLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className={`${bodyFont.className} text-white/45 text-sm hover:text-[#c8a96e] transition-colors duration-300`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </StaggerItem>
+
+            {/* Col 4 — Contact (spans 3) */}
+            <StaggerItem className="lg:col-span-3 flex flex-col gap-5">
+              <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
+                Contact
               </h4>
               <ul className="flex flex-col gap-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-3.5 h-3.5 text-[#c8a96e] shrink-0 mt-0.5" />
-                  <span className={`${bodyFont.className} text-white/50 text-sm leading-relaxed`}>
+                  <span className={`${bodyFont.className} text-white/45 text-sm leading-relaxed`}>
                     Level 22, Westfield Tower Two,<br />
                     101 Grafton Street, Bondi Junction
                   </span>
@@ -134,7 +166,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="tel:+61280956369"
-                    className={`${bodyFont.className} flex items-center gap-3 text-white/50 text-sm hover:text-[#c8a96e] transition-colors duration-300`}
+                    className={`${bodyFont.className} flex items-center gap-3 text-white/45 text-sm hover:text-[#c8a96e] transition-colors duration-300`}
                   >
                     <Phone className="w-3.5 h-3.5 text-[#c8a96e] shrink-0" />
                     +61 2 8095 6369
@@ -143,7 +175,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="mailto:info@visa-australia.legal"
-                    className={`${bodyFont.className} flex items-center gap-3 text-white/50 text-sm hover:text-[#c8a96e] transition-colors duration-300`}
+                    className={`${bodyFont.className} flex items-center gap-3 text-white/45 text-sm hover:text-[#c8a96e] transition-colors duration-300`}
                   >
                     <Mail className="w-3.5 h-3.5 text-[#c8a96e] shrink-0" />
                     info@visa-australia.legal
@@ -152,18 +184,19 @@ export default function Footer() {
               </ul>
             </StaggerItem>
 
-            {/* Col 4 — Office Hours */}
-            <StaggerItem className="flex flex-col gap-5">
-              <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
+            {/* Col 5 — Office Hours (spans 2) */}
+            <StaggerItem className="lg:col-span-2 flex flex-col gap-5">
+              <h4 className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase flex items-center gap-2`}>
+                <Clock className="w-3 h-3" />
                 Office Hours
               </h4>
               <ul className="flex flex-col gap-4">
                 {officeHours.map((item) => (
                   <li key={item.day} className="flex flex-col gap-0.5">
-                    <span className={`${bodyFont.className} text-white/70 text-sm font-medium`}>
+                    <span className={`${bodyFont.className} text-white/60 text-sm font-medium`}>
                       {item.day}
                     </span>
-                    <span className={`${bodyFont.className} text-white/35 text-xs tracking-wide`}>
+                    <span className={`${bodyFont.className} text-white/30 text-xs`}>
                       {item.hours}
                     </span>
                   </li>
@@ -175,26 +208,18 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "0px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8"
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8"
           >
-            <p className={`${bodyFont.className} text-white/40 text-[10px] tracking-[0.15em] uppercase`}>
-              © {new Date().getFullYear()} Miller &amp; Co Lawyers &amp; Migration Agents. All rights reserved.
+            <p className={`${bodyFont.className} text-white/30 text-[10px] tracking-[0.15em] uppercase`}>
+              © {new Date().getFullYear()} Miller &amp; Co Lawyers &amp; Migration Agents Pty Ltd. All rights reserved.
             </p>
-            <div className="flex items-center gap-6">
-              <p className={`${bodyFont.className} text-white/40 text-[10px] tracking-widest uppercase`}>
-                ABN — Migration &amp; Legal Services · Sydney, Australia
-              </p>
-              <a
-                href="/login"
-                className={`${bodyFont.className} text-white/40 hover:text-white/70 text-[10px] tracking-widest uppercase transition-colors duration-300`}
-              >
-                Admin
-              </a>
-            </div>
+            <p className={`${bodyFont.className} text-white/20 text-[10px] tracking-widest uppercase`}>
+              Migration &amp; Legal Services · Sydney, Australia
+            </p>
           </motion.div>
         </div>
       </div>
