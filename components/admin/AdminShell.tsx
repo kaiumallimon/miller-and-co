@@ -61,7 +61,7 @@ const NAV = [
     items: [
       { label: "Admin Accounts", href: "/admin/accounts", icon: Users, exact: false },
       { label: "Activity Logs", href: "/admin/logs", icon: ScrollText, exact: false },
-      { label: "Settings", href: "/admin/settings", icon: Settings, exact: false },
+      
     ],
   },
 ];
