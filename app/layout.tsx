@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { bodyFont } from "@/lib/typographies";
+import { bodyFont, headlineFont } from "@/lib/typographies";
 import PreloaderClient from "@/components/PreloaderClient";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import ConditionalShell from "@/components/ConditionalShell";
@@ -81,7 +81,7 @@ export default function RootLayout({
         ` }} />
       </head>
       <body
-        className={`${bodyFont.className} antialiased`}
+        className={`${bodyFont.className} ${headlineFont.variable} antialiased`}
       >
         <PreloaderProvider>
           <PreloaderClient />

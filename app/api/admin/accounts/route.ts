@@ -19,6 +19,7 @@ export async function GET() {
         return {
           uid: d.uid ?? doc.id,
           email: d.email ?? "",
+          name: d.name ?? "",
           createdAt: d.createdAt ?? null,
           lastLogin: d.lastLogin ?? null,
           active: d.active !== undefined ? d.active : true,
@@ -44,9 +45,10 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { email, password } = (await req.json()) as {
+    const { email, password, name } = (await req.json()) as {
       email?: string;
       password?: string;
+      name?: string;
     };
 
     if (!email || !password) {
@@ -57,13 +59,18 @@ export async function POST(req: NextRequest) {
     }
 
     // Create the Firebase Auth user
-    const user = await adminAuth.createUser({ email, password });
+    const user = await adminAuth.createUser({
+      email,
+      password,
+      displayName: name?.trim() || undefined,
+    });
 
     // Persist in Firestore admins collection
     const now = new Date().toISOString();
     await adminDb.collection("admins").doc(user.uid).set({
       uid: user.uid,
       email: user.email ?? email,
+      name: name?.trim() ?? "",
       createdAt: now,
       lastLogin: null,
       active: true,

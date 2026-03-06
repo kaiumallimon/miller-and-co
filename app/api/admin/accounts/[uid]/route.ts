@@ -98,3 +98,45 @@ export async function DELETE(
     return NextResponse.json({ error: "Failed to delete account." }, { status: 500 });
   }
 }
+
+// ── PUT — update profile (name) ────────────────────────────────────────────────
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: Promise<{ uid: string }> }
+) {
+  const requester = await getSessionUser();
+  if (!requester) {
+    return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  const { uid } = await params;
+
+  try {
+    const { name } = (await req.json()) as { name?: string };
+    if (!name?.trim()) {
+      return NextResponse.json({ error: "Name is required." }, { status: 400 });
+    }
+
+    const docRef = adminDb.collection("admins").doc(uid);
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return NextResponse.json({ error: "Account not found." }, { status: 404 });
+    }
+
+    await docRef.update({ name: name.trim() });
+    await adminAuth.updateUser(uid, { displayName: name.trim() });
+
+    await writeLog({
+      action: "account_updated",
+      category: "admin",
+      actor: requester.email ?? requester.uid,
+      target: doc.data()?.email ?? uid,
+      details: `Display name updated to "${name.trim()}" for ${doc.data()?.email ?? uid}.`,
+    });
+
+    return NextResponse.json({ name: name.trim() });
+  } catch (err) {
+    console.error("[Accounts PUT]", err);
+    return NextResponse.json({ error: "Failed to update profile." }, { status: 500 });
+  }
+}

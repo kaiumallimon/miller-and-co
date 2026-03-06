@@ -120,6 +120,15 @@ export async function POST(req: NextRequest) {
     const postStatus = status === "published" ? "published" : "draft";
     const baseSlug = slugify(title);
 
+    // Look up admin's display name
+    let authorName = user.email ?? user.uid;
+    try {
+      const adminDoc = await adminDb.collection("admins").doc(user.uid).get();
+      if (adminDoc.exists && adminDoc.data()?.name) {
+        authorName = adminDoc.data()!.name;
+      }
+    } catch { /* fall back to email */ }
+
     let slug = baseSlug;
     const existing = await adminDb
       .collection("posts")
@@ -136,6 +145,7 @@ export async function POST(req: NextRequest) {
       contentText: stripHtml(content),
       status: postStatus,
       author: user.email ?? user.uid,
+      authorName,
       authorUid: user.uid,
       category: category?.trim() ?? "",
       tags: Array.isArray(tags) ? tags.filter(Boolean) : [],
