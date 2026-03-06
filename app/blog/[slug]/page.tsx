@@ -338,8 +338,6 @@ export default async function BlogPostPage({
           </div>
         </div>
       </AnimateIn>
-
-      <Footer />
     </div>
   );
 }

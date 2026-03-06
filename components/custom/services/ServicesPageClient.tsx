@@ -694,7 +694,7 @@ export default function ServicesPageClient() {
                     className="flex flex-col items-center justify-center gap-2 bg-[#faf8f5] px-6 py-10 text-center"
                   >
                     <span
-                      className={`${headlineFont.className} text-[#c8a96e] text-4xl font-semibold`}
+                      className={`${bodyFont.className} text-[#c8a96e] text-4xl font-semibold`}
                     >
                       {stat.value}
                     </span>
