@@ -21,7 +21,6 @@ import {
   PenLine,
   Cloud,
   HelpCircle,
-  Layers,
 } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
@@ -49,7 +48,6 @@ const NAV = [
     section: "Content",
     items: [
       { label: "FAQs", href: "/admin/faqs", icon: HelpCircle, exact: false },
-      { label: "Expertise", href: "/admin/expertise", icon: Layers, exact: false },
     ],
   },
   {

@@ -23,10 +23,9 @@ const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas", isWide: true },
 ];
 
-export default function ExpertiseSection({ items }: { items?: ExpertiseItem[] }) {
-  const resolved = items && items.length > 0 ? items : FALLBACK_EXPERTISE;
-  const mainItems = resolved.filter((i) => !i.isWide);
-  const wideItem = resolved.find((i) => i.isWide) ?? resolved[resolved.length - 1];
+export default function ExpertiseSection() {
+  const mainItems = FALLBACK_EXPERTISE.filter((i) => !i.isWide);
+  const wideItem = FALLBACK_EXPERTISE.find((i) => i.isWide) ?? FALLBACK_EXPERTISE[FALLBACK_EXPERTISE.length - 1];
 
   return (
     <section className="relative w-full bg-[#1a1a1a] overflow-hidden">
