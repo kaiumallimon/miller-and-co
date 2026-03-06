@@ -5,7 +5,7 @@ import { headlineFont, bodyFont } from "@/lib/typographies";
 import { motion } from "motion/react";
 import {
   Cloud, HardDrive, Wifi, Zap, Image as ImageIcon,
-  RefreshCw, Loader2, AlertCircle, Eye, Lock,
+  RefreshCw, AlertCircle, Eye, Lock,
   BarChart3,
 } from "lucide-react";
 
@@ -236,8 +236,43 @@ export default function CdnManagementPage() {
       <div className="flex-1 overflow-y-auto px-6 py-6">
 
         {loading ? (
-          <div className="flex items-center justify-center h-64">
-            <Loader2 className="w-6 h-6 text-white/20 animate-spin" />
+          <div className="flex flex-col gap-8">
+            {/* Usage cards skeleton */}
+            <div className="flex flex-col gap-3">
+              <div className="h-3 w-32 bg-white/6 rounded-sm animate-pulse" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="flex flex-col gap-4 p-5 bg-[#141414] border border-white/6">
+                    <div className="flex items-center justify-between">
+                      <div className="h-3 w-24 bg-white/8 rounded-sm animate-pulse" />
+                      <div className="h-4 w-10 bg-white/5 rounded-sm animate-pulse" />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-end justify-between">
+                        <div className="h-7 w-20 bg-white/8 rounded-sm animate-pulse" />
+                        <div className="h-3 w-14 bg-white/5 rounded-sm animate-pulse" />
+                      </div>
+                      <div className="w-full h-1 bg-white/6 animate-pulse" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Resources grid skeleton */}
+            <div className="flex flex-col gap-3">
+              <div className="h-3 w-36 bg-white/6 rounded-sm animate-pulse" />
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <div key={i} className="flex flex-col bg-[#141414] border border-white/6 overflow-hidden">
+                    <div className="aspect-video bg-white/5 animate-pulse" />
+                    <div className="flex flex-col gap-1.5 p-3">
+                      <div className="h-2.5 w-3/4 bg-white/8 rounded-sm animate-pulse" />
+                      <div className="h-2 w-1/2 bg-white/5 rounded-sm animate-pulse" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center gap-3 h-64 text-red-400/70">
