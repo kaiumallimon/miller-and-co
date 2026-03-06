@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { adminDb } from "@/lib/firebase/admin";
 import CustomHeader from "@/components/custom/shared/header";
 import Footer from "@/components/custom/shared/footer";
@@ -88,14 +89,26 @@ export default async function BlogPage() {
       <CustomHeader />
 
       {/* ── Page Hero ──────────────────────────────────────────────────────── */}
-      <section className="relative w-full bg-[#0f0f0f] overflow-hidden pt-40 pb-20 lg:pt-52 lg:pb-28">
-        {/* Radial glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-100 bg-[radial-gradient(ellipse_at_top,#c8a96e0a_0%,transparent_65%)]" />
+      <section className="relative w-full overflow-hidden pt-40 pb-20 lg:pt-52 lg:pb-28">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/1-mobile.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center md:hidden"
+          />
+          <Image
+            src="/1.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center hidden md:block"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#c8a96e08_0%,transparent_65%)]" />
         </div>
-        {/* Decorative gold lines */}
-        <span className="absolute top-40 left-0 w-px h-32 bg-linear-to-b from-transparent via-[#c8a96e]/30 to-transparent hidden lg:block" />
-        <span className="absolute top-40 right-0 w-px h-32 bg-linear-to-b from-transparent via-[#c8a96e]/30 to-transparent hidden lg:block" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
           <StaggerContainer className="flex flex-col items-center gap-5 text-center" stagger={0.12} delayChildren={0.1}>
@@ -128,6 +141,15 @@ export default async function BlogPage() {
               </div>
             </StaggerItem>
           </StaggerContainer>
+        </div>
+
+        {/* Breadcrumb */}
+        <div
+          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
+        >
+          <span>Home</span>
+          <span className="text-[#c8a96e]">/</span>
+          <span className="text-white/60">Blog</span>
         </div>
 
         {/* Bottom border */}

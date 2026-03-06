@@ -14,7 +14,6 @@ export default function ServicesPage() {
     <div className="bg-[#0f0f0f] min-h-screen">
       <CustomHeader />
       <ServicesPageClient />
-      <Footer />
     </div>
   );
 }

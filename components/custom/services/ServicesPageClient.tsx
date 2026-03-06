@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
@@ -426,14 +427,28 @@ export default function ServicesPageClient() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative w-full bg-[#0f0f0f] overflow-hidden pt-40 pb-20 lg:pt-52 lg:pb-28">
-        {/* Radial glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-100 bg-[radial-gradient(ellipse_at_top,#c8a96e0a_0%,transparent_65%)]" />
+      <section className="relative w-full overflow-hidden pt-40 pb-20 lg:pt-52 lg:pb-28">
+        {/* Background image — same as home hero */}
+        <div className="absolute inset-0">
+          <Image
+            src="/1-mobile.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center md:hidden"
+          />
+          <Image
+            src="/1.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center hidden md:block"
+          />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/60" />
+          {/* Gold radial accent */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#c8a96e08_0%,transparent_65%)]" />
         </div>
-        {/* Decorative corner lines */}
-        <span className="absolute top-40 left-0 w-px h-32 bg-linear-to-b from-transparent via-[#c8a96e]/30 to-transparent hidden lg:block" />
-        <span className="absolute top-40 right-0 w-px h-32 bg-linear-to-b from-transparent via-[#c8a96e]/30 to-transparent hidden lg:block" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
           <StaggerContainer
@@ -507,27 +522,54 @@ export default function ServicesPageClient() {
           </div>
         </div>
 
+        {/* Breadcrumb */}
+        <div
+          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
+        >
+          <span>Home</span>
+          <span className="text-[#c8a96e]">/</span>
+          <span className="text-white/60">Services</span>
+        </div>
+
         <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
       </section>
 
-      {/* ── Quick-nav anchors ─────────────────────────────────────────────── */}
-      <section className="bg-[#0d0d0d] border-b border-white/6 sticky top-0 z-30 hidden md:block">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex items-center gap-0 overflow-x-auto scrollbar-none">
-            {SERVICE_CATEGORIES.map((cat) => {
+      {/* ── Marquee strip ─────────────────────────────────────────────────── */}
+      <section className="bg-[#0d0d0d] border-b border-white/6 sticky top-0 z-30 overflow-hidden">
+        <style>{`
+          @keyframes services-marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+          }
+          .services-marquee-track {
+            animation: services-marquee 28s linear infinite;
+          }
+          .services-marquee-track:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+
+        {/* Edge fades */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-linear-to-r from-[#0d0d0d] to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-linear-to-l from-[#0d0d0d] to-transparent z-10" />
+
+        <div className="services-marquee-track flex w-max items-center">
+          {/* Render 4× for a seamless loop; translateX(-50%) shifts by one full copy */}
+          {[...Array(4)].flatMap((_, rep) =>
+            SERVICE_CATEGORIES.map((cat) => {
               const Icon = cat.icon;
               return (
                 <a
-                  key={cat.id}
+                  key={`${rep}-${cat.id}`}
                   href={`#${cat.id}`}
-                  className={`${bodyFont.className} group flex items-center gap-2 px-4 py-3.5 text-[10px] font-semibold tracking-[0.15em] uppercase text-white/30 hover:text-[#c8a96e] border-b-2 border-transparent hover:border-[#c8a96e] transition-all duration-200 whitespace-nowrap`}
+                  className={`${bodyFont.className} group flex items-center gap-2 px-6 py-3.5 text-[10px] font-semibold tracking-[0.15em] uppercase text-white/30 hover:text-[#c8a96e] transition-colors duration-200 whitespace-nowrap border-r border-white/5`}
                 >
                   <Icon className="w-3 h-3 shrink-0 group-hover:text-[#c8a96e] transition-colors" />
                   {cat.label}
                 </a>
               );
-            })}
-          </div>
+            })
+          )}
         </div>
       </section>
 
