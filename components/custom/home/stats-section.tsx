@@ -25,13 +25,13 @@ export default function StatsSection() {
         <StaggerContainer className="flex flex-col items-center gap-4 mb-12" stagger={0.12} delayChildren={0.05}>
           <StaggerItem>
             <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-[#c8a96e]" />
+              <span className="h-px w-10 bg-[#756341]" />
               <span
-                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                className={`${bodyFont.className} text-[#756341] text-[12px] font-semibold tracking-[0.3em] uppercase`}
               >
                 Our Track Record
               </span>
-              <span className="h-px w-10 bg-[#c8a96e]" />
+              <span className="h-px w-10 bg-[#756341]" />
             </div>
           </StaggerItem>
           <StaggerItem>
@@ -75,7 +75,7 @@ export default function StatsSection() {
           {stats.map((stat, i) => (
             <StaggerItem
               key={i}
-              className="group flex flex-col items-center justify-center gap-2 px-8 py-10 hover:bg-[#1a1a1a] border border-[#1a1a1a]/10 transition-colors duration-500"
+              className="group flex flex-col items-center justify-center gap-2 px-8 py-10 hover:bg-[#1a1a1a] border border-[#1a1a1a]/16 transition-colors duration-500"
             >
               <span
                 className={`${bodyFont.className} text-5xl lg:text-6xl font-semibold text-[#c8a96e] leading-none group-hover:text-white transition-colors duration-500`}
@@ -83,7 +83,7 @@ export default function StatsSection() {
                 <CountUp to={stat.value} separator="," duration={2.5} />
               </span>
               <span
-                className={`${bodyFont.className} text-[10px] tracking-[0.25em] uppercase text-[#1a1a1a]/40 text-center group-hover:text-white/50 transition-colors duration-500`}
+                className={`${bodyFont.className} text-[10px] tracking-[0.25em] uppercase text-[#1a1a1a]/75 text-center group-hover:text-white/50 transition-colors duration-500`}
               >
                 {stat.label}
               </span>

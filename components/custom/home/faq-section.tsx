@@ -54,9 +54,9 @@ export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
           >
             <StaggerItem>
               <div className="flex items-center gap-3">
-                <span className="h-px w-8 bg-[#c8a96e]" />
+                <span className="h-px w-8 bg-[#756341]" />
                 <span
-                  className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                  className={`${bodyFont.className} text-[#756341] text-[12px] font-semibold tracking-[0.3em] uppercase`}
                 >
                   Common Questions
                 </span>
@@ -68,13 +68,13 @@ export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
                 className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold leading-tight`}
               >
                 Frequently{" "}
-                <span className="italic text-[#c8a96e]">Asked</span>
+                <span className="italic text-[#756341]">Asked</span>
               </h2>
             </StaggerItem>
 
             <StaggerItem>
               <p
-                className={`${bodyFont.className} text-[#1a1a1a]/50 text-base leading-relaxed max-w-sm`}
+                className={`${bodyFont.className} text-black/75 text-base leading-relaxed max-w-sm`}
               >
                 Get clear answers to the most common questions about our
                 migration services, fees and process.
@@ -85,7 +85,7 @@ export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
             <StaggerItem>
               <div className="mt-4 flex items-start gap-4">
                 <p
-                  className={`${bodyFont.className} border-l-3 border-[#c8a96e] px-5  text-[#1a1a1a]/40 text-xs leading-relaxed italic`}
+                  className={`${bodyFont.className} border-l-3 border-[#c8a96e] px-5  text-[#1a1a1a]/70 text-sm leading-relaxed italic`}
                 >
                   Can&apos;t find what you&apos;re looking for? Contact our
                   team for a personalised answer.
@@ -132,7 +132,7 @@ export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
                           <div className="flex gap-4">
                             <span className="w-0.5 shrink-0 bg-[#c8a96e]/40 self-stretch" />
                             <p
-                              className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}
+                              className={`${bodyFont.className} text-[#1a1a1a]/90 text-base leading-relaxed`}
                             >
                               {faq.a}
                             </p>

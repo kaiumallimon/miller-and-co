@@ -48,7 +48,7 @@ function MarqueeRow({
         {doubled.map((logo, i) => (
           <div
             key={`${logo.src}-${i}`}
-            className="flex-shrink-0 relative mx-8 w-40 h-[140px]"
+            className="shrink-0 relative mx-8 w-40 h-[140px]"
           >
             <Image
               src={logo.src}
@@ -73,19 +73,19 @@ export default function PartnersSection() {
       {/* Header */}
       <div className="relative flex flex-col items-center gap-3 mb-12 px-6">
         <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-[#c8a96e]/40" />
+          <span className="h-px w-8 bg-[#756341]" />
           <span
-            className={`${bodyFont.className} text-[#1a1a1a]/35 text-[10px] font-semibold tracking-[0.3em] uppercase`}
+            className={`${bodyFont.className} text-[#756341] text-[12px] font-semibold tracking-[0.3em] uppercase`}
           >
             Trusted By
           </span>
-          <span className="h-px w-8 bg-[#c8a96e]/40" />
+          <span className="h-px w-8 bg-[#756341]" />
         </div>
         <p
-          className={`${headlineFont.className} text-[#1a1a1a]/60 text-xl sm:text-2xl font-medium text-center`}
+          className={`${headlineFont.className} text-black text-xl sm:text-2xl font-medium text-center`}
         >
           Businesses &amp; organisations that rely on{" "}
-          <span className="italic text-[#c8a96e]/70">Miller &amp; Co.</span>
+          <span className="italic text-[#756341]">Miller &amp; Co.</span>
         </p>
       </div>
 

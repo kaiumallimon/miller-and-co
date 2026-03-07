@@ -37,7 +37,7 @@ export default function PrincipalSection() {
 
           {/* ── Left — photo ───────────────────────────────────────────── */}
           <AnimateIn direction="right" delay={0.05} duration={0.8}>
-            <div className="relative h-[480px] lg:h-full min-h-[520px] overflow-hidden bg-[#141414]">
+            <div className="relative h-120 lg:h-full min-h-130 overflow-hidden bg-[#141414]">
               <Image
                 src="/Miller & Co_Pro pic.png"
                 alt="Edward Miller — Principal Migration Lawyer"
@@ -68,7 +68,7 @@ export default function PrincipalSection() {
           </AnimateIn>
 
           {/* ── Right — details ────────────────────────────────────────── */}
-          <div className="flex flex-col justify-center gap-10 px-10 py-12 lg:py-16 bg-[#141414] border-t border-white/6 lg:border-t-0 lg:border-l border-white/6">
+          <div className="flex flex-col justify-center gap-10 px-10 py-12 lg:py-16 bg-[#141414] border-t lg:border-t-0 lg:border-l border-white/6">
 
             {/* Eyebrow */}
             <StaggerContainer className="flex flex-col gap-5" stagger={0.1} delayChildren={0.1}>
@@ -76,7 +76,7 @@ export default function PrincipalSection() {
                 <div className="flex items-center gap-3">
                   <span className="h-px w-10 bg-[#c8a96e]" />
                   <span
-                    className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                    className={`${bodyFont.className} text-[#c8a96e] text-[12px] font-semibold tracking-[0.3em] uppercase`}
                   >
                     Meet the Principal
                   </span>
@@ -94,7 +94,7 @@ export default function PrincipalSection() {
 
               <StaggerItem>
                 <p
-                  className={`${bodyFont.className} text-white/40 text-base leading-relaxed`}
+                  className={`${bodyFont.className} text-white text-base leading-relaxed`}
                 >
                   Edward is the principal of Miller &amp; Co., a specialist
                   migration law firm advising individuals, families, and
@@ -120,12 +120,12 @@ export default function PrincipalSection() {
                       </div>
                       <div className="flex flex-col gap-0.5">
                         <p
-                          className={`${headlineFont.className} text-[#faf8f5] text-base font-medium group-hover:text-[#c8a96e] transition-colors duration-300`}
+                          className={`${headlineFont.className} text-[#faf8f5] text-lg font-medium group-hover:text-[#c8a96e] transition-colors duration-300`}
                         >
                           {item.label}
                         </p>
                         <span
-                          className={`${bodyFont.className} text-white/30 text-[11px] tracking-wide`}
+                          className={`${bodyFont.className} text-white/50 text-sm tracking-wide`}
                         >
                           {item.sub}
                         </span>
@@ -140,13 +140,13 @@ export default function PrincipalSection() {
             <AnimateIn direction="up" delay={0.3}>
               <blockquote className="border-l-2 border-[#c8a96e]/40 pl-5">
                 <p
-                  className={`${headlineFont.className} text-white/30 text-lg italic leading-relaxed`}
+                  className={`${headlineFont.className} text-white font-semibold text-lg italic leading-relaxed`}
                 >
                   &ldquo;Every visa application tells a human story. Our job is
                   to tell it as compellingly as possible.&rdquo;
                 </p>
                 <footer
-                  className={`${bodyFont.className} text-[#c8a96e]/60 text-[10px] tracking-[0.2em] uppercase mt-3`}
+                  className={`${bodyFont.className} text-[#c8a96e] text-[10px] tracking-[0.2em] uppercase mt-3`}
                 >
                   — Edward Miller
                 </footer>
