@@ -113,7 +113,7 @@ export default function HomeHero() {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className={`${bodyFont.className} text-white/70 text-base leading-relaxed max-w-lg`}
+            className={`${bodyFont.className} text-white text-base leading-relaxed max-w-lg`}
           >
             Sydney based, top trusted Migration Law firm. We provide expert guidance and solutions for all your immigration needs. Trust our experienced team to navigate complex legal matters and ensure a smooth and successfull migration process.
           </motion.p>
@@ -143,14 +143,14 @@ export default function HomeHero() {
           {/* Contact info strip */}
           <motion.div
             variants={itemVariants}
-            className={`${bodyFont.className} flex flex-row flex-wrap gap-x-8 gap-y-3 mt-6 pt-10 border-t border-white/20 text-white/60 text-xs`}
+            className={`${bodyFont.className} flex flex-row flex-wrap gap-x-8 gap-y-3 mt-6 pt-10 border-t border-white/20 text-white text-xs`}
           >
             <a
               href="tel:+61280956369"
               className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors duration-300"
             >
               <Phone className="w-3.5 h-3.5 shrink-0" />
-              +612 8095 6369
+              +61 280 95 6369
             </a>
             <a
               href="mailto:info@visa-australia.legal"

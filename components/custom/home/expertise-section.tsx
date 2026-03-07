@@ -15,7 +15,7 @@ const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Skilled Visas", sub: "Sub 189, 190, 489, 491" },
   { label: "Investment Visas", sub: "Sub 188, 888" },
   { label: "Partner Visas", sub: "Sub 820/801, 309/100, 300" },
-  { label: "Global Talent Visa", sub: "Sub 858" },
+  { label: "National Innovation visa", sub: "Sub 858" },
   { label: "Visa Refusal & AAT Appeal", sub: null },
   { label: "Carer Visas", sub: "Sub 836/116" },
   { label: "Australian Citizenship", sub: null },
@@ -40,7 +40,7 @@ export default function ExpertiseSection() {
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#c8a96e]" />
               <span
-                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                className={`${bodyFont.className} text-[#c8a96e] text-[12px] font-semibold tracking-[0.3em] uppercase`}
               >
                 What We Do
               </span>
@@ -57,7 +57,7 @@ export default function ExpertiseSection() {
           </StaggerItem>
           <StaggerItem>
             <p
-              className={`${bodyFont.className} text-white/40 text-base text-center max-w-xl leading-relaxed mt-1`}
+              className={`${bodyFont.className} text-white text-base text-center max-w-xl leading-relaxed mt-1`}
             >
               We offer comprehensive migration and legal services across a wide
               range of visa categories and immigration pathways.
@@ -80,13 +80,13 @@ export default function ExpertiseSection() {
               <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
               <p
-                className={`${headlineFont.className} text-white text-lg sm:text-xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}
+                className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}
               >
                 {item.label}
               </p>
               {item.sub && (
                 <span
-                  className={`${bodyFont.className} text-white/30 text-[10px] tracking-[0.2em] uppercase`}
+                  className={`${bodyFont.className} text-white text-base tracking-[0.2em] uppercase`}
                 >
                   {item.sub}
                 </span>
@@ -102,13 +102,13 @@ export default function ExpertiseSection() {
           >
             <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
             <p
-              className={`${headlineFont.className} text-white text-lg sm:text-xl font-medium group-hover:text-[#c8a96e] transition-colors duration-300`}
+              className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium group-hover:text-[#c8a96e] transition-colors duration-300`}
             >
               {wideItem.label}
             </p>
             {wideItem.sub && (
               <span
-                className={`${bodyFont.className} text-white/30 text-[10px] tracking-[0.2em] uppercase sm:ml-2`}
+                className={`${bodyFont.className} text-white text-[12px] tracking-[0.2em] uppercase sm:ml-2`}
               >
                 — {wideItem.sub}
               </span>
@@ -119,12 +119,12 @@ export default function ExpertiseSection() {
         {/* Bottom note */}
         <AnimateIn direction="up" delay={0.15}>
           <p
-            className={`${bodyFont.className} text-white/20 text-[10px] tracking-[0.2em] uppercase text-center mt-10`}
+            className={`${bodyFont.className} text-white text-xs tracking-[0.2em] uppercase text-center mt-15`}
           >
             Not sure which visa applies to you?{" "}
             <a
-              href="mailto:info@visa-australia.legal"
-              className="text-[#c8a96e]/60 hover:text-[#c8a96e] transition-colors duration-300"
+              href="/contact"
+              className="text-[#c8a96e]/75 hover:text-[#c8a96e] transition-colors duration-300"
             >
               Contact us for a free assessment
             </a>
