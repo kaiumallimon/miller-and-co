@@ -39,7 +39,7 @@ export default function StatsSection() {
               className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-center leading-tight`}
             >
               Proven Results,{" "}
-              <span className="italic text-[#c8a96e]">Real People</span>
+              <span className="italic text-[#756341]">Real People</span>
             </h2>
           </StaggerItem>
         </StaggerContainer>
