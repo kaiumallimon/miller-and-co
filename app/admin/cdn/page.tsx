@@ -104,9 +104,11 @@ function UsageCard({
           <span className={`${bodyFont.className} text-2xl text-[#faf8f5]`}>
             {formatFn(stat.used)}
           </span>
-          <span className={`${bodyFont.className} text-xs text-white/25`}>
-            / {formatFn(stat.limit)}
-          </span>
+          {stat.limit > 0 && (
+            <span className={`${bodyFont.className} text-xs text-white/25`}>
+              / {formatFn(stat.limit)}
+            </span>
+          )}
         </div>
         <div className="w-full h-1 bg-white/6 overflow-hidden">
           <motion.div
