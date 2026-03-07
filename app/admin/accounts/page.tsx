@@ -321,7 +321,7 @@ export default function AccountsPage() {
             {gold && <><span className="absolute top-0 left-0 w-6 h-6 border-t border-l border-[#c8a96e]/25" /><span className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-[#c8a96e]/25" /></>}
             <Icon className={`w-5 h-5 shrink-0 ${gold ? "text-[#c8a96e]" : "text-white/20"}`} />
             <div>
-              <p className={`${headlineFont.className} text-xl font-semibold ${gold ? "text-[#c8a96e]" : "text-white"}`}>{value}</p>
+              <p className={`${bodyFont.className} text-xl font-semibold ${gold ? "text-[#c8a96e]" : "text-white"}`}>{value}</p>
               <p className={`${bodyFont.className} text-white/25 text-[11px] tracking-wide`}>{label}</p>
             </div>
           </motion.div>

@@ -121,7 +121,7 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <div className="bg-[#0f0f0f] min-h-screen">
+    <div className="bg-[#0f0f0f] min-h-screen overflow-x-hidden">
       <CustomHeader />
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
@@ -155,10 +155,10 @@ export default async function BlogPostPage({
               </StaggerItem>
               <StaggerItem>
                 <div className={`${bodyFont.className} flex flex-wrap items-center gap-4 text-[11px] text-white/40`}>
-                  {post.author && (
+                  {post.authorName && (
                     <span className="flex items-center gap-1.5">
                       <User className="w-3 h-3" />
-                      {post.author}
+                      {post.authorName}
                     </span>
                   )}
                   {post.publishedAt && (
@@ -207,10 +207,10 @@ export default async function BlogPostPage({
               )}
               <StaggerItem>
                 <div className={`${bodyFont.className} flex flex-wrap items-center gap-4 text-[11px] text-white/30 mt-1`}>
-                  {post.author && (
+                  {post.authorName && (
                     <span className="flex items-center gap-1.5">
                       <User className="w-3 h-3" />
-                      {post.author}
+                      {post.authorName}
                     </span>
                   )}
                   {post.publishedAt && (
@@ -237,7 +237,7 @@ export default async function BlogPostPage({
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-12 lg:gap-16 items-start">
 
             {/* ── Content ──────────────────────────────────────────────── */}
-            <article>
+            <article className="min-w-0 overflow-hidden">
               {/* Excerpt lead (only for cover-image hero posts where excerpt isn't shown above) */}
               {post.coverImage && post.excerpt && (
                 <p className={`${bodyFont.className} text-white/50 text-base leading-relaxed border-l-2 border-[#c8a96e]/40 pl-5 mb-10 italic`}>
@@ -275,8 +275,8 @@ export default async function BlogPostPage({
                       <User className="w-3.5 h-3.5 text-[#c8a96e]" />
                     </div>
                     <div>
-                      <p className="text-[10px] text-white/20 uppercase tracking-wider">Written by</p>
-                      <p className="text-xs text-white/60">{post.authorName}</p>
+                      <p className="text-[10px] text-white/50 uppercase tracking-wider">Written by</p>
+                      <p className="text-xs text-white/90">{post.authorName}</p>
                     </div>
                   </div>
                 )}
@@ -297,7 +297,7 @@ export default async function BlogPostPage({
 
               {/* About this article */}
               <div className="flex flex-col gap-4 p-5 bg-[#141414] border border-white/6">
-                <p className={`${bodyFont.className} text-[9px] font-semibold uppercase tracking-[0.25em] text-white/20`}>
+                <p className={`${bodyFont.className} text-[9px] font-semibold uppercase tracking-[0.25em] text-white/60`}>
                   About this article
                 </p>
                 <div className="flex flex-col gap-3">
@@ -310,8 +310,8 @@ export default async function BlogPostPage({
                     <div key={label} className={`${bodyFont.className} flex items-start gap-2.5`}>
                       <Icon className="w-3 h-3 text-[#c8a96e] shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-[9px] text-white/20 uppercase tracking-wider">{label}</p>
-                        <p className="text-[11px] text-white/50">{value}</p>
+                        <p className="text-[9px] text-white/50 uppercase tracking-wider">{label}</p>
+                        <p className="text-[11px] text-white/90">{value}</p>
                       </div>
                     </div>
                   ))}
