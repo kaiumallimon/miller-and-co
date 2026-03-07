@@ -23,7 +23,7 @@ export default function CtaSection() {
             <StaggerItem>
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-[#c8a96e]" />
-                <span className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
+                <span className={`${bodyFont.className} text-[#c8a96e] text-[12px] font-semibold tracking-[0.3em] uppercase`}>
                   Ready to Start?
                 </span>
               </div>
@@ -35,7 +35,7 @@ export default function CtaSection() {
               </h2>
             </StaggerItem>
             <StaggerItem>
-              <p className={`${bodyFont.className} text-white/50 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-white/70 text-base leading-relaxed`}>
                 Book a confidential consultation with our migration lawyers today.
                 No obligation — just clear, expert advice tailored to your situation.
               </p>

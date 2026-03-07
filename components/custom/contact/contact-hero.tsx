@@ -89,7 +89,7 @@ export default function ContactHero() {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className={`${bodyFont.className} text-white/65 text-sm leading-relaxed max-w-xl`}
+            className={`${bodyFont.className} text-white/65 text-base leading-relaxed max-w-xl`}
           >
             Have a question about your visa options or want to book a consultation?
             Fill in the form below and our team will get back to you promptly.

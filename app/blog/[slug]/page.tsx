@@ -200,7 +200,7 @@ export default async function BlogPostPage({
               </StaggerItem>
               {post.excerpt && (
                 <StaggerItem>
-                  <p className={`${bodyFont.className} text-white/40 text-sm leading-relaxed max-w-2xl`}>
+                  <p className={`${bodyFont.className} text-white/40 text-base leading-relaxed max-w-2xl`}>
                     {post.excerpt}
                   </p>
                 </StaggerItem>

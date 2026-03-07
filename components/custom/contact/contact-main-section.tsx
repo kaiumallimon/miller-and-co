@@ -61,7 +61,7 @@ export default function ContactMainSection() {
                 We&apos;d Love to{" "}
                 <span className="italic text-[#c8a96e]">Hear From You</span>
               </h2>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/55 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/55 text-base leading-relaxed`}>
                 Whether you have a question about your visa options, need to book a
                 consultation, or want to discuss your circumstances — reach out and
                 one of our team will be in touch promptly.
@@ -87,7 +87,7 @@ export default function ContactMainSection() {
                         <p className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/40`}>
                           {item.label}
                         </p>
-                        <p className={`${bodyFont.className} text-[#1a1a1a] text-sm leading-relaxed whitespace-pre-line group-hover:text-[#c8a96e] transition-colors duration-300`}>
+                        <p className={`${bodyFont.className} text-[#1a1a1a] text-base leading-relaxed whitespace-pre-line group-hover:text-[#c8a96e] transition-colors duration-300`}>
                           {item.value}
                         </p>
                       </div>
@@ -108,7 +108,7 @@ export default function ContactMainSection() {
                 </div>
                 <div className="flex flex-col gap-2 pl-7">
                   {officeHours.map(({ day, hours }) => (
-                    <div key={day} className="flex items-center justify-between gap-4 text-sm">
+                    <div key={day} className="flex items-center justify-between gap-4 text-base">
                       <span className={`${bodyFont.className} text-[#1a1a1a]/60`}>{day}</span>
                       <span className={`${bodyFont.className} text-[#1a1a1a] font-medium text-right`}>{hours}</span>
                     </div>

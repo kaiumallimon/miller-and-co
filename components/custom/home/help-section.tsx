@@ -30,10 +30,9 @@ export default function HelpSection() {
             {/* Eyebrow */}
             <StaggerItem>
               <div className="flex items-center gap-3">
-                <span className="h-px w-10 bg-[#c8a96e]" />
+                <span className="h-px w-10 bg-[#756341]" />
                 <span
-                  className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
-                >
+                  className={`${bodyFont.className} text-[#756341] text-[12px] font-semibold tracking-[0.3em] uppercase`}>
                   Expert Guidance
                 </span>
               </div>
@@ -45,7 +44,7 @@ export default function HelpSection() {
                 className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold leading-tight`}
               >
                 Let Us Help You{" "}
-                <span className="italic text-[#c8a96e]">Navigate</span> Your
+                <span className="italic text-[#756341]">Navigate</span> Your
                 Migration Journey
               </h2>
             </StaggerItem>
@@ -53,7 +52,7 @@ export default function HelpSection() {
             {/* Body */}
             <StaggerItem>
               <p
-                className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}
+                className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}
               >
                 Not sure which visa is right for you? Our experienced migration
                 lawyers take the guesswork out of the process. We assess your
@@ -67,7 +66,7 @@ export default function HelpSection() {
               {highlights.map((item) => (
                 <StaggerItem key={item}>
                   <div
-                    className={`${bodyFont.className} flex items-start gap-3 text-sm text-[#1a1a1a]/70`}
+                    className={`${bodyFont.className} flex items-start gap-3 text-base text-[#1a1a1a]/70`}
                   >
                     <CheckCircle className="w-4 h-4 text-[#c8a96e] shrink-0 mt-0.5" />
                     {item}

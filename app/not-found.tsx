@@ -21,9 +21,9 @@ export default function NotFound() {
       </div>
 
       {/* Radial gold glow — top right */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top_right,_#c8a96e10_0%,_transparent_65%)] pointer-events-none z-0" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top_right,#c8a96e10_0%,transparent_65%)] pointer-events-none z-0" />
       {/* Radial gold glow — bottom left */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_bottom_left,_#c8a96e08_0%,_transparent_65%)] pointer-events-none z-0" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_bottom_left,#c8a96e08_0%,transparent_65%)] pointer-events-none z-0" />
 
       {/* Header — logo only */}
       <header className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pt-8">
@@ -68,7 +68,7 @@ export default function NotFound() {
 
         {/* Subtext */}
         <p
-          className={`${bodyFont.className} text-white/40 text-sm leading-relaxed max-w-md mb-10 relative z-10`}
+          className={`${bodyFont.className} text-white/40 text-base leading-relaxed max-w-md mb-10 relative z-10`}
         >
           The page you&apos;re looking for doesn&apos;t exist or may have been moved.
           Let us help you find your way back.

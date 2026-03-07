@@ -95,7 +95,7 @@ export default function ContactForm() {
               <h3 className={`${headlineFont.className} text-[#1a1a1a] text-2xl font-semibold`}>
                 Message Sent
               </h3>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/50 text-sm max-w-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/50 text-base max-w-sm leading-relaxed`}>
                 Thank you for reaching out. A member of our team will be in touch
                 with you shortly.
               </p>

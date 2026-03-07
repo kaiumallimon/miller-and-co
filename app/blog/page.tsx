@@ -128,7 +128,7 @@ export default async function BlogPage() {
               </h1>
             </StaggerItem>
             <StaggerItem>
-              <p className={`${bodyFont.className} text-white/40 text-sm leading-relaxed max-w-lg`}>
+              <p className={`${bodyFont.className} text-white/40 text-base leading-relaxed max-w-lg`}>
                 Expert commentary on Australian migration law, visa pathways,
                 and immigration policy — from our team of registered migration lawyers.
               </p>

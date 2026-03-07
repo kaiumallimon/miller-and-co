@@ -25,6 +25,45 @@ const LOGOS = [
   { src: "/logo-workfast.jpg",  alt: "Workfast" },
 ];
 
+const ROW1 = LOGOS.slice(0, 11);
+const ROW2 = LOGOS.slice(11);
+
+function MarqueeRow({
+  logos,
+  reverse = false,
+}: {
+  logos: typeof LOGOS;
+  reverse?: boolean;
+}) {
+  const doubled = [...logos, ...logos];
+  return (
+    <div className="overflow-hidden">
+      <div
+        className="flex items-center"
+        style={{
+          animation: `${reverse ? "marquee-reverse" : "marquee"} 28s linear infinite`,
+          width: "max-content",
+        }}
+      >
+        {doubled.map((logo, i) => (
+          <div
+            key={`${logo.src}-${i}`}
+            className="shrink-0 relative mx-8 w-40 h-[140px]"
+          >
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              fill
+              className="object-contain"
+              sizes="160px"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function PartnersSection() {
   return (
     <section className="relative w-full bg-white overflow-hidden py-16 lg:py-20 border-y border-black/6">
@@ -34,42 +73,30 @@ export default function PartnersSection() {
       {/* Header */}
       <div className="relative flex flex-col items-center gap-3 mb-12 px-6">
         <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-[#c8a96e]/40" />
+          <span className="h-px w-8 bg-[#756341]" />
           <span
-            className={`${bodyFont.className} text-[#1a1a1a]/35 text-[10px] font-semibold tracking-[0.3em] uppercase`}
+            className={`${bodyFont.className} text-[#756341] text-[12px] font-semibold tracking-[0.3em] uppercase`}
           >
             Trusted By
           </span>
-          <span className="h-px w-8 bg-[#c8a96e]/40" />
+          <span className="h-px w-8 bg-[#756341]" />
         </div>
         <p
-          className={`${headlineFont.className} text-[#1a1a1a]/60 text-xl sm:text-2xl font-medium text-center`}
+          className={`${headlineFont.className} text-black text-xl sm:text-2xl font-medium text-center`}
         >
           Businesses &amp; organisations that rely on{" "}
-          <span className="italic text-[#c8a96e]/70">Miller &amp; Co.</span>
+          <span className="italic text-[#756341]">Miller &amp; Co.</span>
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 border border-black/8 divide-x divide-y divide-black/8">
-          {LOGOS.map((logo) => (
-            <div
-              key={logo.src}
-              className="flex items-center justify-center px-6 py-6"
-            >
-              <div className="relative w-full h-35">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  fill
-                  className="object-contain"
-                  sizes="160px"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Marquee rows */}
+      <div className="relative flex flex-col gap-2">
+        {/* Edge fades */}
+        <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
+
+        <MarqueeRow logos={ROW1} />
+        <MarqueeRow logos={ROW2} reverse />
       </div>
 
       {/* Bottom divider line */}

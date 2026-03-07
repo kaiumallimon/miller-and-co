@@ -29,7 +29,7 @@ const testimonials = [
 export default function TestimonialsSection() {
   return (
     <section className="relative w-full bg-[#1a1a1a] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#c8a96e07_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#c8a96e07_0%,transparent_60%)]" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32">
 
@@ -39,7 +39,7 @@ export default function TestimonialsSection() {
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#c8a96e]" />
               <span
-                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                className={`${bodyFont.className} text-[#c8a96e] text-[12px] font-semibold tracking-[0.3em] uppercase`}
               >
                 Client Stories
               </span>
@@ -56,7 +56,7 @@ export default function TestimonialsSection() {
           </StaggerItem>
           <StaggerItem>
             <p
-              className={`${bodyFont.className} text-white/40 text-sm text-center max-w-md leading-relaxed mt-1`}
+              className={`${bodyFont.className} text-white/40 text-base text-center max-w-md leading-relaxed mt-1`}
             >
               An honest look into how we work — straight from the people we&apos;ve helped.
             </p>
@@ -82,7 +82,7 @@ export default function TestimonialsSection() {
 
               {/* Quote text */}
               <p
-                className={`${bodyFont.className} text-white/60 text-sm leading-relaxed flex-1 group-hover:text-white/75 transition-colors duration-300`}
+                className={`${bodyFont.className} text-white/60 text-base leading-relaxed flex-1 group-hover:text-white/75 transition-colors duration-300`}
               >
                 &ldquo;{t.quote}&rdquo;
               </p>
@@ -100,7 +100,7 @@ export default function TestimonialsSection() {
                 </div>
                 <div className="flex flex-col gap-0.5">
                   <span
-                    className={`${bodyFont.className} text-white text-sm font-semibold`}
+                    className={`${bodyFont.className} text-white text-base font-semibold`}
                   >
                     {t.name}
                   </span>
@@ -118,12 +118,12 @@ export default function TestimonialsSection() {
         {/* Bottom note */}
         <AnimateIn direction="up" delay={0.1}>
           <p
-            className={`${bodyFont.className} text-white/20 text-[10px] tracking-[0.2em] uppercase text-center mt-10`}
+            className={`${bodyFont.className} text-white/70 text-[12px] tracking-[0.2em] uppercase text-center mt-10`}
           >
             Join hundreds of satisfied clients —{" "}
             <a
               href="mailto:info@visa-australia.legal"
-              className="text-[#c8a96e]/50 hover:text-[#c8a96e] transition-colors duration-300"
+              className="text-[#c8a96e]/80 hover:text-[#c8a96e] transition-colors duration-300"
             >
               start your journey today
             </a>

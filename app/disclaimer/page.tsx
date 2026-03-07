@@ -84,7 +84,7 @@ export default function DisclaimerPage() {
               </h1>
             </StaggerItem>
             <StaggerItem>
-              <p className={`${bodyFont.className} text-white/35 text-sm leading-relaxed max-w-xl`}>
+              <p className={`${bodyFont.className} text-white/35 text-base leading-relaxed max-w-xl`}>
                 Please read this disclaimer carefully before using the Miller &amp; Co. website. By accessing or using the site, you agree to the terms set out below.
               </p>
             </StaggerItem>
@@ -127,7 +127,7 @@ export default function DisclaimerPage() {
                     </h2>
                     <div className="flex flex-col gap-4">
                       {section.paragraphs.map((para, i) => (
-                        <p key={i} className={`${bodyFont.className} text-white/45 text-sm leading-relaxed`}>
+                        <p key={i} className={`${bodyFont.className} text-white/45 text-base leading-relaxed`}>
                           {para}
                         </p>
                       ))}
@@ -148,7 +148,7 @@ export default function DisclaimerPage() {
               <p className={`${headlineFont.className} text-[#faf8f5] text-xl font-semibold`}>
                 Have a legal question?
               </p>
-              <p className={`${bodyFont.className} text-white/35 text-sm`}>
+              <p className={`${bodyFont.className} text-white/35 text-base`}>
                 Contact our team for independent professional legal advice.
               </p>
             </div>

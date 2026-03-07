@@ -298,7 +298,7 @@ function renderBlock(block: ContentBlock, i: number) {
           className="mt-4 border-l-2 border-[#c8a96e] pl-4 py-1"
         >
           <p
-            className={`${bodyFont.className} text-[#7a6035] text-sm leading-relaxed italic`}
+            className={`${bodyFont.className} text-[#7a6035] text-base leading-relaxed italic`}
           >
             {block.text}
           </p>
@@ -311,7 +311,7 @@ function renderBlock(block: ContentBlock, i: number) {
             <li key={j} className="flex items-start gap-3">
               <span className="mt-2 w-1 h-1 rounded-full bg-[#c8a96e] shrink-0" />
               <p
-                className={`${bodyFont.className} text-[#4a4a4a] text-sm leading-relaxed`}
+                className={`${bodyFont.className} text-[#4a4a4a] text-base leading-relaxed`}
               >
                 {item}
               </p>
@@ -323,7 +323,7 @@ function renderBlock(block: ContentBlock, i: number) {
       return (
         <p
           key={i}
-          className={`${bodyFont.className} text-[#4a4a4a] text-sm leading-relaxed mt-3`}
+          className={`${bodyFont.className} text-[#4a4a4a] text-base leading-relaxed mt-3`}
         >
           {block.text}
         </p>
@@ -363,7 +363,7 @@ export default function TermsPage() {
             </StaggerItem>
             <StaggerItem>
               <p
-                className={`${bodyFont.className} text-white/40 text-sm leading-relaxed max-w-xl mt-1`}
+                className={`${bodyFont.className} text-white/40 text-base leading-relaxed max-w-xl mt-1`}
               >
                 Please read these terms carefully before engaging our services.
                 By proceeding, you agree to be bound by the conditions set out below.
@@ -395,7 +395,7 @@ export default function TermsPage() {
               </span>
             </div>
             <p
-              className={`${bodyFont.className} text-[#4a4a4a] text-sm leading-relaxed mb-8`}
+              className={`${bodyFont.className} text-[#4a4a4a] text-base leading-relaxed mb-8`}
             >
               Miller &amp; Co Lawyers &amp; Migration Agent Pty Ltd (trading as Miller &amp; Co
               Lawyers &amp; Migration Agents) provides Australian Visa/Immigration services

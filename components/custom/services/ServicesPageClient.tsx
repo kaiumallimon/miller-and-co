@@ -293,13 +293,13 @@ function ServiceCard({
       >
         <div className="flex flex-col gap-0.5 min-w-0">
           <p
-            className={`${headlineFont.className} text-[#faf8f5] text-base font-medium group-hover:text-[#c8a96e] transition-colors duration-300 truncate`}
+            className={`${headlineFont.className} text-[#faf8f5] text-lg font-medium group-hover:text-[#c8a96e] transition-colors duration-300 truncate`}
           >
             {service.label}
           </p>
           {service.sub && (
             <span
-              className={`${bodyFont.className} text-white/25 text-[10px] tracking-[0.2em] uppercase`}
+              className={`${bodyFont.className} text-white/80 text-[10px] tracking-[0.2em] uppercase`}
             >
               {service.sub}
             </span>
@@ -315,7 +315,7 @@ function ServiceCard({
       {open && (
         <div className="px-5 pb-4 border-t border-white/5">
           <p
-            className={`${bodyFont.className} text-white/45 text-sm leading-relaxed pt-3`}
+            className={`${bodyFont.className} text-white/90 text-base leading-relaxed pt-3`}
           >
             {service.detail}
           </p>
@@ -350,7 +350,7 @@ function CategorySection({
               <Icon className="w-4 h-4 text-[#c8a96e]" />
             </div>
             <span
-              className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+              className={`${bodyFont.className} text-[#c8a96e] text-[12px] font-semibold tracking-[0.15em] uppercase`}
             >
               {category.tagline}
             </span>
@@ -365,7 +365,7 @@ function CategorySection({
 
           {/* Description */}
           <p
-            className={`${bodyFont.className} text-white/45 text-sm leading-relaxed`}
+            className={`${bodyFont.className} text-white/90 text-base leading-relaxed`}
           >
             {category.description}
           </p>
@@ -376,7 +376,7 @@ function CategorySection({
               <div key={h} className="flex items-start gap-3">
                 <CheckCircle className="w-3.5 h-3.5 text-[#c8a96e] shrink-0 mt-0.5" />
                 <span
-                  className={`${bodyFont.className} text-white/55 text-sm`}
+                  className={`${bodyFont.className} text-white text-base`}
                 >
                   {h}
                 </span>
@@ -405,7 +405,7 @@ function CategorySection({
           <div className="flex items-center gap-3 mb-3">
             <span className="h-px flex-1 bg-white/6" />
             <span
-              className={`${bodyFont.className} text-white/20 text-[9px] tracking-[0.2em] uppercase`}
+              className={`${bodyFont.className} text-white text-[11px] tracking-[0.2em] uppercase`}
             >
               Visa Pathways
             </span>
@@ -477,7 +477,7 @@ export default function ServicesPageClient() {
             </StaggerItem>
             <StaggerItem>
               <p
-                className={`${bodyFont.className} text-white/40 text-sm leading-relaxed max-w-xl`}
+                className={`${bodyFont.className} text-white text-base leading-relaxed max-w-xl`}
               >
                 Comprehensive migration law services for individuals,
                 families, and businesses — from initial assessment to visa
@@ -499,11 +499,11 @@ export default function ServicesPageClient() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/15 text-white/50 hover:bg-white/5 hover:text-white hover:border-white/30 transition-all duration-300 rounded-none cursor-pointer`}
+                  className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/30 text-white hover:bg-white/5 hover:text-white hover:border-white/50 transition-all duration-300 rounded-none cursor-pointer`}
                   onClick={() => (window.location.href = "tel:+61280956369")}
                 >
                   <Phone className="w-3.5 h-3.5 mr-1.5" />
-                  +61 2 8095 6369
+                  +61 280 956 369
                 </Button>
               </div>
             </StaggerItem>
@@ -511,9 +511,9 @@ export default function ServicesPageClient() {
 
           {/* Scroll-down hint */}
           <div className="flex justify-center mt-14">
-            <div className="flex flex-col items-center gap-2 opacity-30">
+            <div className="flex flex-col items-center gap-2 opacity-70">
               <span
-                className={`${bodyFont.className} text-white text-[9px] tracking-[0.3em] uppercase`}
+                className={`${bodyFont.className} text-white text-[12px] tracking-[0.3em] uppercase`}
               >
                 Explore Services
               </span>
@@ -524,11 +524,11 @@ export default function ServicesPageClient() {
 
         {/* Breadcrumb */}
         <div
-          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
+          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[12px] tracking-widest uppercase flex items-center gap-2`}
         >
-          <span>Home</span>
+          <a href="/">Home</a>
           <span className="text-[#c8a96e]">/</span>
-          <span className="text-white/60">Services</span>
+          <span className="text-white">Services</span>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
@@ -562,7 +562,7 @@ export default function ServicesPageClient() {
                 <a
                   key={`${rep}-${cat.id}`}
                   href={`#${cat.id}`}
-                  className={`${bodyFont.className} group flex items-center gap-2 px-6 py-3.5 text-[10px] font-semibold tracking-[0.15em] uppercase text-white/30 hover:text-[#c8a96e] transition-colors duration-200 whitespace-nowrap border-r border-white/5`}
+                  className={`${bodyFont.className} group flex items-center gap-2 px-6 py-3.5 text-[10px] font-semibold tracking-[0.15em] uppercase text-white hover:text-[#c8a96e] transition-colors duration-200 whitespace-nowrap border-r border-white/5`}
                 >
                   <Icon className="w-3 h-3 shrink-0 group-hover:text-[#c8a96e] transition-colors" />
                   {cat.label}
@@ -614,7 +614,7 @@ export default function ServicesPageClient() {
             </StaggerItem>
             <StaggerItem>
               <p
-                className={`${bodyFont.className} text-white/40 text-sm leading-relaxed max-w-lg mt-1`}
+                className={`${bodyFont.className} text-white text-base leading-relaxed max-w-lg mt-1`}
               >
                 Every client journey is different — but our commitment to
                 clarity, transparency, and results is constant.
@@ -637,7 +637,7 @@ export default function ServicesPageClient() {
                         <Icon className="w-4 h-4 text-[#c8a96e]" />
                       </div>
                       <span
-                        className={`${headlineFont.className} text-white/8 text-4xl font-semibold leading-none`}
+                        className={`${bodyFont.className} text-white/20 text-4xl font-semibold leading-none`}
                       >
                         {step.step}
                       </span>
@@ -650,7 +650,7 @@ export default function ServicesPageClient() {
                         {step.title}
                       </h3>
                       <p
-                        className={`${bodyFont.className} text-white/40 text-sm leading-relaxed`}
+                        className={`${bodyFont.className} text-white text-base leading-relaxed`}
                       >
                         {step.description}
                       </p>
@@ -692,7 +692,7 @@ export default function ServicesPageClient() {
               </StaggerItem>
               <StaggerItem>
                 <p
-                  className={`${bodyFont.className} text-[#1a1a1a]/55 text-sm leading-relaxed`}
+                  className={`${bodyFont.className} text-[#1a1a1a] text-base leading-relaxed`}
                 >
                   Miller &amp; Co. is a specialist migration law firm. Unlike
                   migration agents, our practitioners are admitted lawyers —
@@ -712,7 +712,7 @@ export default function ServicesPageClient() {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-4 h-4 text-[#c8a96e] shrink-0 mt-0.5" />
                       <span
-                        className={`${bodyFont.className} text-[#1a1a1a]/65 text-sm`}
+                        className={`${bodyFont.className} text-[#1a1a1a] text-base`}
                       >
                         {point}
                       </span>
@@ -741,7 +741,7 @@ export default function ServicesPageClient() {
                       {stat.value}
                     </span>
                     <span
-                      className={`${bodyFont.className} text-[#1a1a1a]/45 text-xs tracking-wide uppercase`}
+                      className={`${bodyFont.className} text-[#1a1a1a] text-xs tracking-wide uppercase`}
                     >
                       {stat.label}
                     </span>
@@ -792,7 +792,7 @@ export default function ServicesPageClient() {
               </StaggerItem>
               <StaggerItem>
                 <p
-                  className={`${bodyFont.className} text-white/50 text-sm leading-relaxed`}
+                  className={`${bodyFont.className} text-white text-base leading-relaxed`}
                 >
                   Book a confidential consultation with our migration lawyers.
                   We&apos;ll assess your situation, explain your options, and
@@ -821,7 +821,7 @@ export default function ServicesPageClient() {
               <Button
                 size="lg"
                 variant="outline"
-                className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/20 text-white/60 hover:bg-white/5 hover:text-white hover:border-white/40 transition-all duration-300 rounded-none cursor-pointer`}
+                className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/30 text-white hover:bg-white/5 hover:text-white hover:border-white/50 transition-all duration-300 rounded-none cursor-pointer`}
                 onClick={() => (window.location.href = "tel:+61280956369")}
               >
                 <Phone className="w-3.5 h-3.5 mr-1" />

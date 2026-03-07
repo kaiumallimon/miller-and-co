@@ -65,7 +65,7 @@ export default function WhyChooseUsSection() {
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#c8a96e]" />
               <span
-                className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                className={`${bodyFont.className} text-[#c8a96e] text-[12px] font-semibold tracking-[0.3em] uppercase`}
               >
                 Our Difference
               </span>
@@ -82,7 +82,7 @@ export default function WhyChooseUsSection() {
           </StaggerItem>
           <StaggerItem>
             <p
-              className={`${bodyFont.className} text-white/40 text-sm text-center max-w-xl leading-relaxed mt-1`}
+              className={`${bodyFont.className} text-white/75 text-base text-center max-w-xl leading-relaxed mt-1`}
             >
               Choosing the right migration lawyer can make a significant difference
               to the success of your visa application. We focus on clear guidance,
@@ -115,13 +115,13 @@ export default function WhyChooseUsSection() {
 
                 {/* Title */}
                 <p
-                  className={`${headlineFont.className} text-white text-lg font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}
+                  className={`${headlineFont.className} text-white text-lg md:text-2xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}
                 >
                   {reason.title}
                 </p>
 
                 {/* Description */}
-                <p className={`${bodyFont.className} text-white/40 text-sm leading-relaxed`}>
+                <p className={`${bodyFont.className} text-white/60 text-base leading-relaxed`}>
                   {reason.description}
                 </p>
               </StaggerItem>

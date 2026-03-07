@@ -71,12 +71,12 @@ export default function MeetEdwardSection() {
               direction="up"
               delay={0.45}
               duration={0.65}
-              className="absolute -bottom-6 -right-6 z-20 bg-[#1a1a1a] px-6 py-5 shadow-xl"
+              className="absolute -bottom-6 -right-6 z-20 bg-[#756341] border border-white px-6 py-5 shadow-xl"
             >
-              <p className={`${headlineFont.className} text-white text-lg font-semibold`}>
+              <p className={`${headlineFont.className} text-white text-2xl font-semibold`}>
                 Edward Miller
               </p>
-              <p className={`${bodyFont.className} text-[#c8a96e] text-xs mt-1 tracking-wide uppercase`}>
+              <p className={`${bodyFont.className} text-white/60 text-xs mt-1 tracking-wide uppercase`}>
                 Principal Migration Lawyer
               </p>
             </AnimateIn>
@@ -91,9 +91,9 @@ export default function MeetEdwardSection() {
             {/* Eyebrow */}
             <StaggerItem>
               <div className="flex items-center gap-3">
-                <span className="h-px w-10 bg-[#c8a96e]" />
+                <span className="h-px w-10 bg-[#756341]" />
                 <span
-                  className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+                  className={`${bodyFont.className} text-[#756341] text-[12px] font-semibold tracking-[0.3em] uppercase`}
                 >
                   Meet Our Principal
                 </span>
@@ -106,20 +106,20 @@ export default function MeetEdwardSection() {
                 className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold leading-tight`}
               >
                 Edward{" "}
-                <span className="italic text-[#c8a96e]">Miller</span>
+                <span className="italic text-[#756341]">Miller</span>
               </h2>
             </StaggerItem>
 
             {/* Role line */}
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#c8a96e] text-xs font-semibold tracking-[0.25em] uppercase`}>
+              <p className={`${bodyFont.className} text-[#756341] text-sm font-semibold tracking-[0.25em] uppercase`}>
                 Principal Migration Lawyer & Migration Agent
               </p>
             </StaggerItem>
 
             {/* Bio paragraphs */}
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/75 text-base leading-relaxed`}>
                 Edward Miller is the Principal of Miller & Co Lawyers & Migration
                 Agents and a registered Australian Migration Lawyer who has helped
                 individuals, families, and businesses navigate Australia&apos;s
@@ -128,7 +128,7 @@ export default function MeetEdwardSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/75 text-base leading-relaxed`}>
                 With years of experience in migration law, Edward has assisted
                 clients across a wide range of visa applications, including
                 employer-sponsored visas, skilled migration, partner visas,
@@ -138,15 +138,15 @@ export default function MeetEdwardSection() {
               </p>
             </StaggerItem>
 
-            <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+            {/* <StaggerItem>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/75 text-base leading-relaxed`}>
                 Edward is known for his clear communication, attention to detail,
                 and practical legal advice. He takes the time to understand each
                 client&apos;s circumstances and develops a strategy that aligns
                 with their goals while ensuring full compliance with Australian
                 immigration law.
               </p>
-            </StaggerItem>
+            </StaggerItem> */}
 
             {/* Credentials */}
             <StaggerContainer
@@ -158,15 +158,15 @@ export default function MeetEdwardSection() {
                 const Icon = cred.icon;
                 return (
                   <StaggerItem key={cred.label} className="h-full">
-                    <div className="h-full flex items-start gap-3 p-4 border border-[#1a1a1a]/8 bg-white/60 hover:bg-white transition-colors duration-300 group">
-                      <div className="mt-0.5 w-8 h-8 flex items-center justify-center bg-[#c8a96e]/10 shrink-0">
-                        <Icon className="w-3.5 h-3.5 text-[#c8a96e]" />
+                    <div className="h-full flex items-start gap-3 p-5 border border-[#1a1a1a]/8 bg-white/60 hover:bg-white transition-colors duration-300 group">
+                      <div className="mt-0.5 w-10 h-10 flex items-center justify-center bg-[#c8a96e]/10 shrink-0">
+                        <Icon className="w-5 h-5 text-[#c8a96e]" />
                       </div>
                       <div className="flex flex-col gap-0.5">
-                        <p className={`${bodyFont.className} text-[#1a1a1a] text-xs font-semibold leading-snug`}>
+                        <p className={`${bodyFont.className} text-[#1a1a1a] text-sm font-semibold leading-snug`}>
                           {cred.label}
                         </p>
-                        <p className={`${bodyFont.className} text-[#1a1a1a]/40 text-[11px]`}>
+                        <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-xs`}>
                           {cred.detail}
                         </p>
                       </div>

@@ -40,10 +40,10 @@ export default async function Home() {
       <HelpSection />
       <ExpertiseSection />
       <StatsSection />
+      <PrincipalSection />
       <TestimonialsSection />
       <PartnersSection />
       <FaqSection faqs={faqs} />
-      <PrincipalSection />
       <CtaSection />
     </div>
   );

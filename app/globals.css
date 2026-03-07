@@ -52,6 +52,16 @@ body {
   background: transparent;
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
 @keyframes shimmer-rotate {
   from { --shimmer-angle: 0deg; }
   to   { --shimmer-angle: 360deg; }
