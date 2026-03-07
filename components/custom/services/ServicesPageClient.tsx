@@ -350,7 +350,7 @@ function CategorySection({
               <Icon className="w-4 h-4 text-[#c8a96e]" />
             </div>
             <span
-              className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}
+              className={`${bodyFont.className} text-[#c8a96e] text-[12px] font-semibold tracking-[0.15em] uppercase`}
             >
               {category.tagline}
             </span>
@@ -405,7 +405,7 @@ function CategorySection({
           <div className="flex items-center gap-3 mb-3">
             <span className="h-px flex-1 bg-white/6" />
             <span
-              className={`${bodyFont.className} text-white text-[9px] tracking-[0.2em] uppercase`}
+              className={`${bodyFont.className} text-white text-[11px] tracking-[0.2em] uppercase`}
             >
               Visa Pathways
             </span>
@@ -503,7 +503,7 @@ export default function ServicesPageClient() {
                   onClick={() => (window.location.href = "tel:+61280956369")}
                 >
                   <Phone className="w-3.5 h-3.5 mr-1.5" />
-                  +61 2 8095 6369
+                  +61 280 956 369
                 </Button>
               </div>
             </StaggerItem>
@@ -511,9 +511,9 @@ export default function ServicesPageClient() {
 
           {/* Scroll-down hint */}
           <div className="flex justify-center mt-14">
-            <div className="flex flex-col items-center gap-2 opacity-30">
+            <div className="flex flex-col items-center gap-2 opacity-70">
               <span
-                className={`${bodyFont.className} text-white text-[9px] tracking-[0.3em] uppercase`}
+                className={`${bodyFont.className} text-white text-[12px] tracking-[0.3em] uppercase`}
               >
                 Explore Services
               </span>
@@ -524,9 +524,9 @@ export default function ServicesPageClient() {
 
         {/* Breadcrumb */}
         <div
-          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
+          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[12px] tracking-widest uppercase flex items-center gap-2`}
         >
-          <span>Home</span>
+          <a href="/">Home</a>
           <span className="text-[#c8a96e]">/</span>
           <span className="text-white">Services</span>
         </div>
