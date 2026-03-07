@@ -637,7 +637,7 @@ export default function ServicesPageClient() {
                         <Icon className="w-4 h-4 text-[#c8a96e]" />
                       </div>
                       <span
-                        className={`${headlineFont.className} text-white/8 text-4xl font-semibold leading-none`}
+                        className={`${bodyFont.className} text-white/8 text-4xl font-semibold leading-none`}
                       >
                         {step.step}
                       </span>
