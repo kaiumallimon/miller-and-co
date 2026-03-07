@@ -91,6 +91,8 @@ body {
   color: rgba(255,255,255,0.55);
   font-size: 0.9375rem;
   line-height: 1.85;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .blog-content h1,
@@ -189,6 +191,8 @@ body {
   border-collapse: collapse;
   margin-bottom: 1.5em;
   font-size: 0.875rem;
+  display: block;
+  overflow-x: auto;
 }
 .blog-content th {
   background: rgba(200,169,110,0.08);

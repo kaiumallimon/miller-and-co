@@ -80,20 +80,20 @@ export default function CustomHeader() {
           }`}
       >
         <motion.div
-          className="bg-primary backdrop-blur-md h-9 flex items-center"
+          className="bg-primary backdrop-blur-md h-9 flex items-center overflow-hidden"
           variants={topBarVariants}
           initial="hidden"
           animate={mounted ? "visible" : "hidden"}
         >
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full flex items-center justify-center md:justify-between">
-            <div className={`${bodyFont.className} flex items-center gap-6 text-white text-xs`}>
-              <a href="tel:+61280956369" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300 font-medium">
-                <Phone className="w-3 h-3" />
+          <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full flex items-center justify-center md:justify-between overflow-hidden">
+            <div className={`${bodyFont.className} flex items-center gap-4 text-white text-xs min-w-0`}>
+              <a href="tel:+61280956369" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300 font-medium whitespace-nowrap">
+                <Phone className="w-3 h-3 shrink-0" />
                 +61 280 956 369
               </a>
-              <a href="mailto:info@visa-australia.legal" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300 font-medium">
-                <Mail className="w-3 h-3" />
-                info@visa-australia.legal
+              <a href="mailto:info@visa-australia.legal" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300 font-medium whitespace-nowrap hidden sm:flex truncate">
+                <Mail className="w-3 h-3 shrink-0" />
+                <span className="truncate">info@visa-australia.legal</span>
               </a>
             </div>
             <span className={`${bodyFont.className} hidden md:block text-white text-xs font-medium`}>
@@ -105,7 +105,7 @@ export default function CustomHeader() {
 
       {/* Main header */}
       <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "top-0" : "top-9"
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 overflow-x-hidden ${isScrolled ? "top-0" : "top-9"
           } ${isScrolled
             ? "bg-[#0f0f0f]/90 backdrop-blur-xl shadow-2xl shadow-black/40 border-b border-white/8"
             : "bg-linear-to-b from-black/50 to-transparent"
@@ -187,7 +187,7 @@ export default function CustomHeader() {
 
       {/* Mobile Menu — slide from right */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 overflow-hidden ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
       >
         {/* Backdrop */}

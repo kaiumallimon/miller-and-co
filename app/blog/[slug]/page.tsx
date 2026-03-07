@@ -121,7 +121,7 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <div className="bg-[#0f0f0f] min-h-screen">
+    <div className="bg-[#0f0f0f] min-h-screen overflow-x-hidden">
       <CustomHeader />
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
@@ -237,7 +237,7 @@ export default async function BlogPostPage({
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-12 lg:gap-16 items-start">
 
             {/* ── Content ──────────────────────────────────────────────── */}
-            <article>
+            <article className="min-w-0 overflow-hidden">
               {/* Excerpt lead (only for cover-image hero posts where excerpt isn't shown above) */}
               {post.coverImage && post.excerpt && (
                 <p className={`${bodyFont.className} text-white/50 text-base leading-relaxed border-l-2 border-[#c8a96e]/40 pl-5 mb-10 italic`}>
