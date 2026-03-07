@@ -28,13 +28,13 @@ export default function BlogShareBar({ title, slug }: { title: string; slug: str
 
   return (
     <div className="flex flex-col gap-3 p-5 bg-[#141414] border border-white/6">
-      <p className={`${bodyFont.className} text-[9px] font-semibold uppercase tracking-[0.25em] text-white/20`}>
+      <p className={`${bodyFont.className} text-[9px] font-semibold uppercase tracking-[0.25em] text-white/60`}>
         Share this article
       </p>
       <div className="flex flex-col gap-2">
         <button
           onClick={copy}
-          className={`${bodyFont.className} flex items-center gap-2 text-[11px] text-white/40 hover:text-[#c8a96e] transition-colors cursor-pointer`}
+          className={`${bodyFont.className} flex items-center gap-2 text-[11px] text-white/90 hover:text-[#c8a96e] transition-colors cursor-pointer`}
         >
           {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Link2 className="w-3.5 h-3.5" />}
           {copied ? "Copied!" : "Copy link"}
@@ -43,7 +43,7 @@ export default function BlogShareBar({ title, slug }: { title: string; slug: str
           href={tweetUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${bodyFont.className} flex items-center gap-2 text-[11px] text-white/40 hover:text-[#c8a96e] transition-colors`}
+          className={`${bodyFont.className} flex items-center gap-2 text-[11px] text-white/90 hover:text-[#c8a96e] transition-colors`}
         >
           <Twitter className="w-3.5 h-3.5" />
           Share on X
@@ -52,7 +52,7 @@ export default function BlogShareBar({ title, slug }: { title: string; slug: str
           href={linkedinUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${bodyFont.className} flex items-center gap-2 text-[11px] text-white/40 hover:text-[#c8a96e] transition-colors`}
+          className={`${bodyFont.className} flex items-center gap-2 text-[11px] text-white/90 hover:text-[#c8a96e] transition-colors`}
         >
           <Linkedin className="w-3.5 h-3.5" />
           Share on LinkedIn
