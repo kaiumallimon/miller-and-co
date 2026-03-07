@@ -155,10 +155,10 @@ export default async function BlogPostPage({
               </StaggerItem>
               <StaggerItem>
                 <div className={`${bodyFont.className} flex flex-wrap items-center gap-4 text-[11px] text-white/40`}>
-                  {post.author && (
+                  {post.authorName && (
                     <span className="flex items-center gap-1.5">
                       <User className="w-3 h-3" />
-                      {post.author}
+                      {post.authorName}
                     </span>
                   )}
                   {post.publishedAt && (
@@ -207,10 +207,10 @@ export default async function BlogPostPage({
               )}
               <StaggerItem>
                 <div className={`${bodyFont.className} flex flex-wrap items-center gap-4 text-[11px] text-white/30 mt-1`}>
-                  {post.author && (
+                  {post.authorName && (
                     <span className="flex items-center gap-1.5">
                       <User className="w-3 h-3" />
-                      {post.author}
+                      {post.authorName}
                     </span>
                   )}
                   {post.publishedAt && (

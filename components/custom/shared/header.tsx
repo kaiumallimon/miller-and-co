@@ -131,7 +131,7 @@ export default function CustomHeader() {
                 alt="Miller & Co Logo"
                 width={220}
                 height={80}
-                className={`object-contain transition-all duration-300 group-hover:opacity-80 ${isScrolled ? "w-40" : "w-55"
+                className={`object-contain transition-all duration-300 group-hover:opacity-80 ${isScrolled ? "w-40" : "w-30 md:w-55"
                   }`}
               />
             </motion.a>
@@ -214,8 +214,8 @@ export default function CustomHeader() {
                 onClick={() => handleNavigate(link.href)}
                 style={{ transitionDelay: isMobileMenuOpen ? `${i * 60}ms` : "0ms" }}
                 className={`${bodyFont.className} flex items-center justify-between px-4 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 rounded-sm group ${isActive(link.href)
-                    ? "text-[#c8a96e] bg-[#c8a96e]/8"
-                    : "text-white/60 hover:text-white hover:bg-white/5"
+                  ? "text-[#c8a96e] bg-[#c8a96e]/8"
+                  : "text-white/60 hover:text-white hover:bg-white/5"
                   } ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"}`}
               >
                 {link.label}
