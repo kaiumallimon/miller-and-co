@@ -101,7 +101,7 @@ function UsageCard({
 
       <div className="flex flex-col gap-1.5">
         <div className="flex items-end justify-between">
-          <span className={`${headlineFont.className} text-2xl text-[#faf8f5]`}>
+          <span className={`${bodyFont.className} text-2xl text-[#faf8f5]`}>
             {formatFn(stat.used)}
           </span>
           <span className={`${bodyFont.className} text-xs text-white/25`}>
