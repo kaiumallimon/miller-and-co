@@ -96,7 +96,7 @@ export default function AboutHero() {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className={`${bodyFont.className} text-white/65 text-base leading-relaxed max-w-xl`}
+            className={`${bodyFont.className} text-white/75 text-base leading-relaxed max-w-xl`}
           >
             A dedicated Sydney migration law firm led by Edward Miller, helping
             individuals, families, and businesses navigate Australia&apos;s
@@ -106,7 +106,7 @@ export default function AboutHero() {
           {/* Address strip */}
           <motion.div
             variants={itemVariants}
-            className={`${bodyFont.className} flex items-center gap-2 mt-4 pt-8 border-t border-white/20 text-white/50 text-xs`}
+            className={`${bodyFont.className} flex items-center gap-2 mt-4 pt-8 border-t border-white/20 text-white/90 text-xs`}
           >
             <MapPin className="w-3.5 h-3.5 shrink-0 text-[#c8a96e]" />
             Level 22, Westfield Tower Two, 101 Grafton Street, Bondi Junction
@@ -118,11 +118,11 @@ export default function AboutHero() {
           initial={{ opacity: 0 }}
           animate={ready ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.9, ease: EASE }}
-          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
+          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] hover:text- text-[12px] tracking-widest uppercase flex items-center gap-2`}
         >
-          <span>Home</span>
+          <a href="/">Home</a>
           <span className="text-[#c8a96e]">/</span>
-          <span className="text-white/60">About Us</span>
+          <span className="text-white">About Us</span>
         </motion.div>
       </div>
     </section>

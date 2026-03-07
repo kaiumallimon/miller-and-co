@@ -81,7 +81,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-[#1877F2]/20 border border-white/8 hover:border-[#1877F2]/40 transition-all duration-300"
+                  className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-[#1877F2]/25 border border-white/8 hover:border-[#1877F2] transition-all duration-300"
                 >
                   <FaFacebook className="w-5 h-5 text-white/40 hover:text-[#1877F2]" style={{ color: '#1877F2' }} />
                 </a>
@@ -90,7 +90,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X / Twitter"
-                  className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/8 hover:border-white/20 transition-all duration-300"
+                  className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-white/25 border border-white/8 hover:border-white transition-all duration-300"
                 >
                   <FaXTwitter className="w-5 h-5" style={{ color: '#e7e7e7' }} />
                 </a>
@@ -99,7 +99,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-[#0A66C2]/20 border border-white/8 hover:border-[#0A66C2]/40 transition-all duration-300"
+                  className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-[#0A66C2]/25 border border-white/8 hover:border-[#0A66C2] transition-all duration-300"
                 >
                   <FaLinkedin className="w-5 h-5" style={{ color: '#0A66C2' }} />
                 </a>
@@ -180,7 +180,7 @@ export default function Footer() {
                     <Mail className="w-3.5 h-3.5 text-[#c8a96e] shrink-0" />
                     info@visa-australia.legal
                   </a>
-                </li>
+                </li>d
               </ul>
             </StaggerItem>
 
