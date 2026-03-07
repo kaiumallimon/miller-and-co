@@ -70,7 +70,7 @@ function FeaturedCard({ post }: { post: BlogPost }) {
           </h2>
 
           {post.excerpt && (
-            <p className={`${bodyFont.className} text-white/45 text-sm leading-relaxed line-clamp-3`}>
+            <p className={`${bodyFont.className} text-white/45 text-base leading-relaxed line-clamp-3`}>
               {post.excerpt}
             </p>
           )}

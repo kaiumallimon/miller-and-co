@@ -119,7 +119,7 @@ export default function MeetEdwardSection() {
 
             {/* Bio paragraphs */}
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
                 Edward Miller is the Principal of Miller & Co Lawyers & Migration
                 Agents and a registered Australian Migration Lawyer who has helped
                 individuals, families, and businesses navigate Australia&apos;s
@@ -128,7 +128,7 @@ export default function MeetEdwardSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
                 With years of experience in migration law, Edward has assisted
                 clients across a wide range of visa applications, including
                 employer-sponsored visas, skilled migration, partner visas,
@@ -139,7 +139,7 @@ export default function MeetEdwardSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
                 Edward is known for his clear communication, attention to detail,
                 and practical legal advice. He takes the time to understand each
                 client&apos;s circumstances and develops a strategy that aligns

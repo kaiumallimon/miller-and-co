@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
               </h1>
             </StaggerItem>
             <StaggerItem>
-              <p className={`${bodyFont.className} text-white/35 text-sm leading-relaxed max-w-xl`}>
+              <p className={`${bodyFont.className} text-white/35 text-base leading-relaxed max-w-xl`}>
                 This Privacy Policy sets out the approach ${COMPANY.split(" (")[0]} will take in relation to the collection, use and disclosure of your personal information under the Privacy Act 1988.
               </p>
             </StaggerItem>
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
                     {"paragraphs" in section && section.paragraphs && (
                       <div className="flex flex-col gap-4">
                         {section.paragraphs.map((para, i) => (
-                          <p key={i} className={`${bodyFont.className} text-white/45 text-sm leading-relaxed`}>
+                          <p key={i} className={`${bodyFont.className} text-white/45 text-base leading-relaxed`}>
                             {para}
                           </p>
                         ))}
@@ -140,7 +140,7 @@ export default function PrivacyPolicyPage() {
                         {section.bullets.map((bullet, i) => (
                           <li key={i} className="flex items-start gap-3">
                             <span className="w-1 h-1 rounded-full bg-[#c8a96e] shrink-0 mt-2" />
-                            <p className={`${bodyFont.className} text-white/45 text-sm leading-relaxed`}>
+                            <p className={`${bodyFont.className} text-white/45 text-base leading-relaxed`}>
                               {bullet}
                             </p>
                           </li>
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage() {
               <p className={`${headlineFont.className} text-[#faf8f5] text-xl font-semibold`}>
                 Questions about your privacy?
               </p>
-              <p className={`${bodyFont.className} text-white/35 text-sm`}>
+              <p className={`${bodyFont.className} text-white/35 text-base`}>
                 Contact us to access, correct or enquire about personal information we hold.
               </p>
             </div>

@@ -293,13 +293,13 @@ function ServiceCard({
       >
         <div className="flex flex-col gap-0.5 min-w-0">
           <p
-            className={`${headlineFont.className} text-[#faf8f5] text-base font-medium group-hover:text-[#c8a96e] transition-colors duration-300 truncate`}
+            className={`${headlineFont.className} text-[#faf8f5] text-lg font-medium group-hover:text-[#c8a96e] transition-colors duration-300 truncate`}
           >
             {service.label}
           </p>
           {service.sub && (
             <span
-              className={`${bodyFont.className} text-white text-[10px] tracking-[0.2em] uppercase`}
+              className={`${bodyFont.className} text-white/80 text-[10px] tracking-[0.2em] uppercase`}
             >
               {service.sub}
             </span>
@@ -315,7 +315,7 @@ function ServiceCard({
       {open && (
         <div className="px-5 pb-4 border-t border-white/5">
           <p
-            className={`${bodyFont.className} text-white text-base leading-relaxed pt-3`}
+            className={`${bodyFont.className} text-white/90 text-base leading-relaxed pt-3`}
           >
             {service.detail}
           </p>
@@ -365,7 +365,7 @@ function CategorySection({
 
           {/* Description */}
           <p
-            className={`${bodyFont.className} text-white text-base leading-relaxed`}
+            className={`${bodyFont.className} text-white/90 text-base leading-relaxed`}
           >
             {category.description}
           </p>

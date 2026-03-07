@@ -53,7 +53,7 @@ export default function HelpSection() {
             {/* Body */}
             <StaggerItem>
               <p
-                className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}
+                className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}
               >
                 Not sure which visa is right for you? Our experienced migration
                 lawyers take the guesswork out of the process. We assess your
@@ -67,7 +67,7 @@ export default function HelpSection() {
               {highlights.map((item) => (
                 <StaggerItem key={item}>
                   <div
-                    className={`${bodyFont.className} flex items-start gap-3 text-sm text-[#1a1a1a]/70`}
+                    className={`${bodyFont.className} flex items-start gap-3 text-base text-[#1a1a1a]/70`}
                   >
                     <CheckCircle className="w-4 h-4 text-[#c8a96e] shrink-0 mt-0.5" />
                     {item}

@@ -94,7 +94,7 @@ export default function PrincipalSection() {
 
               <StaggerItem>
                 <p
-                  className={`${bodyFont.className} text-white/40 text-sm leading-relaxed`}
+                  className={`${bodyFont.className} text-white/40 text-base leading-relaxed`}
                 >
                   Edward is the principal of Miller &amp; Co., a specialist
                   migration law firm advising individuals, families, and

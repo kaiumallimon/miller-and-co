@@ -68,7 +68,7 @@ export default function NotFound() {
 
         {/* Subtext */}
         <p
-          className={`${bodyFont.className} text-white/40 text-sm leading-relaxed max-w-md mb-10 relative z-10`}
+          className={`${bodyFont.className} text-white/40 text-base leading-relaxed max-w-md mb-10 relative z-10`}
         >
           The page you&apos;re looking for doesn&apos;t exist or may have been moved.
           Let us help you find your way back.

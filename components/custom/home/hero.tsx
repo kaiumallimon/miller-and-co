@@ -113,7 +113,7 @@ export default function HomeHero() {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className={`${bodyFont.className} text-white/70 text-sm leading-relaxed max-w-lg`}
+            className={`${bodyFont.className} text-white/70 text-base leading-relaxed max-w-lg`}
           >
             Sydney based, top trusted Migration Law firm. We provide expert guidance and solutions for all your immigration needs. Trust our experienced team to navigate complex legal matters and ensure a smooth and successfull migration process.
           </motion.p>

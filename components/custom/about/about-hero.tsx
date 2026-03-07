@@ -96,7 +96,7 @@ export default function AboutHero() {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className={`${bodyFont.className} text-white/65 text-sm leading-relaxed max-w-xl`}
+            className={`${bodyFont.className} text-white/65 text-base leading-relaxed max-w-xl`}
           >
             A dedicated Sydney migration law firm led by Edward Miller, helping
             individuals, families, and businesses navigate Australia&apos;s

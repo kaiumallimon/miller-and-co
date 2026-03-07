@@ -82,7 +82,7 @@ export default function WhyChooseUsSection() {
           </StaggerItem>
           <StaggerItem>
             <p
-              className={`${bodyFont.className} text-white/40 text-sm text-center max-w-xl leading-relaxed mt-1`}
+              className={`${bodyFont.className} text-white/40 text-base text-center max-w-xl leading-relaxed mt-1`}
             >
               Choosing the right migration lawyer can make a significant difference
               to the success of your visa application. We focus on clear guidance,
@@ -121,7 +121,7 @@ export default function WhyChooseUsSection() {
                 </p>
 
                 {/* Description */}
-                <p className={`${bodyFont.className} text-white/40 text-sm leading-relaxed`}>
+                <p className={`${bodyFont.className} text-white/40 text-base leading-relaxed`}>
                   {reason.description}
                 </p>
               </StaggerItem>

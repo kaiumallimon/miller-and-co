@@ -57,7 +57,7 @@ export default function ExpertiseSection() {
           </StaggerItem>
           <StaggerItem>
             <p
-              className={`${bodyFont.className} text-white/40 text-sm text-center max-w-xl leading-relaxed mt-1`}
+              className={`${bodyFont.className} text-white/40 text-base text-center max-w-xl leading-relaxed mt-1`}
             >
               We offer comprehensive migration and legal services across a wide
               range of visa categories and immigration pathways.

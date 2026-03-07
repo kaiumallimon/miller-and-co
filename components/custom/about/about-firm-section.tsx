@@ -48,7 +48,7 @@ export default function AboutFirmSection() {
 
             {/* Body paragraphs */}
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
                 Miller & Co Lawyers & Migration Agents is a Sydney-based migration
                 law firm dedicated to helping individuals, families, and businesses
                 navigate the Australian immigration system with confidence.
@@ -56,7 +56,7 @@ export default function AboutFirmSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
                 The firm is led by Edward Miller, an Australian Migration Lawyer and
                 Principal of Miller & Co. Edward has extensive experience assisting
                 clients with a wide range of visa and migration matters, focusing on
@@ -66,7 +66,7 @@ export default function AboutFirmSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
                 At Miller & Co, we understand that migration matters are often
                 life-changing decisions that impact careers, families, and futures.
                 Every case is handled with professionalism, transparency, and a
@@ -78,7 +78,7 @@ export default function AboutFirmSection() {
             <StaggerContainer className="flex flex-col gap-3 mt-1" stagger={0.1} delayChildren={0}>
               {highlights.map((item) => (
                 <StaggerItem key={item}>
-                  <div className={`${bodyFont.className} flex items-start gap-3 text-sm text-[#1a1a1a]/70`}>
+                  <div className={`${bodyFont.className} flex items-start gap-3 text-base text-[#1a1a1a]/70`}>
                     <CheckCircle className="w-4 h-4 text-[#c8a96e] shrink-0 mt-0.5" />
                     {item}
                   </div>

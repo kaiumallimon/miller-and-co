@@ -35,7 +35,7 @@ export default function CtaSection() {
               </h2>
             </StaggerItem>
             <StaggerItem>
-              <p className={`${bodyFont.className} text-white/50 text-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-white/50 text-base leading-relaxed`}>
                 Book a confidential consultation with our migration lawyers today.
                 No obligation — just clear, expert advice tailored to your situation.
               </p>

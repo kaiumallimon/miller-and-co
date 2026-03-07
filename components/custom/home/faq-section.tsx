@@ -74,7 +74,7 @@ export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
 
             <StaggerItem>
               <p
-                className={`${bodyFont.className} text-[#1a1a1a]/50 text-sm leading-relaxed max-w-sm`}
+                className={`${bodyFont.className} text-[#1a1a1a]/50 text-base leading-relaxed max-w-sm`}
               >
                 Get clear answers to the most common questions about our
                 migration services, fees and process.
@@ -132,7 +132,7 @@ export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
                           <div className="flex gap-4">
                             <span className="w-0.5 shrink-0 bg-[#c8a96e]/40 self-stretch" />
                             <p
-                              className={`${bodyFont.className} text-[#1a1a1a]/60 text-sm leading-relaxed`}
+                              className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}
                             >
                               {faq.a}
                             </p>

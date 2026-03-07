@@ -56,7 +56,7 @@ export default function TestimonialsSection() {
           </StaggerItem>
           <StaggerItem>
             <p
-              className={`${bodyFont.className} text-white/40 text-sm text-center max-w-md leading-relaxed mt-1`}
+              className={`${bodyFont.className} text-white/40 text-base text-center max-w-md leading-relaxed mt-1`}
             >
               An honest look into how we work — straight from the people we&apos;ve helped.
             </p>
@@ -82,7 +82,7 @@ export default function TestimonialsSection() {
 
               {/* Quote text */}
               <p
-                className={`${bodyFont.className} text-white/60 text-sm leading-relaxed flex-1 group-hover:text-white/75 transition-colors duration-300`}
+                className={`${bodyFont.className} text-white/60 text-base leading-relaxed flex-1 group-hover:text-white/75 transition-colors duration-300`}
               >
                 &ldquo;{t.quote}&rdquo;
               </p>
@@ -100,7 +100,7 @@ export default function TestimonialsSection() {
                 </div>
                 <div className="flex flex-col gap-0.5">
                   <span
-                    className={`${bodyFont.className} text-white text-sm font-semibold`}
+                    className={`${bodyFont.className} text-white text-base font-semibold`}
                   >
                     {t.name}
                   </span>
