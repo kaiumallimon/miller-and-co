@@ -31,8 +31,8 @@ export default function AboutFirmSection() {
             {/* Eyebrow */}
             <StaggerItem>
               <div className="flex items-center gap-3">
-                <span className="h-px w-10 bg-[#c8a96e]" />
-                <span className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
+                <span className="h-px w-10 bg-[#756341]" />
+                <span className={`${bodyFont.className} text-[#756341] text-[12px] font-semibold tracking-[0.3em] uppercase`}>
                   Who We Are
                 </span>
               </div>
@@ -42,13 +42,13 @@ export default function AboutFirmSection() {
             <StaggerItem>
               <h2 className={`${headlineFont.className} text-[#1a1a1a] text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold leading-tight`}>
                 Miller & Co Lawyers &{" "}
-                <span className="italic text-[#c8a96e]">Migration Agents</span>
+                <span className="italic text-[#756341]">Migration Agents</span>
               </h2>
             </StaggerItem>
 
             {/* Body paragraphs */}
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/70 text-base leading-relaxed`}>
                 Miller & Co Lawyers & Migration Agents is a Sydney-based migration
                 law firm dedicated to helping individuals, families, and businesses
                 navigate the Australian immigration system with confidence.
@@ -56,7 +56,7 @@ export default function AboutFirmSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/70 text-base leading-relaxed`}>
                 The firm is led by Edward Miller, an Australian Migration Lawyer and
                 Principal of Miller & Co. Edward has extensive experience assisting
                 clients with a wide range of visa and migration matters, focusing on
@@ -66,7 +66,7 @@ export default function AboutFirmSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/60 text-base leading-relaxed`}>
+              <p className={`${bodyFont.className} text-[#1a1a1a]/70 text-base leading-relaxed`}>
                 At Miller & Co, we understand that migration matters are often
                 life-changing decisions that impact careers, families, and futures.
                 Every case is handled with professionalism, transparency, and a
@@ -123,7 +123,7 @@ export default function AboutFirmSection() {
               <p className={`${bodyFont.className} text-[#c8a96e] text-3xl font-semibold`}>
                 10,000+
               </p>
-              <p className={`${bodyFont.className} text-white/50 text-xs mt-1 tracking-wide uppercase`}>
+              <p className={`${bodyFont.className} text-white/75 text-xs mt-1 tracking-wide uppercase`}>
                 Successful Cases
               </p>
             </AnimateIn>
