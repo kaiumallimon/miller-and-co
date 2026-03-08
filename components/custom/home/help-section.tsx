@@ -78,16 +78,16 @@ export default function HelpSection() {
             {/* CTA */}
             <StaggerItem>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2">
-                <Button
-                  size="lg"
-                  className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-[#1a1a1a] text-white hover:bg-[#c8a96e] hover:text-[#1a1a1a] border border-[#1a1a1a] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
-                  onClick={() =>
-                    (window.location.href = "mailto:info@visa-australia.legal")
+                <a href="/contact"
+                  className={`${bodyFont.className} flex py-3 px-6 text-xs font-bold tracking-[0.2em] uppercase bg-[#1a1a1a] text-white hover:bg-[#c8a96e] hover:text-[#1a1a1a] border border-[#1a1a1a] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
+                  onClick={() =>{
+
+                  }
                   }
                 >
                   Get in Touch
                   <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </Button>
+                </a>
               </div>
             </StaggerItem>
           </StaggerContainer>

@@ -130,14 +130,13 @@ export default function HomeHero() {
             >
               See Our Services
             </Button>
-            <Button
-              variant="outline"
-              size={"lg"}
-              className={`${bodyFont.className} w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] border-[#c8a96e] hover:border-[#c8a96e]/70 text-[#1a1a1a] hover:bg-[#c8a96e]/70 transition-all duration-300 rounded-none cursor-pointer`}
+            <a
+              href="/contact"
+              className={`${bodyFont.className} py-3 px-6 w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] border-[#c8a96e] hover:border-[#c8a96e]/70 text-[#1a1a1a] hover:bg-[#c8a96e]/70 transition-all duration-300 rounded-none cursor-pointer`}
               onClick={() => window.location.href = `mailto:${contactInfo.email}`}
             >
               Book a Consultation
-            </Button>
+            </a>
           </motion.div>
 
           {/* Contact info strip */}
