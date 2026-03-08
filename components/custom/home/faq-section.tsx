@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 import { motion, AnimatePresence } from "motion/react";
@@ -32,9 +32,25 @@ const FALLBACK_FAQS: FaqItem[] = [
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export default function FaqSection({ faqs }: { faqs?: FaqItem[] }) {
-  const items = faqs && faqs.length > 0 ? faqs : FALLBACK_FAQS;
+export default function FaqSection() {
+  const [items, setItems] = useState<FaqItem[]>(FALLBACK_FAQS);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    async function loadFaqs() {
+      try {
+        const res = await fetch("/api/faqs/home");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.faqs && data.faqs.length > 0) {
+          setItems(data.faqs);
+        }
+      } catch {
+        // keep fallback FAQs
+      }
+    }
+    loadFaqs();
+  }, []);
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
