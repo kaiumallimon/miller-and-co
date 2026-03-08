@@ -187,7 +187,7 @@ export default function CustomHeader() {
 
       {/* Mobile Menu — slide from right */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 overflow-hidden ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-100 md:hidden transition-all duration-500 overflow-hidden ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
       >
         {/* Backdrop */}

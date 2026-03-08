@@ -110,7 +110,7 @@ export default function ContactMainSection() {
                   {officeHours.map(({ day, hours }) => (
                     <div key={day} className="flex items-center justify-between gap-4 text-base">
                       <span className={`${bodyFont.className} text-[#1a1a1a]/60`}>{day}</span>
-                      <span className={`${bodyFont.className} text-[#1a1a1a] font-medium text-right`}>{hours}</span>
+                      <span className={`${bodyFont.className} text-[#1a1a1a]/70 text-right`}>{hours}</span>
                     </div>
                   ))}
                 </div>

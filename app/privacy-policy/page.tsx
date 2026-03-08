@@ -168,7 +168,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </div>
             <a
-              href="mailto:info@visa-australia.legal"
+              href="/contact"
               className={`${bodyFont.className} shrink-0 inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] uppercase bg-transparent border border-[#c8a96e]/40 text-[#c8a96e] hover:bg-[#c8a96e] hover:text-[#0f0f0f] hover:border-[#c8a96e] transition-all duration-300 px-5 py-2.5`}
             >
               Contact Us

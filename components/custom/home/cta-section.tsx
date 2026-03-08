@@ -44,18 +44,17 @@ export default function CtaSection() {
 
           {/* Actions */}
           <AnimateIn direction="up" delay={0.45} duration={0.65} className="relative flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start sm:items-center gap-4 shrink-0">
-            <Button
-              size="lg"
-              className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#1a1a1a] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
-              onClick={() => window.location.href = "mailto:info@visa-australia.legal"}
+            <a
+              href="/contact"
+              className={`${bodyFont.className} flex py-3 px-6 text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#1a1a1a] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
             >
               Book a Consultation
               <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Button>
+            </a>
             <Button
               size="lg"
               variant="outline"
-              className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/20 text-white/60 hover:bg-white/5 hover:text-white hover:border-white/40 transition-all duration-300 rounded-none cursor-pointer`}
+              className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/20 text-white/60 hover:text-black hover:bg-white hover:border-white/40 transition-all duration-300 rounded-none cursor-pointer`}
               onClick={() => window.location.href = "tel:+61280956369"}
             >
               <Phone className="w-3.5 h-3.5 mr-1" />

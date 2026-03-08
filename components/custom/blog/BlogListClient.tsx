@@ -6,8 +6,27 @@ import { headlineFont, bodyFont } from "@/lib/typographies";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Clock, Calendar, Search, ArrowRight, BookOpen, ChevronLeft, ChevronRight,
+  Loader2,
 } from "lucide-react";
-import type { BlogPost } from "@/app/blog/page";
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content?: string;
+  category: string;
+  tags: string[];
+  coverImage: string | null;
+  author: string;
+  authorName: string;
+  readingTime: number;
+  wordCount: number;
+  views: number;
+  featured: boolean;
+  publishedAt: string | null;
+  createdAt: string;
+}
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const PAGE_SIZE = 20;
@@ -238,10 +257,31 @@ function Pagination({
 }
 
 // ─── BlogListClient ───────────────────────────────────────────────────────────
-export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
+export default function BlogListClient({ onPostCount }: { onPostCount?: (count: number) => void }) {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    async function loadPosts() {
+      try {
+        const res = await fetch("/api/blogs");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.posts && data.posts.length > 0) {
+          setPosts(data.posts);
+          onPostCount?.(data.posts.length);
+        }
+      } catch {
+        // keep empty
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadPosts();
+  }, [onPostCount]);
 
   const categories = useMemo(() => {
     const cats = Array.from(new Set(posts.map((p) => p.category).filter(Boolean)));
@@ -301,6 +341,14 @@ export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
     <section className="relative w-full bg-[#0f0f0f] pb-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
+        {/* ── Loading state ───────────────────────────────────────────────── */}
+        {loading ? (
+          <div className="flex flex-col items-center justify-center gap-4 py-32 text-center">
+            <Loader2 className="w-6 h-6 text-[#c8a96e] animate-spin" />
+            <p className={`${bodyFont.className} text-white/30 text-xs`}>Loading articles…</p>
+          </div>
+        ) : (
+        <>
         {/* ── Filter & search bar ─────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between py-8 border-b border-white/6">
           {/* Category pills */}
@@ -382,6 +430,8 @@ export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
               {search && ` matching "${search}"`}
             </p>
           </div>
+        )}
+        </>
         )}
       </div>
     </section>

@@ -122,7 +122,7 @@ export default function TestimonialsSection() {
           >
             Join hundreds of satisfied clients —{" "}
             <a
-              href="mailto:info@visa-australia.legal"
+              href="/contact"
               className="text-[#c8a96e]/80 hover:text-[#c8a96e] transition-colors duration-300"
             >
               start your journey today
