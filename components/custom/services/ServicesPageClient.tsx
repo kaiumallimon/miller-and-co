@@ -504,7 +504,7 @@ export default function ServicesPageClient() {
           </StaggerContainer>
 
           {/* Scroll-down hint */}
-          <div className="flex justify-center mt-14">
+          <AnimateIn direction="up" delay={0.6} duration={0.7} className="flex justify-center mt-14">
             <div className="flex flex-col items-center gap-2 opacity-70">
               <span
                 className={`${bodyFont.className} text-white text-[12px] tracking-[0.3em] uppercase`}
@@ -513,17 +513,19 @@ export default function ServicesPageClient() {
               </span>
               <span className="w-px h-8 bg-linear-to-b from-white to-transparent" />
             </div>
-          </div>
+          </AnimateIn>
         </div>
 
         {/* Breadcrumb */}
-        <div
-          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[12px] tracking-widest uppercase flex items-center gap-2`}
-        >
-          <a href="/">Home</a>
-          <span className="text-[#c8a96e]">/</span>
-          <span className="text-white">Services</span>
-        </div>
+        <AnimateIn direction="left" delay={0.5} duration={0.6} className="absolute bottom-8 right-6 lg:right-10">
+          <div
+            className={`${bodyFont.className} text-[#c8a96e] text-[12px] tracking-widest uppercase flex items-center gap-2`}
+          >
+            <a href="/">Home</a>
+            <span className="text-[#c8a96e]">/</span>
+            <span className="text-white">Services</span>
+          </div>
+        </AnimateIn>
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
       </section>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import CustomHeader from "@/components/custom/shared/header";
 import BlogListClient from "@/components/custom/blog/BlogListClient";
 import { headlineFont, bodyFont } from "@/lib/typographies";
-import { StaggerContainer, StaggerItem } from "@/components/AnimateIn";
+import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
 export const metadata: Metadata = {
   title: "Blog | Insights & Immigration Updates",
@@ -70,13 +70,15 @@ export default function BlogPage() {
         </div>
 
         {/* Breadcrumb */}
-        <div
-          className={`${bodyFont.className} absolute bottom-8 right-6 lg:right-10 text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
-        >
-          <span>Home</span>
-          <span className="text-[#c8a96e]">/</span>
-          <span className="text-white/60">Blog</span>
-        </div>
+        <AnimateIn direction="left" delay={0.5} duration={0.6} className="absolute bottom-8 right-6 lg:right-10">
+          <div
+            className={`${bodyFont.className} text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
+          >
+            <span>Home</span>
+            <span className="text-[#c8a96e]">/</span>
+            <span className="text-white/60">Blog</span>
+          </div>
+        </AnimateIn>
 
         {/* Bottom border */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
