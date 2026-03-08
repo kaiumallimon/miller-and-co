@@ -386,16 +386,13 @@ function CategorySection({
 
           {/* CTA */}
           <div className="pt-1">
-            <Button
-              size="sm"
-              className={`${bodyFont.className} text-[11px] font-bold tracking-[0.18em] uppercase bg-transparent border border-[#c8a96e]/40 text-[#c8a96e] hover:bg-[#c8a96e] hover:text-[#0f0f0f] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer px-5`}
-              onClick={() =>
-                (window.location.href = "mailto:info@visa-australia.legal")
-              }
+            <a
+              href="/contact"
+              className={`${bodyFont.className} flex text-[11px] font-bold tracking-[0.18em] uppercase bg-transparent border border-[#c8a96e]/40 text-[#c8a96e] hover:bg-[#c8a96e] hover:text-[#0f0f0f] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer px-5`}
             >
               Enquire About This Service
               <ArrowRight className="w-3 h-3 ml-1.5" />
-            </Button>
+            </a>
           </div>
         </div>
 
@@ -486,16 +483,13 @@ export default function ServicesPageClient() {
             </StaggerItem>
             <StaggerItem>
               <div className="flex flex-wrap items-center justify-center gap-6 mt-2">
-                <Button
-                  size="lg"
-                  className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#0f0f0f] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
-                  onClick={() =>
-                    (window.location.href = "mailto:info@visa-australia.legal")
-                  }
+                <a
+                  href="/contact"
+                  className={`${bodyFont.className} flex px-6 py-3 text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#0f0f0f] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
                 >
                   Book a Consultation
                   <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </Button>
+                </a>
                 <Button
                   size="lg"
                   variant="outline"
