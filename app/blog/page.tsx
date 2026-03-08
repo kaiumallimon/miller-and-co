@@ -61,18 +61,14 @@ export default function BlogPage() {
                 and immigration policy — from our team of registered migration lawyers.
               </p>
             </StaggerItem>
-            <StaggerItem>
-              <div className={`${bodyFont.className} flex items-center gap-6 text-[11px] text-white/20 mt-2`}>
-                <span>Updated regularly</span>
-              </div>
-            </StaggerItem>
+            
           </StaggerContainer>
         </div>
 
         {/* Breadcrumb */}
         <AnimateIn direction="left" delay={0.5} duration={0.6} className="absolute bottom-8 right-6 lg:right-10">
           <div
-            className={`${bodyFont.className} text-[#c8a96e] text-[10px] tracking-widest uppercase flex items-center gap-2`}
+            className={`${bodyFont.className} text-[#c8a96e] text-[12px] tracking-widest uppercase flex items-center gap-2`}
           >
             <span>Home</span>
             <span className="text-[#c8a96e]">/</span>
