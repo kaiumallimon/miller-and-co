@@ -104,7 +104,7 @@ export default function AboutFirmSection() {
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/2.png"
+                  src="/3.png"
                   alt="Miller & Co – Sydney Migration Law Firm"
                   fill
                   className="object-cover object-center"

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "subclass 186 visa",
     "skilled visa Australia",
     "partner visa Australia",
-    "global talent visa",
+    "national innovation visa",
     "investment visa Australia",
     "AAT appeal migration",
     "Australian citizenship",

@@ -180,7 +180,7 @@ const SERVICE_CATEGORIES = [
   {
     id: "global-talent",
     icon: Star,
-    label: "Global Talent & Citizenship",
+    label: "National Innovation visa",
     tagline: "Fast-tracked pathways for exceptional talent",
     description:
       "For individuals at the top of their field, or those seeking to formalise their connection to Australia, we offer expert guidance on the Global Talent program and Australian citizenship applications.",
