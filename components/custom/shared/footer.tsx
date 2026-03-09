@@ -180,7 +180,7 @@ export default function Footer() {
                     <Mail className="w-3.5 h-3.5 text-[#c8a96e] shrink-0" />
                     info@visa-australia.legal
                   </a>
-                </li>d
+                </li>
               </ul>
             </StaggerItem>
 
