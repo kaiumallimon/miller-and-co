@@ -1,4 +1,4 @@
-Import { headlineFont, bodyFont } from "@/lib/typographies";
+import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
 export interface ExpertiseItem {
@@ -20,7 +20,7 @@ const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas" },
   { label: "Australian Citizenship", sub: null },
   { label: "Legal Advice", sub: null },
-  { label: "Visa Refusal & AAT Appeal", sub: null, isWide: true}
+  { label: "Visa Refusal & AAT Appeal", sub: null, isWide: true },
 ];
 
 export default function ExpertiseSection() {
@@ -134,4 +134,4 @@ export default function ExpertiseSection() {
       </div>
     </section>
   );
-}
+      }
