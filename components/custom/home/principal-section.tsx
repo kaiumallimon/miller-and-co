@@ -39,7 +39,7 @@ export default function PrincipalSection() {
           <AnimateIn direction="right" delay={0.05} duration={0.8}>
             <div className="relative h-120 lg:h-full min-h-130 overflow-hidden bg-[#141414]">
               <Image
-                src="/Miller & Co_Pro pic.png"
+                src="/Pic.png"
                 alt="Edward Miller — Principal Migration Lawyer"
                 fill
                 className="object-cover object-top"
