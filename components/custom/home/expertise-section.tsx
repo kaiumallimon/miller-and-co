@@ -10,7 +10,7 @@ export interface ExpertiseItem {
 const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Start-Up Business Sponsored Visa", sub: "Sub 482" },
   { label: "Employer Sponsored Visa", sub: "Sub 482" },
-  { label: "Employer Sponsored Permanent Visas", sub: "Sub 186" },
+  { label: "Employer Sponsored Permanent Visas", sub: "(TRT, DE) Sub 186" },
   { label: "Training Visa", sub: "Sub 407" },
   { label: "Skilled Visas", sub: "Sub 189, 190, 489, 491" },
   { label: "Investment Visas", sub: "Sub 188, 888" },
@@ -76,19 +76,24 @@ export default function ExpertiseSection() {
               key={item.label}
               className="group relative flex flex-col justify-between gap-1 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default"
             >
-              {/* Gold left accent on hover */}
               <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
-              <p
-                className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}
-              >
-                {item.label}
-              </p>
-              {item.sub && (
-                <span
-                  className={`${bodyFont.className} text-white text-base tracking-[0.2em] uppercase`}
-                >
+              {/* Title: Now showing the Sub (Visa Code) if it exists */}
+              {item.sub ? (
+                <p className={`${bodyFont.className} text-white text-base tracking-[0.2em] uppercase group-hover:text-[#c8a96e] transition-colors duration-300`}>
                   {item.sub}
+                </p>
+              ) : (
+                 // Fallback to label if no sub exists, so the top slot isn't empty
+                <p className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}>
+                  {item.label}
+                </p>
+              )}
+
+              {/* Subtitle: Now showing the Label (Description) */}
+              {item.sub && (
+                <span className={`${headlineFont.className} text-white/70 text-xs sm:text-xl font-medium leading-snug group-hover:text-white transition-colors duration-300`}>
+                  {item.label}
                 </span>
               )}
             </StaggerItem>
@@ -101,16 +106,15 @@ export default function ExpertiseSection() {
             className="group relative flex flex-col sm:flex-row items-start sm:items-center justify-center gap-2 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default border-t border-white/5"
           >
             <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
-            <p
-              className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium group-hover:text-[#c8a96e] transition-colors duration-300`}
-            >
-              {wideItem.label}
+            
+            {/* Swapped Label and Sub logic here too */}
+            <p className={`${bodyFont.className} text-white text-[12px] tracking-[0.2em] uppercase group-hover:text-[#c8a96e] transition-colors duration-300`}>
+              {wideItem.sub ? wideItem.sub : wideItem.label}
             </p>
+            
             {wideItem.sub && (
-              <span
-                className={`${bodyFont.className} text-white text-[12px] tracking-[0.2em] uppercase sm:ml-2`}
-              >
-                — {wideItem.sub}
+              <span className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium sm:ml-2`}>
+                — {wideItem.label}
               </span>
             )}
           </div>
@@ -118,9 +122,7 @@ export default function ExpertiseSection() {
 
         {/* Bottom note */}
         <AnimateIn direction="up" delay={0.15}>
-          <p
-            className={`${bodyFont.className} text-white text-xs tracking-[0.2em] uppercase text-center mt-15`}
-          >
+          <p className={`${bodyFont.className} text-white text-xs tracking-[0.2em] uppercase text-center mt-12`}>
             Not sure which visa applies to you?{" "}
             <a
               href="/contact"
