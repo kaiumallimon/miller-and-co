@@ -68,7 +68,7 @@ export default function TestimonialsSection() {
           {doubled.map((src, i) => (
             <a
               key={i}
-              href="#"
+              href="https://www.google.com/search?sca_esv=7425f1baa5b8ea4e&sxsrf=ANbL-n5Q_RIMafp2AytKAwvRCyNat8WqoQ:1773085554117&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOduSQ3cKJo38PTMHTkpqg_-Pwy12mPPsZEjHqQmIOqlYvI5furcZm7JRPDuwcq7ZHTpcttofX1QI0gYoFOwXDWkm7c_oHm4IKB5jZuyruZ0hdHlja7oEKmXKYeWLJh-fVzvW2_Y%3D&q=Miller+%26+Co+Lawyers+%26+Migration+Agents+Reviews&sa=X&ved=2ahUKEwiV_e-0ypOTAxXpRmwGHTsoJpIQ0bkNegQIKxAH&biw=1536&bih=703&dpr=1.25"
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0 relative w-112.5 h-112.5 block cursor-pointer"
