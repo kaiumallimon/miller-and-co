@@ -66,18 +66,21 @@ export default function TestimonialsSection() {
 
         <div className="reviews-marquee-track flex w-max items-center gap-6 px-3">
           {doubled.map((src, i) => (
-            <div
+            <a
               key={i}
-              className="shrink-0 relative w-[340px] h-[380px]"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 relative w-112.5 h-112.5 block cursor-pointer"
             >
               <Image
                 src={src}
                 alt={`Client review ${(i % REVIEWS.length) + 1}`}
                 fill
-                className="object-contain drop-shadow-lg"
+                className="object-contain drop-shadow-lg hover:scale-[1.03] transition-transform duration-300"
                 sizes="340px"
               />
-            </div>
+            </a>
           ))}
         </div>
       </div>
