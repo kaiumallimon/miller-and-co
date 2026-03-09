@@ -31,7 +31,7 @@ export default function ContactForm() {
     phone: "",
     subject: "",
     message: "",
-    website: "", // honeypot — hidden, must stay empty
+    website: "",
   });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");

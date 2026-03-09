@@ -186,7 +186,7 @@ const SERVICE_CATEGORIES = [
       "For individuals at the top of their field, or those seeking to formalise their connection to Australia, we offer expert guidance on the Global Talent program and Australian citizenship applications.",
     services: [
       {
-        label: "Global Talent Visa",
+        label: "National Innovation visa",
         sub: "Subclass 858",
         detail:
           "Permanent residence for individuals with exceptional achievement in a target sector — including AgriFood, CleanTech, CyberSecurity, FinTech, MedTech, Infrastructure, and Space & Advanced Manufacturing.",
@@ -388,7 +388,7 @@ function CategorySection({
           <div className="pt-1">
             <a
               href="/contact"
-              className={`${bodyFont.className} flex text-[11px] font-bold tracking-[0.18em] uppercase bg-transparent border border-[#c8a96e]/40 text-[#c8a96e] hover:bg-[#c8a96e] hover:text-[#0f0f0f] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer px-5`}
+              className={`${bodyFont.className} inline-flex items-center text-xs font-bold tracking-[0.18em] uppercase bg-transparent border border-[#c8a96e]/40 text-[#c8a96e] hover:bg-[#c8a96e] hover:text-[#0f0f0f] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer px-5 py-2`}
             >
               Enquire About This Service
               <ArrowRight className="w-3 h-3 ml-1.5" />
