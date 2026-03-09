@@ -135,5 +135,3 @@ export default function ExpertiseSection() {
     </section>
   );
 }
-
-currently sub is the subtitle and label is the title, keep everything same just make sub as title and label as subtitle (if no sub are there then no title just subtitle)
