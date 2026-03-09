@@ -1,4 +1,4 @@
-import { headlineFont, bodyFont } from "@/lib/typographies";
+Import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 
 export interface ExpertiseItem {
@@ -10,17 +10,17 @@ export interface ExpertiseItem {
 const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Start-Up Business Sponsored Visa", sub: "Sub 482" },
   { label: "Employer Sponsored Visa", sub: "Sub 482" },
-  { label: "Employer Sponsored Permanent Visas", sub: "(TRT, DE) Sub 186" },
+  { label: "Employer Sponsored Permanent Visas", sub: "Sub (TRT, DE) 186" },
   { label: "Training Visa", sub: "Sub 407" },
   { label: "Skilled Visas", sub: "Sub 189, 190, 489, 491" },
   { label: "Investment Visas", sub: "Sub 188, 888" },
   { label: "Partner Visas", sub: "Sub 820/801, 309/100, 300" },
   { label: "National Innovation visa", sub: "Sub 858" },
-  { label: "Visa Refusal & AAT Appeal", sub: null },
   { label: "Carer Visas", sub: "Sub 836/116" },
+  { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas" },
   { label: "Australian Citizenship", sub: null },
   { label: "Legal Advice", sub: null },
-  { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas", isWide: true },
+  { label: "Visa Refusal & AAT Appeal", sub: null, isWide: true}
 ];
 
 export default function ExpertiseSection() {
@@ -76,24 +76,19 @@ export default function ExpertiseSection() {
               key={item.label}
               className="group relative flex flex-col justify-between gap-1 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default"
             >
+              {/* Gold left accent on hover */}
               <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
-              {/* Title: Now showing the Sub (Visa Code) if it exists */}
-              {item.sub ? (
-                <p className={`${bodyFont.className} text-white text-base tracking-[0.2em] uppercase group-hover:text-[#c8a96e] transition-colors duration-300`}>
-                  {item.sub}
-                </p>
-              ) : (
-                 // Fallback to label if no sub exists, so the top slot isn't empty
-                <p className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}>
-                  {item.label}
-                </p>
-              )}
-
-              {/* Subtitle: Now showing the Label (Description) */}
+              <p
+                className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium leading-snug group-hover:text-[#c8a96e] transition-colors duration-300`}
+              >
+                {item.label}
+              </p>
               {item.sub && (
-                <span className={`${headlineFont.className} text-white/70 text-xs sm:text-xl font-medium leading-snug group-hover:text-white transition-colors duration-300`}>
-                  {item.label}
+                <span
+                  className={`${bodyFont.className} text-white text-base tracking-[0.2em] uppercase`}
+                >
+                  {item.sub}
                 </span>
               )}
             </StaggerItem>
@@ -106,15 +101,16 @@ export default function ExpertiseSection() {
             className="group relative flex flex-col sm:flex-row items-start sm:items-center justify-center gap-2 bg-[#1a1a1a] px-7 py-6 hover:bg-[#c8a96e]/5 transition-colors duration-300 cursor-default border-t border-white/5"
           >
             <span className="absolute left-0 top-0 h-full w-0.5 bg-[#c8a96e] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
-            
-            {/* Swapped Label and Sub logic here too */}
-            <p className={`${bodyFont.className} text-white text-[12px] tracking-[0.2em] uppercase group-hover:text-[#c8a96e] transition-colors duration-300`}>
-              {wideItem.sub ? wideItem.sub : wideItem.label}
+            <p
+              className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium group-hover:text-[#c8a96e] transition-colors duration-300`}
+            >
+              {wideItem.label}
             </p>
-            
             {wideItem.sub && (
-              <span className={`${headlineFont.className} text-white text-xs sm:text-xl font-medium sm:ml-2`}>
-                — {wideItem.label}
+              <span
+                className={`${bodyFont.className} text-white text-[12px] tracking-[0.2em] uppercase sm:ml-2`}
+              >
+                — {wideItem.sub}
               </span>
             )}
           </div>
@@ -122,7 +118,9 @@ export default function ExpertiseSection() {
 
         {/* Bottom note */}
         <AnimateIn direction="up" delay={0.15}>
-          <p className={`${bodyFont.className} text-white text-xs tracking-[0.2em] uppercase text-center mt-12`}>
+          <p
+            className={`${bodyFont.className} text-white text-xs tracking-[0.2em] uppercase text-center mt-15`}
+          >
             Not sure which visa applies to you?{" "}
             <a
               href="/contact"
@@ -137,3 +135,5 @@ export default function ExpertiseSection() {
     </section>
   );
 }
+
+currently sub is the subtitle and label is the title, keep everything same just make sub as title and label as subtitle (if no sub are there then no title just subtitle)
