@@ -149,7 +149,7 @@ export default function HomeHero() {
               className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors duration-300"
             >
               <Phone className="w-3.5 h-3.5 shrink-0" />
-              +61 280 95 6369
+              +61 2 8095 6369
             </a>
             <a
               href="mailto:info@visa-australia.legal"

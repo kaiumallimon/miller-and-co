@@ -13,7 +13,7 @@ const SUBJECTS = [
   "Skilled Visa (Sub 189 / 190 / 491)",
   "Partner / Family Visa",
   "Business & Investment Visa",
-  "Global Talent Visa",
+  "National Innovation Visa (Sub 858)",
   "Visa Refusal & AAT Appeal",
   "Australian Citizenship",
   "Initial Consultation Booking",

@@ -89,7 +89,7 @@ export default function CustomHeader() {
             <div className={`${bodyFont.className} flex items-center gap-4 text-white text-xs min-w-0`}>
               <a href="tel:+61280956369" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300 font-medium whitespace-nowrap">
                 <Phone className="w-3 h-3 shrink-0" />
-                +61 280 956 369
+                +61 2 8095 6369
               </a>
               <a href="mailto:info@visa-australia.legal" className="flex items-center gap-1.5 hover:text-[#c8a96e] transition-colors duration-300 font-medium whitespace-nowrap hidden sm:flex truncate">
                 <Mail className="w-3 h-3 shrink-0" />

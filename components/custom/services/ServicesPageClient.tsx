@@ -497,7 +497,7 @@ export default function ServicesPageClient() {
                   onClick={() => (window.location.href = "tel:+61280956369")}
                 >
                   <Phone className="w-3.5 h-3.5 mr-1.5" />
-                  +61 280 956 369
+                  +61 2 8095 6369
                 </Button>
               </div>
             </StaggerItem>
