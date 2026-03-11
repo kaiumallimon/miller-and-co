@@ -18,6 +18,7 @@ import TableRow from "@tiptap/extension-table-row";
 import TableHeader from "@tiptap/extension-table-header";
 import TableCell from "@tiptap/extension-table-cell";
 import { useRef, useCallback, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   Bold, Italic, Underline as UnderlineIcon, Strikethrough,
   Heading1, Heading2, Heading3, Heading4,
@@ -38,16 +39,33 @@ function TablePicker({ onPick }: { onPick: (rows: number, cols: number) => void 
   const [hovered, setHovered] = useState<{ r: number; c: number } | null>(null);
   const [customRows, setCustomRows] = useState("");
   const [customCols, setCustomCols] = useState("");
-  const ref = useRef<HTMLDivElement>(null);
+  const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number } | null>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Close on outside click
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (
+        btnRef.current && btnRef.current.contains(e.target as Node)
+      ) return;
+      if (
+        dropdownRef.current && dropdownRef.current.contains(e.target as Node)
+      ) return;
+      setOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [open]);
+
+  const toggleOpen = () => {
+    if (!open && btnRef.current) {
+      const rect = btnRef.current.getBoundingClientRect();
+      setDropdownPos({ top: rect.bottom + 6, left: rect.left });
+    }
+    setOpen((v) => !v);
+  };
 
   const pick = (r: number, c: number) => {
     onPick(r, c);
@@ -63,74 +81,80 @@ function TablePicker({ onPick }: { onPick: (rows: number, cols: number) => void 
     if (r > 0 && c > 0) pick(r, c);
   };
 
+  const dropdown = open && dropdownPos ? (
+    <div
+      ref={dropdownRef}
+      style={{ top: dropdownPos.top, left: dropdownPos.left }}
+      className="fixed z-[9999] bg-[#1a1a1a] border border-white/10 rounded-lg p-3 shadow-xl min-w-[210px]"
+    >
+      {/* Grid picker */}
+      <div className="flex flex-col gap-0.5">
+        {Array.from({ length: MAX_ROWS }, (_, ri) => (
+          <div key={ri} className="flex gap-0.5">
+            {Array.from({ length: MAX_COLS }, (_, ci) => {
+              const active = hovered && ri < hovered.r && ci < hovered.c;
+              return (
+                <div
+                  key={ci}
+                  onMouseEnter={() => setHovered({ r: ri + 1, c: ci + 1 })}
+                  onMouseLeave={() => setHovered(null)}
+                  onClick={() => pick(ri + 1, ci + 1)}
+                  className={`w-5 h-5 border rounded-[2px] cursor-pointer transition-colors ${ active ? "bg-[#c8a96e]/40 border-[#c8a96e]/60" : "bg-white/5 border-white/10 hover:bg-white/10" }`}
+                />
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      {/* Label */}
+      <p className="text-white/40 text-xs mt-2 text-center">
+        {hovered ? `${hovered.r} × ${hovered.c}` : "Hover to select size"}
+      </p>
+
+      {/* Custom size inputs */}
+      <div className="mt-2 border-t border-white/8 pt-2 flex items-center gap-1.5">
+        <input
+          type="number"
+          min={1}
+          placeholder="Rows"
+          value={customRows}
+          onChange={(e) => setCustomRows(e.target.value)}
+          className="w-14 bg-white/5 border border-white/10 rounded px-1.5 py-1 text-xs text-white/80 outline-none focus:border-[#c8a96e]/50"
+        />
+        <span className="text-white/30 text-xs">×</span>
+        <input
+          type="number"
+          min={1}
+          placeholder="Cols"
+          value={customCols}
+          onChange={(e) => setCustomCols(e.target.value)}
+          className="w-14 bg-white/5 border border-white/10 rounded px-1.5 py-1 text-xs text-white/80 outline-none focus:border-[#c8a96e]/50"
+        />
+        <button
+          type="button"
+          onClick={handleCustomInsert}
+          className="ml-auto text-xs bg-[#c8a96e]/20 hover:bg-[#c8a96e]/30 text-[#c8a96e] px-2 py-1 rounded transition-colors"
+        >
+          Insert
+        </button>
+      </div>
+    </div>
+  ) : null;
+
   return (
-    <div ref={ref} className="relative shrink-0">
+    <>
       <button
+        ref={btnRef}
         type="button"
         title="Insert table"
-        onClick={() => setOpen((v) => !v)}
-        className={`p-1.5 rounded transition-all cursor-pointer ${ open ? "bg-[#c8a96e]/20 text-[#c8a96e]" : "text-white/40 hover:text-white/80 hover:bg-white/6" }`}
+        onClick={toggleOpen}
+        className={`p-1.5 rounded transition-all cursor-pointer shrink-0 ${ open ? "bg-[#c8a96e]/20 text-[#c8a96e]" : "text-white/40 hover:text-white/80 hover:bg-white/6" }`}
       >
         <TableIcon className="w-3.5 h-3.5" />
       </button>
-
-      {open && (
-        <div className="absolute left-0 top-full mt-1 z-50 bg-[#1a1a1a] border border-white/10 rounded-lg p-3 shadow-xl min-w-[200px]">
-          {/* Grid picker */}
-          <div className="flex flex-col gap-0.5">
-            {Array.from({ length: MAX_ROWS }, (_, ri) => (
-              <div key={ri} className="flex gap-0.5">
-                {Array.from({ length: MAX_COLS }, (_, ci) => {
-                  const active = hovered && ri < hovered.r && ci < hovered.c;
-                  return (
-                    <div
-                      key={ci}
-                      onMouseEnter={() => setHovered({ r: ri + 1, c: ci + 1 })}
-                      onMouseLeave={() => setHovered(null)}
-                      onClick={() => pick(ri + 1, ci + 1)}
-                      className={`w-5 h-5 border rounded-[2px] cursor-pointer transition-colors ${ active ? "bg-[#c8a96e]/40 border-[#c8a96e]/60" : "bg-white/5 border-white/10 hover:bg-white/10" }`}
-                    />
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-
-          {/* Label */}
-          <p className="text-white/40 text-xs mt-2 text-center">
-            {hovered ? `${hovered.r} × ${hovered.c}` : "Hover to select size"}
-          </p>
-
-          {/* Custom size inputs */}
-          <div className="mt-2 border-t border-white/8 pt-2 flex items-center gap-1.5">
-            <input
-              type="number"
-              min={1}
-              placeholder="Rows"
-              value={customRows}
-              onChange={(e) => setCustomRows(e.target.value)}
-              className="w-14 bg-white/5 border border-white/10 rounded px-1.5 py-1 text-xs text-white/80 outline-none focus:border-[#c8a96e]/50"
-            />
-            <span className="text-white/30 text-xs">×</span>
-            <input
-              type="number"
-              min={1}
-              placeholder="Cols"
-              value={customCols}
-              onChange={(e) => setCustomCols(e.target.value)}
-              className="w-14 bg-white/5 border border-white/10 rounded px-1.5 py-1 text-xs text-white/80 outline-none focus:border-[#c8a96e]/50"
-            />
-            <button
-              type="button"
-              onClick={handleCustomInsert}
-              className="ml-auto text-xs bg-[#c8a96e]/20 hover:bg-[#c8a96e]/30 text-[#c8a96e] px-2 py-1 rounded transition-colors"
-            >
-              Insert
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+      {typeof window !== "undefined" && createPortal(dropdown, document.body)}
+    </>
   );
 }
 
