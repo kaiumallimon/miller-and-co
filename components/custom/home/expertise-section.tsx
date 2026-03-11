@@ -10,7 +10,7 @@ export interface ExpertiseItem {
 const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Start-Up Business Sponsored Visa", sub: "Sub 482" },
   { label: "Employer Sponsored Visa", sub: "Sub 482" },
-  { label: "Employer Sponsored Permanent Visas", sub: "Sub (TRT, DE) 186" },
+  { label: "Employer Sponsored Permanent Visas", sub: "Sub 186 (TRT, DE)" },
   { label: "Training Visa", sub: "Sub 407" },
   { label: "Skilled Visas", sub: "Sub 189, 190, 489, 491" },
   { label: "Investment Visas", sub: "Sub 188, 888" },

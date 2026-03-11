@@ -37,7 +37,7 @@ export default function MeetEdwardSection() {
     <section className="relative w-full bg-[#faf8f5] overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#c8a96e08_0%,transparent_60%)]" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 lg:pt-22 pb-6 lg:pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           {/* Left: Image */}
@@ -57,7 +57,7 @@ export default function MeetEdwardSection() {
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/Miller & Co_Pro pic.png"
+                  src="/edward-portrait.png"
                   alt="Edward Miller – Principal Migration Lawyer"
                   fill
                   className="object-cover object-top"

@@ -2,16 +2,31 @@ import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 
 const REVIEWS = [
-  "/reviews/05.03.2026-removebg-preview.png",
-  "/reviews/1__1_-removebg-preview.png",
-  "/reviews/1__2_-removebg-preview.png",
-  "/reviews/1__4_-removebg-preview.png",
-  "/reviews/1__5_-removebg-preview.png",
-  "/reviews/1__7_-removebg-preview.png",
-  "/reviews/1__17_-removebg-preview.png",
-  "/reviews/1__18_-removebg-preview.png",
-  "/reviews/1__19_-removebg-preview.png",
-  "/reviews/1__20_-removebg-preview.png",
+  "/reviews_updated/05.03.2026-removebg-preview.png",
+  "/reviews_updated/1__1_-removebg-preview.png",
+  "/reviews_updated/1__2_-removebg-preview.png",
+  "/reviews_updated/1__4_-removebg-preview.png",
+  "/reviews_updated/1__5_-removebg-preview.png",
+  "/reviews_updated/1__7_-removebg-preview.png",
+  "/reviews_updated/1__17_-removebg-preview.png",
+  "/reviews_updated/1__18_-removebg-preview.png",
+  "/reviews_updated/1__19_-removebg-preview.png",
+  "/reviews_updated/1__20_-removebg-preview.png",
+  "/reviews_updated/12-removebg-preview.png",
+  "/reviews_updated/13-removebg-preview.png",
+  "/reviews_updated/14-removebg-preview.png",
+  "/reviews_updated/15-removebg-preview.png",
+  "/reviews_updated/16-removebg-preview.png",
+  "/reviews_updated/17-removebg-preview.png",
+  "/reviews_updated/18-removebg-preview.png",
+  "/reviews_updated/19-removebg-preview.png",
+  "/reviews_updated/20-removebg-preview.png",
+  "/reviews_updated/21-removebg-preview.png",
+  "/reviews_updated/22-removebg-preview.png",
+  "/reviews_updated/23-removebg-preview.png",
+  "/reviews_updated/24-removebg-preview.png",
+  "/reviews_updated/25-removebg-preview.png",
+  "/reviews_updated/26-removebg-preview.png",
 ];
 
 export default function TestimonialsSection() {
@@ -22,7 +37,7 @@ export default function TestimonialsSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#c8a96e07_0%,transparent_60%)] pointer-events-none" />
 
       {/* Section Header */}
-      <div className="relative flex flex-col items-center gap-4 mb-14 px-6">
+      <div className="relative flex flex-col items-center gap-4 mb-8 px-6">
         <div className="flex items-center gap-3">
           <span className="h-px w-10 bg-[#c8a96e]" />
           <span
@@ -43,13 +58,29 @@ export default function TestimonialsSection() {
         >
           An honest look into how we work — straight from the people we&apos;ve helped.
         </p>
+
+        {/* 50+ Reviews Badge */}
+        <a
+          href="https://www.google.com/search?sca_esv=7425f1baa5b8ea4e&sxsrf=ANbL-n5Q_RIMafp2AytKAwvRCyNat8WqoQ:1773085554117&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOduSQ3cKJo38PTMHTkpqg_-Pwy12mPPsZEjHqQmIOqlYvI5furcZm7JRPDuwcq7ZHTpcttofX1QI0gYoFOwXDWkm7c_oHm4IKB5jZuyruZ0hdHlja7oEKmXKYeWLJh-fVzvW2_Y%3D&q=Miller+%26+Co+Lawyers+%26+Migration+Agents+Reviews&sa=X&ved=2ahUKEwiV_e-0ypOTAxXpRmwGHTsoJpIQ0bkNegQIKxAH&biw=1536&bih=703&dpr=1.25"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative w-64 h-20 block mt-1 hover:scale-105 transition-transform duration-300"
+        >
+          <Image
+            src="/reviews-header.png"
+            alt="50+ Five Star Google Reviews"
+            fill
+            className="object-contain drop-shadow-lg"
+            sizes="192px"
+          />
+        </a>
       </div>
 
       {/* Marquee row */}
       <div className="relative overflow-hidden">
         {/* Edge fades */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#1a1a1a] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#1a1a1a] to-transparent z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#1a1a1a] to-transparent z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#1a1a1a] to-transparent z-10 pointer-events-none" />
 
         <style>{`
           @keyframes reviews-marquee {
