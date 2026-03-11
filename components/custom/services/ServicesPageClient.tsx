@@ -490,15 +490,14 @@ export default function ServicesPageClient() {
                   Book a Consultation
                   <ArrowRight className="w-3.5 h-3.5 ml-1" />
                 </a>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/30 text-white hover:bg-white/5 hover:text-white hover:border-white/50 transition-all duration-300 rounded-none cursor-pointer`}
+                <a
+                  href="tel:+61280956369"
+                  className={`${bodyFont.className} flex py-3 px-6 border w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none `}
                   onClick={() => (window.location.href = "tel:+61280956369")}
                 >
                   <Phone className="w-3.5 h-3.5 mr-1.5" />
                   +61 2 8095 6369
-                </Button>
+                </a>
               </div>
             </StaggerItem>
           </StaggerContainer>
