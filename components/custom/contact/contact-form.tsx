@@ -23,8 +23,10 @@ const SUBJECTS = [
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 type Status = "idle" | "loading" | "success" | "error";
+type Variant = "light" | "dark";
 
-export default function ContactForm() {
+export default function ContactForm({ variant = "light" }: { variant?: Variant }) {
+  const dark = variant === "dark";
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -70,10 +72,20 @@ export default function ContactForm() {
     }
   };
 
-  const inputClass = `${bodyFont.className} w-full bg-white border border-[#1a1a1a]/10 px-4 py-3 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/30 focus:outline-none focus:border-[#c8a96e] transition-colors duration-200`;
+  const inputClass = dark
+    ? `${bodyFont.className} w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-white/80 placeholder:text-white/20 focus:outline-none focus:border-[#c8a96e] transition-colors duration-200`
+    : `${bodyFont.className} w-full bg-white border border-[#1a1a1a]/10 px-4 py-3 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/30 focus:outline-none focus:border-[#c8a96e] transition-colors duration-200`;
+
+  const labelClass = `${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase ${
+    dark ? "text-white/40" : "text-[#1a1a1a]/50"
+  }`;
 
   return (
-    <div className="relative bg-white border border-[#1a1a1a]/8 p-8 lg:p-10">
+    <div className={`relative p-8 lg:p-10 ${
+      dark
+        ? "bg-[#141414] border border-white/8"
+        : "bg-white border border-[#1a1a1a]/8"
+    }`}>
       {/* Corner accent */}
       <span className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-[#c8a96e]" />
       <span className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-[#c8a96e]" />
@@ -92,17 +104,23 @@ export default function ContactForm() {
               <CheckCircle className="w-6 h-6 text-[#c8a96e]" />
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className={`${headlineFont.className} text-[#1a1a1a] text-2xl font-semibold`}>
+              <h3 className={`${headlineFont.className} text-2xl font-semibold ${
+                dark ? "text-white" : "text-[#1a1a1a]"
+              }`}>
                 Message Sent
               </h3>
-              <p className={`${bodyFont.className} text-[#1a1a1a]/50 text-base max-w-sm leading-relaxed`}>
+              <p className={`${bodyFont.className} text-base max-w-sm leading-relaxed ${
+                dark ? "text-white/50" : "text-[#1a1a1a]/50"
+              }`}>
                 Thank you for reaching out. A member of our team will be in touch
                 with you shortly.
               </p>
             </div>
             <button
               onClick={() => setStatus("idle")}
-              className={`${bodyFont.className} text-[11px] font-semibold tracking-[0.2em] uppercase text-[#c8a96e] hover:text-[#1a1a1a] transition-colors duration-200 mt-2`}
+              className={`${bodyFont.className} text-[11px] font-semibold tracking-[0.2em] uppercase text-[#c8a96e] ${
+                dark ? "hover:text-white" : "hover:text-[#1a1a1a]"
+              } transition-colors duration-200 mt-2`}
             >
               Send Another Message
             </button>
@@ -134,7 +152,7 @@ export default function ContactForm() {
               {/* Name + Email */}
               <StaggerItem className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/50`}>
+                  <label className={labelClass}>
                     Full Name <span className="text-[#c8a96e]">*</span>
                   </label>
                   <input
@@ -148,7 +166,7 @@ export default function ContactForm() {
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/50`}>
+                  <label className={labelClass}>
                     Email Address <span className="text-[#c8a96e]">*</span>
                   </label>
                   <input
@@ -166,7 +184,7 @@ export default function ContactForm() {
               {/* Phone + Subject */}
               <StaggerItem className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/50`}>
+                  <label className={labelClass}>
                     Phone Number
                   </label>
                   <input
@@ -179,7 +197,7 @@ export default function ContactForm() {
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/50`}>
+                  <label className={labelClass}>
                     Subject <span className="text-[#c8a96e]">*</span>
                   </label>
                   <select
@@ -187,7 +205,9 @@ export default function ContactForm() {
                     value={form.subject}
                     onChange={handleChange}
                     required
-                    className={`${inputClass} appearance-none cursor-pointer`}
+                    className={`${inputClass} appearance-none cursor-pointer ${
+                      dark ? "[&>option]:bg-[#1a1a1a] [&>option]:text-white/80" : ""
+                    }`}
                   >
                     <option value="" disabled>Select a subject</option>
                     {SUBJECTS.map((s) => (
@@ -199,7 +219,7 @@ export default function ContactForm() {
 
               {/* Message */}
               <StaggerItem className="flex flex-col gap-1.5">
-                <label className={`${bodyFont.className} text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/50`}>
+                <label className={labelClass}>
                   Message <span className="text-[#c8a96e]">*</span>
                 </label>
                 <textarea
@@ -235,7 +255,11 @@ export default function ContactForm() {
                   type="submit"
                   disabled={status === "loading"}
                   size="lg"
-                  className={`${bodyFont.className} w-full sm:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-[#1a1a1a] text-white hover:bg-[#c8a96e] hover:text-[#1a1a1a] border border-[#1a1a1a] hover:border-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed`}
+                  className={`${bodyFont.className} w-full sm:w-auto text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
+                    dark
+                      ? "bg-[#c8a96e] text-[#1a1a1a] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e]"
+                      : "bg-[#1a1a1a] text-white border border-[#1a1a1a] hover:bg-[#c8a96e] hover:text-[#1a1a1a] hover:border-[#c8a96e]"
+                  }`}
                 >
                   {status === "loading" ? (
                     <>

@@ -7,6 +7,7 @@ import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 import { ArrowLeft, Clock, Calendar, Tag, BookOpen, User, Loader2 } from "lucide-react";
 import BlogShareBar from "@/components/custom/blog/BlogShareBar";
+import BlogCTASection from "@/components/custom/blog/BlogCTASection";
 
 interface PostFull {
   id: string;
@@ -301,6 +302,9 @@ export default function BlogPostClient({ slug }: { slug: string }) {
           </div>
         </div>
       </AnimateIn>
+
+      {/* ── CTA / Contact form ───────────────────────────────────────── */}
+      <BlogCTASection />
     </>
   );
 }
