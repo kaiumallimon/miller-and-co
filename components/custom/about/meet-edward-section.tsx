@@ -57,7 +57,7 @@ export default function MeetEdwardSection() {
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/edward--.png"
+                  src="/212.png"
                   alt="Edward Miller – Principal Migration Lawyer"
                   fill
                   className="object-cover object-top"
