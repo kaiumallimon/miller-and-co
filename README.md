@@ -16,8 +16,6 @@
 - [Authentication & Security](#authentication--security)
 - [Admin Panel](#admin-panel)
 - [API Routes](#api-routes)
-- [Environment Variables](#environment-variables)
-- [Getting Started](#getting-started)
 
 ---
 
