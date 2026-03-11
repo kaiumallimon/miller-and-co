@@ -48,7 +48,7 @@ function MarqueeRow({
         {doubled.map((logo, i) => (
           <div
             key={`${logo.src}-${i}`}
-            className="shrink-0 relative mx-8 w-40 h-[140px]"
+            className="shrink-0 relative mx-8 w-40 h-35"
           >
             <Image
               src={logo.src}

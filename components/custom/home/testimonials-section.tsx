@@ -88,7 +88,7 @@ export default function TestimonialsSection() {
             to   { transform: translateX(-50%); }
           }
           .reviews-marquee-track {
-            animation: reviews-marquee 36s linear infinite;
+            animation: reviews-marquee 135s linear infinite;
           }
           .reviews-marquee-track:hover {
             animation-play-state: paused;
