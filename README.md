@@ -2,7 +2,7 @@
 
 > Official website for **Miller & Co.**, a Sydney-based migration law firm specialising in employer-sponsored visas, skilled visas, partner visas, investment visas, global talent visas, AAT appeals, and Australian citizenship.
 
-**Live URL:** [https://www.visa-australia.legal](https://www.visa-australia.legal)
+**Live URL:** [https://visa-australialegal.vercel.app](https://visa-australialegal.vercel.app/)
 
 ---
 
@@ -315,92 +315,3 @@ Logging is fire-and-forget — errors are silently swallowed so a log failure ne
 | `GET` | `/api/admin/cdn/stats` | Retrieve Cloudinary account usage statistics |
 | `GET` | `/api/admin/logs` | Fetch paginated activity logs |
 | `GET/POST/DELETE` | `/api/admin/accounts` | List / create / remove admin accounts |
-
----
-
-## Environment Variables
-
-Create a `.env.local` file in the project root:
-
-```env
-# ── Firebase Client SDK (exposed to browser) ──────────────────
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
-
-# ── Firebase Admin SDK (server-only, never exposed) ───────────
-FIREBASE_ADMIN_PROJECT_ID=
-FIREBASE_ADMIN_CLIENT_EMAIL=
-FIREBASE_ADMIN_PRIVATE_KEY=        # Paste the full key; use \\n for literal newlines
-
-# ── Cloudinary ─────────────────────────────────────────────────
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-
-# ── Nodemailer (SMTP) ──────────────────────────────────────────
-SMTP_HOST=
-SMTP_PORT=
-SMTP_USER=
-SMTP_PASS=
-SMTP_TO=                           # Destination address for contact form emails
-
-# ── Site ───────────────────────────────────────────────────────
-NEXT_PUBLIC_SITE_URL=https://www.visa-australia.legal
-```
-
-> **Important:** Never commit `.env.local` to version control. For Vercel deployments, add these variables in the project's **Environment Variables** settings panel.
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 20+
-- A Firebase project with **Firestore** and **Authentication** (Email/Password provider) enabled
-- A Cloudinary account
-- An SMTP account (e.g. Gmail App Password, SendGrid, Mailgun)
-
-### Installation
-
-```bash
-# 1. Clone the repository
-git clone <repo-url>
-cd miller-and-co
-
-# 2. Install dependencies
-npm install
-
-# 3. Configure environment variables
-cp .env.example .env.local
-# Edit .env.local and fill in all required values
-
-# 4. Start the development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-The admin panel is at [http://localhost:3000/admin](http://localhost:3000/admin) — you must first create an admin user account in your Firebase project console, then log in via [http://localhost:3000/login](http://localhost:3000/login).
-
-### Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Type-check and produce an optimised production build |
-| `npm start` | Serve the production build locally |
-| `npm run lint` | Run ESLint across the codebase |
-
-### Deployment
-
-The project is configured for zero-config deployment on **Vercel**.
-
-1. Push the repository to GitHub / GitLab / Bitbucket.
-2. Import the project in the Vercel dashboard.
-3. Add all environment variables from the table above in **Project → Settings → Environment Variables**.
-4. Deploy — Vercel automatically builds and deploys on every push to `main`.
