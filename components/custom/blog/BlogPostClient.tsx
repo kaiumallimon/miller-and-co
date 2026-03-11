@@ -8,6 +8,7 @@ import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn
 import { ArrowLeft, Clock, Calendar, Tag, BookOpen, User, Loader2 } from "lucide-react";
 import BlogShareBar from "@/components/custom/blog/BlogShareBar";
 import BlogCTASection from "@/components/custom/blog/BlogCTASection";
+import RelatedPosts from "@/components/custom/blog/RelatedPosts";
 
 interface PostFull {
   id: string;
@@ -302,6 +303,9 @@ export default function BlogPostClient({ slug }: { slug: string }) {
           </div>
         </div>
       </AnimateIn>
+
+      {/* ── Related posts ────────────────────────────────────────────── */}
+      <RelatedPosts currentId={post.id} tags={post.tags} />
 
       {/* ── CTA / Contact form ───────────────────────────────────────── */}
       <BlogCTASection />
