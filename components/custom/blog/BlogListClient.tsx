@@ -6,7 +6,6 @@ import { headlineFont, bodyFont } from "@/lib/typographies";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Clock, Calendar, Search, ArrowRight, BookOpen, ChevronLeft, ChevronRight,
-  Loader2,
 } from "lucide-react";
 
 export interface BlogPost {
@@ -343,9 +342,57 @@ export default function BlogListClient({ onPostCount }: { onPostCount?: (count: 
 
         {/* ── Loading state ───────────────────────────────────────────────── */}
         {loading ? (
-          <div className="flex flex-col items-center justify-center gap-4 py-32 text-center">
-            <Loader2 className="w-6 h-6 text-[#c8a96e] animate-spin" />
-            <p className={`${bodyFont.className} text-white/30 text-xs`}>Loading articles…</p>
+          <div className="flex flex-col gap-10 py-10">
+            {/* Filter bar skeleton */}
+            <div className="flex items-center gap-3 py-8 border-b border-white/6">
+              {[80, 110, 90, 120, 70].map((w) => (
+                <span key={w} style={{ width: w }} className="h-6 rounded-sm bg-white/6 animate-pulse" />
+              ))}
+            </div>
+
+            {/* Featured card skeleton */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-[#141414] border border-white/6 overflow-hidden">
+              <div className="aspect-4/3 lg:min-h-96 bg-white/5 animate-pulse" />
+              <div className="flex flex-col justify-center gap-5 p-8 lg:p-12">
+                <span className="w-20 h-3 bg-[#c8a96e]/15 animate-pulse rounded-sm" />
+                <div className="flex flex-col gap-3">
+                  <span className="w-full h-7 bg-white/8 animate-pulse rounded-sm" />
+                  <span className="w-4/5 h-7 bg-white/8 animate-pulse rounded-sm" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="w-full h-3.5 bg-white/5 animate-pulse rounded-sm" />
+                  <span className="w-3/4 h-3.5 bg-white/5 animate-pulse rounded-sm" />
+                </div>
+                <div className="flex items-center gap-3 mt-2">
+                  <span className="w-4 h-4 rounded-full bg-white/6 animate-pulse" />
+                  <span className="w-24 h-3 bg-white/5 animate-pulse rounded-sm" />
+                  <span className="w-16 h-3 bg-white/5 animate-pulse rounded-sm" />
+                </div>
+                <span className="w-36 h-9 bg-white/6 animate-pulse rounded-sm mt-2" />
+              </div>
+            </div>
+
+            {/* Regular card grid skeleton */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="flex flex-col bg-[#141414] border border-white/6 overflow-hidden">
+                  <div className="w-full h-44 bg-white/5 animate-pulse" />
+                  <div className="flex flex-col gap-3 p-5">
+                    <span className="w-20 h-2.5 bg-[#c8a96e]/12 animate-pulse rounded-sm" />
+                    <span className="w-full h-5 bg-white/8 animate-pulse rounded-sm" />
+                    <span className="w-4/5 h-5 bg-white/6 animate-pulse rounded-sm" />
+                    <div className="flex flex-col gap-1.5 mt-1">
+                      <span className="w-full h-3 bg-white/4 animate-pulse rounded-sm" />
+                      <span className="w-3/4 h-3 bg-white/4 animate-pulse rounded-sm" />
+                    </div>
+                    <div className="flex items-center gap-3 pt-3 border-t border-white/5">
+                      <span className="w-16 h-2.5 bg-white/5 animate-pulse rounded-sm" />
+                      <span className="w-12 h-2.5 bg-white/5 animate-pulse rounded-sm" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
         <>

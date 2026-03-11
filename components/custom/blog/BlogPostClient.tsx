@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
-import { ArrowLeft, Clock, Calendar, Tag, BookOpen, User, Loader2 } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Tag, BookOpen, User } from "lucide-react";
 import BlogShareBar from "@/components/custom/blog/BlogShareBar";
 import BlogCTASection from "@/components/custom/blog/BlogCTASection";
 import RelatedPosts from "@/components/custom/blog/RelatedPosts";
@@ -78,9 +78,97 @@ export default function BlogPostClient({ slug }: { slug: string }) {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-48 text-center">
-        <Loader2 className="w-6 h-6 text-[#c8a96e] animate-spin" />
-        <p className={`${bodyFont.className} text-white/30 text-xs`}>Loading article…</p>
+      <div className="w-full">
+        {/* Hero skeleton */}
+        <div className="relative w-full h-[60vh] min-h-[420px] max-h-[680px] bg-[#141414] animate-pulse">
+          {/* Gold bottom fade hint */}
+          <div className="absolute inset-0 bg-linear-to-t from-[#0f0f0f] via-[#0f0f0f]/40 to-transparent" />
+          <div className="relative h-full max-w-5xl mx-auto px-6 lg:px-10 flex flex-col justify-end pb-12 gap-4">
+            <span className="w-24 h-3 bg-[#c8a96e]/20 animate-pulse rounded-sm" />
+            <span className="w-2/3 h-10 bg-white/10 animate-pulse rounded-sm" />
+            <span className="w-1/2 h-10 bg-white/8 animate-pulse rounded-sm" />
+            <div className="flex items-center gap-5 mt-1">
+              {[80, 96, 72, 80].map((w) => (
+                <span key={w} style={{ width: w }} className="h-3 bg-white/6 animate-pulse rounded-sm" />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Body skeleton */}
+        <div className="max-w-5xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-12 lg:gap-16">
+
+            {/* Article content skeleton */}
+            <div className="flex flex-col gap-4">
+              {/* Lead paragraph */}
+              <span className="w-full h-4 bg-white/6 animate-pulse rounded-sm" />
+              <span className="w-11/12 h-4 bg-white/6 animate-pulse rounded-sm" />
+              <span className="w-4/5 h-4 bg-white/5 animate-pulse rounded-sm" />
+              <div className="mt-4 flex flex-col gap-3">
+                <span className="w-1/3 h-7 bg-[#c8a96e]/12 animate-pulse rounded-sm" />
+                <span className="w-full h-4 bg-white/5 animate-pulse rounded-sm" />
+                <span className="w-full h-4 bg-white/5 animate-pulse rounded-sm" />
+                <span className="w-3/4 h-4 bg-white/5 animate-pulse rounded-sm" />
+              </div>
+              <div className="mt-2 flex flex-col gap-3">
+                <span className="w-full h-4 bg-white/5 animate-pulse rounded-sm" />
+                <span className="w-full h-4 bg-white/5 animate-pulse rounded-sm" />
+                <span className="w-5/6 h-4 bg-white/4 animate-pulse rounded-sm" />
+                <span className="w-full h-4 bg-white/4 animate-pulse rounded-sm" />
+                <span className="w-2/3 h-4 bg-white/4 animate-pulse rounded-sm" />
+              </div>
+              <div className="mt-6 flex flex-col gap-3">
+                <span className="w-2/5 h-6 bg-[#c8a96e]/10 animate-pulse rounded-sm" />
+                <span className="w-full h-4 bg-white/5 animate-pulse rounded-sm" />
+                <span className="w-full h-4 bg-white/5 animate-pulse rounded-sm" />
+                <span className="w-4/5 h-4 bg-white/4 animate-pulse rounded-sm" />
+              </div>
+              {/* Tags row */}
+              <div className="mt-8 pt-8 border-t border-white/6 flex items-center gap-2">
+                {[60, 80, 70, 90].map((w) => (
+                  <span key={w} style={{ width: w }} className="h-6 bg-white/5 animate-pulse rounded-sm" />
+                ))}
+              </div>
+            </div>
+
+            {/* Sidebar skeleton */}
+            <div className="hidden lg:flex flex-col gap-6">
+              {/* About box */}
+              <div className="flex flex-col gap-3 p-5 bg-[#141414] border border-white/6">
+                <span className="w-24 h-2.5 bg-white/10 animate-pulse rounded-sm" />
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <span className="w-3 h-3 bg-[#c8a96e]/20 animate-pulse rounded-sm shrink-0 mt-0.5" />
+                    <div className="flex flex-col gap-1 flex-1">
+                      <span className="w-16 h-2 bg-white/6 animate-pulse rounded-sm" />
+                      <span className="w-20 h-3 bg-white/8 animate-pulse rounded-sm" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {/* Share box */}
+              <div className="flex flex-col gap-2 p-5 bg-[#141414] border border-white/6">
+                <span className="w-16 h-2.5 bg-white/10 animate-pulse rounded-sm" />
+                <div className="flex gap-2 mt-1">
+                  {[1, 2, 3].map((i) => (
+                    <span key={i} className="w-8 h-8 bg-white/5 animate-pulse rounded-sm" />
+                  ))}
+                </div>
+              </div>
+              {/* Tags box */}
+              <div className="flex flex-col gap-2 p-5 bg-[#141414] border border-white/6">
+                <span className="w-10 h-2.5 bg-white/10 animate-pulse rounded-sm" />
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {[60, 80, 50, 70].map((w) => (
+                    <span key={w} style={{ width: w }} className="h-5 bg-white/5 animate-pulse rounded-sm" />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     );
   }
