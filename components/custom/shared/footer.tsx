@@ -77,7 +77,7 @@ export default function Footer() {
               {/* Socials — original brand colors */}
               <div className="flex items-center gap-3 mt-1">
                 <a
-                  href="https://www.facebook.com/EdwardMillerMigration"
+                  href="https://www.facebook.com/australia.visa.lawyer"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"

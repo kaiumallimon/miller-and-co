@@ -814,14 +814,14 @@ export default function ServicesPageClient() {
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
               </Button>
               <Button
-                size="lg"
-                variant="outline"
-                className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/30 text-white hover:bg-white/5 hover:text-white hover:border-white/50 transition-all duration-300 rounded-none cursor-pointer`}
-                onClick={() => (window.location.href = "tel:+61280956369")}
-              >
-                <Phone className="w-3.5 h-3.5 mr-1" />
-                Call Us Now
-              </Button>
+              size="lg"
+              variant="outline"
+              className={`${bodyFont.className} text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white/20 text-white/60 hover:text-black hover:bg-white hover:border-white/40 transition-all duration-300 rounded-none cursor-pointer`}
+              onClick={() => window.location.href = "tel:+61280956369"}
+            >
+              <Phone className="w-3.5 h-3.5 mr-1" />
+              Call Us Now
+            </Button>
             </AnimateIn>
           </AnimateIn>
         </div>

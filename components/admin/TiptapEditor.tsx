@@ -29,6 +29,111 @@ import {
 } from "lucide-react";
 import { bodyFont } from "@/lib/typographies";
 
+// ─── Table size picker ───────────────────────────────────────────────────────
+const MAX_ROWS = 8;
+const MAX_COLS = 8;
+
+function TablePicker({ onPick }: { onPick: (rows: number, cols: number) => void }) {
+  const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState<{ r: number; c: number } | null>(null);
+  const [customRows, setCustomRows] = useState("");
+  const [customCols, setCustomCols] = useState("");
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  const pick = (r: number, c: number) => {
+    onPick(r, c);
+    setOpen(false);
+    setHovered(null);
+    setCustomRows("");
+    setCustomCols("");
+  };
+
+  const handleCustomInsert = () => {
+    const r = parseInt(customRows, 10);
+    const c = parseInt(customCols, 10);
+    if (r > 0 && c > 0) pick(r, c);
+  };
+
+  return (
+    <div ref={ref} className="relative shrink-0">
+      <button
+        type="button"
+        title="Insert table"
+        onClick={() => setOpen((v) => !v)}
+        className={`p-1.5 rounded transition-all cursor-pointer ${ open ? "bg-[#c8a96e]/20 text-[#c8a96e]" : "text-white/40 hover:text-white/80 hover:bg-white/6" }`}
+      >
+        <TableIcon className="w-3.5 h-3.5" />
+      </button>
+
+      {open && (
+        <div className="absolute left-0 top-full mt-1 z-50 bg-[#1a1a1a] border border-white/10 rounded-lg p-3 shadow-xl min-w-[200px]">
+          {/* Grid picker */}
+          <div className="flex flex-col gap-0.5">
+            {Array.from({ length: MAX_ROWS }, (_, ri) => (
+              <div key={ri} className="flex gap-0.5">
+                {Array.from({ length: MAX_COLS }, (_, ci) => {
+                  const active = hovered && ri < hovered.r && ci < hovered.c;
+                  return (
+                    <div
+                      key={ci}
+                      onMouseEnter={() => setHovered({ r: ri + 1, c: ci + 1 })}
+                      onMouseLeave={() => setHovered(null)}
+                      onClick={() => pick(ri + 1, ci + 1)}
+                      className={`w-5 h-5 border rounded-[2px] cursor-pointer transition-colors ${ active ? "bg-[#c8a96e]/40 border-[#c8a96e]/60" : "bg-white/5 border-white/10 hover:bg-white/10" }`}
+                    />
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+
+          {/* Label */}
+          <p className="text-white/40 text-xs mt-2 text-center">
+            {hovered ? `${hovered.r} × ${hovered.c}` : "Hover to select size"}
+          </p>
+
+          {/* Custom size inputs */}
+          <div className="mt-2 border-t border-white/8 pt-2 flex items-center gap-1.5">
+            <input
+              type="number"
+              min={1}
+              placeholder="Rows"
+              value={customRows}
+              onChange={(e) => setCustomRows(e.target.value)}
+              className="w-14 bg-white/5 border border-white/10 rounded px-1.5 py-1 text-xs text-white/80 outline-none focus:border-[#c8a96e]/50"
+            />
+            <span className="text-white/30 text-xs">×</span>
+            <input
+              type="number"
+              min={1}
+              placeholder="Cols"
+              value={customCols}
+              onChange={(e) => setCustomCols(e.target.value)}
+              className="w-14 bg-white/5 border border-white/10 rounded px-1.5 py-1 text-xs text-white/80 outline-none focus:border-[#c8a96e]/50"
+            />
+            <button
+              type="button"
+              onClick={handleCustomInsert}
+              className="ml-auto text-xs bg-[#c8a96e]/20 hover:bg-[#c8a96e]/30 text-[#c8a96e] px-2 py-1 rounded transition-colors"
+            >
+              Insert
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Toolbar button ───────────────────────────────────────────────────────────
 function Btn({
   onClick, active, disabled, title, children,
@@ -82,8 +187,8 @@ function Toolbar({
     editor.chain().focus().extendMarkRange("link").setLink({ href: url, target: "_blank" }).run();
   }, [editor]);
 
-  const insertTable = useCallback(() => {
-    editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
+  const insertTable = useCallback((rows: number, cols: number) => {
+    editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
   }, [editor]);
 
   return (
@@ -195,9 +300,7 @@ function Toolbar({
       </Btn>
 
       {/* Table */}
-      <Btn onClick={insertTable} title="Insert 3×3 table">
-        <TableIcon className="w-3.5 h-3.5" />
-      </Btn>
+      <TablePicker onPick={insertTable} />
     </div>
   );
 }
