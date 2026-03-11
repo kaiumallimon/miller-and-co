@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { headlineFont, bodyFont } from "@/lib/typographies";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GradientText from "@/components/GradientText";
 import { motion, useScroll, useTransform } from "motion/react";
@@ -123,17 +123,15 @@ export default function HomeHero() {
             variants={itemVariants}
             className="flex flex-col md:flex-row max-w-md md:max-w-2xl items-center gap-4 mt-2"
           >
-            <Button
-              variant="outline"
-              size={"lg"}
-              className={`${bodyFont.className} w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none`}
+            <a
+              href="/services"
+              className={`${bodyFont.className} flex py-3 px-6 border w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none `}
             >
               See Our Services
-            </Button>
+            </a>
             <a
               href="/contact"
-              className={`${bodyFont.className} py-3 px-6 w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] border-[#c8a96e] hover:border-[#c8a96e]/70 text-[#1a1a1a] hover:bg-[#c8a96e]/70 transition-all duration-300 rounded-none cursor-pointer`}
-              onClick={() => window.location.href = `mailto:${contactInfo.email}`}
+              className={`${bodyFont.className} flex py-3 px-6 text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#1a1a1a] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
             >
               Book a Consultation
             </a>

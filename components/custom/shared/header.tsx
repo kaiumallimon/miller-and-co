@@ -195,7 +195,7 @@ export default function CustomHeader() {
 
         {/* Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-4/5 max-w-sm bg-[#0f0f0f] border-l border-white/10 flex flex-col transition-transform duration-500 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          className={`absolute top-0 right-0 h-full w-4/5 max-w-sm bg-[#0f0f0f] border-l border-white/10 flex flex-col transition-transform duration-500 overflow-hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
         >
           {/* Panel header */}
