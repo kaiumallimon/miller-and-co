@@ -16,7 +16,7 @@ const SUBJECTS = [
   "National Innovation Visa (Sub 858)",
   "Visa Refusal & ART Appeal",
   "Australian Citizenship",
-  "Initial Consultation Booking",
+  "Consultation Booking (AUD $220 / 30 min)",
   "Other",
 ];
 

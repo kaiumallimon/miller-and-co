@@ -126,7 +126,7 @@ export default function ExpertiseSection() {
               href="/contact"
               className="text-[#c8a96e]/75 hover:text-[#c8a96e] transition-colors duration-300"
             >
-              Contact us for a free assessment
+              Send us a free enquiry
             </a>
           </p>
         </AnimateIn>

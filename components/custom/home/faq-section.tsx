@@ -26,7 +26,7 @@ const FALLBACK_FAQS: FaqItem[] = [
   },
   {
     q: "How much for the initial consultation?",
-    a: "The initial face-to-face consultation is $380. All consultations are made strictly by appointment — either over the phone or through our website enquiry form. However, if for some reason you are unable to see us in person, we offer an online Zoom Consultation.",
+    a: "The initial consultation is AUD $220 for 30 minutes, conducted in-person at our Bondi Junction office or via Zoom. All appointments are strictly by prior arrangement — book through our website enquiry form or call us directly.",
   },
 ];
 

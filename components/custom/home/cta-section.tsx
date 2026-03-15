@@ -36,8 +36,7 @@ export default function CtaSection() {
             </StaggerItem>
             <StaggerItem>
               <p className={`${bodyFont.className} text-white/70 text-base leading-relaxed`}>
-                Book a confidential consultation with our migration lawyers today.
-                No obligation — just clear, expert advice tailored to your situation.
+                Book a confidential 30-minute consultation with our migration lawyers — AUD $220, available in-person at our Bondi Junction office or via Zoom. Clear, expert advice tailored to your situation.
               </p>
             </StaggerItem>
           </StaggerContainer>

@@ -247,14 +247,14 @@ const PROCESS_STEPS = [
     icon: FileText,
     title: "Free Assessment",
     description:
-      "We begin with a no-obligation assessment of your situation — reviewing your background, goals, and eligibility across relevant visa pathways.",
+      "We begin with a complimentary review of your enquiry — assessing your background, goals, and eligibility across relevant visa pathways before recommending next steps.",
   },
   {
     step: "02",
     icon: Scale,
     title: "Strategy Session",
     description:
-      "Our migration lawyers present a clear, tailored strategy with honest advice on your best options, timelines, and what to expect.",
+      "Our migration lawyers present a clear, tailored strategy in a structured 30-minute consultation (AUD $220, in-person or via Zoom) — with honest advice on your best options, timelines, and what to expect.",
   },
   {
     step: "03",
@@ -789,9 +789,7 @@ export default function ServicesPageClient() {
                 <p
                   className={`${bodyFont.className} text-white text-base leading-relaxed`}
                 >
-                  Book a confidential consultation with our migration lawyers.
-                  We&apos;ll assess your situation, explain your options, and
-                  give you a clear roadmap — no obligation, no jargon.
+                  Book a confidential 30-minute consultation with our migration lawyers — AUD $220, in-person at our Bondi Junction office or via Zoom. We&apos;ll assess your situation and give you a clear roadmap.
                 </p>
               </StaggerItem>
             </StaggerContainer>
