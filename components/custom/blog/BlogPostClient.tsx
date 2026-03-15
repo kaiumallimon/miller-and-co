@@ -88,8 +88,8 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             <span className="w-2/3 h-10 bg-white/10 animate-pulse rounded-sm" />
             <span className="w-1/2 h-10 bg-white/8 animate-pulse rounded-sm" />
             <div className="flex items-center gap-5 mt-1">
-              {[80, 96, 72, 80].map((w) => (
-                <span key={w} style={{ width: w }} className="h-3 bg-white/6 animate-pulse rounded-sm" />
+              {[80, 96, 72, 84].map((w, i) => (
+                <span key={i} style={{ width: w }} className="h-3 bg-white/6 animate-pulse rounded-sm" />
               ))}
             </div>
           </div>
