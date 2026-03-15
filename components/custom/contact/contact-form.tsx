@@ -249,8 +249,8 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                 )}
               </AnimatePresence>
 
-              {/* Submit */}
-              <StaggerItem>
+              {/* Submit + Privacy consent */}
+              <StaggerItem className="flex flex-col gap-3">
                 <Button
                   type="submit"
                   disabled={status === "loading"}
@@ -273,6 +273,38 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                     </>
                   )}
                 </Button>
+
+                {/* Privacy consent notice */}
+                <p className={`${bodyFont.className} text-[10px] leading-relaxed ${
+                  dark ? "text-white/25" : "text-[#1a1a1a]/40"
+                }`}>
+                  By submitting this form you consent to Miller &amp; Co Lawyers &amp; Migration Agents Pty Ltd
+                  collecting and using the personal information provided to respond to your enquiry and
+                  deliver our legal services, in accordance with the{" "}
+                  <a
+                    href="/privacy-policy"
+                    className={`underline underline-offset-2 transition-colors duration-200 ${
+                      dark
+                        ? "text-white/40 hover:text-[#c8a96e]"
+                        : "text-[#1a1a1a]/60 hover:text-[#c8a96e]"
+                    }`}
+                  >
+                    Privacy Act 1988 (Cth)
+                  </a>{" "}
+                  and our{" "}
+                  <a
+                    href="/privacy-policy"
+                    className={`underline underline-offset-2 transition-colors duration-200 ${
+                      dark
+                        ? "text-white/40 hover:text-[#c8a96e]"
+                        : "text-[#1a1a1a]/60 hover:text-[#c8a96e]"
+                    }`}
+                  >
+                    Privacy Policy
+                  </a>
+                  . Your information will not be disclosed to third parties except as required by law or to
+                  facilitate your immigration matter.
+                </p>
               </StaggerItem>
 
             </StaggerContainer>
