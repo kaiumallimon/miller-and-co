@@ -113,7 +113,7 @@ export default function CustomHeader() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
-            className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-20" : "h-24"}`}
+            className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-20" : "h-28"}`}
             variants={headerContainerVariants}
             initial="hidden"
             animate={mounted ? "visible" : "hidden"}
@@ -131,7 +131,7 @@ export default function CustomHeader() {
                 alt="Miller & Co Logo"
                 width={220}
                 height={80}
-                className={`object-contain transition-all duration-300 group-hover:opacity-80 ${isScrolled ? "w-40" : "w-30 md:w-55"
+                className={`object-contain transition-all duration-300 group-hover:opacity-80 ${isScrolled ? "w-52" : "w-40 md:w-72"
                   }`}
               />
             </motion.a>
@@ -200,7 +200,7 @@ export default function CustomHeader() {
         >
           {/* Panel header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-            <Image src="/NEW-logo-TM-White1.png" alt="Miller & Co" width={120} height={32} className="object-contain" />
+              <Image src="/NEW-logo-TM-White1.png" alt="Miller & Co" width={156} height={42} className="object-contain" />
             <button onClick={closeMobileMenu} className="text-white/50 hover:text-white transition-colors">
               <X className="w-5 h-5" />
             </button>
