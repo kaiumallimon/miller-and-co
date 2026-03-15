@@ -115,7 +115,7 @@ export default function HomeHero() {
             variants={itemVariants}
             className={`${bodyFont.className} text-white text-base leading-relaxed max-w-lg`}
           >
-            Sydney based, top trusted Migration Law firm. We provide expert guidance and solutions for all your immigration needs. Trust our experienced team to navigate complex legal matters and ensure a smooth and successfull migration process.
+            Sydney based, top trusted Migration Law firm. We provide expert guidance and solutions for all your immigration needs. Trust our experienced team to navigate complex legal matters and ensure a smooth and successful migration process.
           </motion.p>
 
           {/* CTA */}

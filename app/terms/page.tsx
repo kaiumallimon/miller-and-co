@@ -11,7 +11,7 @@ const sections = [
     content: [
       {
         type: "p",
-        text: "Miller & Co Lawyers & Migration Agent Pty Ltd (trading as Miller & Co Lawyers & Migration Agents) services does not guarantee any outcome in relation to any application you may lodge in the future.",
+        text: "Miller & Co Lawyers & Migration Agents Pty Ltd (trading as Miller & Co Lawyers & Migration Agents) services do not guarantee any outcome in relation to any application you may lodge in the future.",
       },
       {
         type: "heading",
@@ -27,7 +27,7 @@ const sections = [
       },
       {
         type: "p",
-        text: "You will be deemed to have engaged the services of Miller & Co Lawyers & Migration Agent Pty Ltd upon payment of the Service fee. Once payment is received, an Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law will contact you to gather all information needed to prepare and submit your application to the Department of Home Affairs on your behalf. Miller & Co will agree to act on your behalf only if it forms the view that the application has a favourable chance of success, based on the initial assessment.",
+        text: "You will be deemed to have engaged the services of Miller & Co Lawyers & Migration Agents Pty Ltd upon payment of the Service fee. Once payment is received, an Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law will contact you to gather all information needed to prepare and submit your application to the Department of Home Affairs on your behalf. Miller & Co will agree to act on your behalf only if it forms the view that the application has a favourable chance of success, based on the initial assessment.",
       },
       {
         type: "heading",
@@ -53,7 +53,7 @@ const sections = [
     content: [
       {
         type: "p",
-        text: "When clients visit Miller & Co Lawyers & Migration Agent Pty Ltd website or send e-mails to us, you consent to communicating with us electronically and agree that all such communications (including agreements, notices, disclosure, etc.) satisfy all legal requirements to be in writing.",
+        text: "When clients visit Miller & Co Lawyers & Migration Agents Pty Ltd website or send e-mails to us, you consent to communicating with us electronically and agree that all such communications (including agreements, notices, disclosure, etc.) satisfy all legal requirements to be in writing.",
       },
       {
         type: "heading",
@@ -131,7 +131,7 @@ const sections = [
       },
       {
         type: "p",
-        text: "Miller & Co Lawyers & Migration Agent Pty Ltd will:",
+        text: "Miller & Co Lawyers & Migration Agents Pty Ltd will:",
       },
       {
         type: "list",
@@ -188,7 +188,7 @@ const sections = [
     content: [
       {
         type: "p",
-        text: "You may terminate this agreement at any time by giving Miller & Co Lawyers & Migration Agent Pty Ltd written notice. If you terminate the agreement, the date of termination is the date upon which written notice is received.",
+        text: "You may terminate this agreement at any time by giving Miller & Co Lawyers & Migration Agents Pty Ltd written notice. If you terminate the agreement, the date of termination is the date upon which written notice is received.",
       },
       {
         type: "p",
@@ -397,7 +397,7 @@ export default function TermsPage() {
             <p
               className={`${bodyFont.className} text-[#4a4a4a] text-base leading-relaxed mb-8`}
             >
-              Miller &amp; Co Lawyers &amp; Migration Agent Pty Ltd (trading as Miller &amp; Co
+              Miller &amp; Co Lawyers &amp; Migration Agents Pty Ltd (trading as Miller &amp; Co
               Lawyers &amp; Migration Agents) provides Australian Visa/Immigration services
               subject to the following terms and conditions.
             </p>
@@ -419,7 +419,7 @@ export default function TermsPage() {
                 },
                 {
                   term: '"Service"',
-                  def: 'One of the services provided by Miller & Co Lawyers & Migration Agent Pty Ltd.',
+                  def: 'One of the services provided by Miller & Co Lawyers & Migration Agents Pty Ltd.',
                 },
                 {
                   term: '"Application"',
