@@ -396,8 +396,8 @@ export default function BlogListClient({ onPostCount }: { onPostCount?: (count: 
           </div>
         ) : (
         <>
-        {/* ── Filter & search bar ─────────────────────────────────────────── */}
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between py-8 border-b border-white/6">
+        {/* ── Filter & search bar — only shown when there are posts ────────── */}
+        {posts.length > 0 && <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between py-8 border-b border-white/6">
           {/* Category pills */}
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((cat) => (
@@ -425,23 +425,72 @@ export default function BlogListClient({ onPostCount }: { onPostCount?: (count: 
               className={`${bodyFont.className} w-full bg-[#141414] border border-white/8 text-white/70 text-xs pl-9 pr-4 py-2.5 placeholder:text-white/20 focus:outline-none focus:border-[#c8a96e]/40 transition-colors`}
             />
           </div>
-        </div>
+        </div>}
 
         {/* ── No results ──────────────────────────────────────────────────── */}
         {filtered.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-4 py-32 text-center">
-            <BookOpen className="w-8 h-8 text-white/10" />
-            <p className={`${headlineFont.className} text-white/20 text-xl`}>No articles found</p>
-            <p className={`${bodyFont.className} text-white/15 text-xs`}>
-              Try a different category or search term
-            </p>
-            <button
-              onClick={() => { setActiveCategory("All"); setSearch(""); }}
-              className={`${bodyFont.className} text-xs text-[#c8a96e] hover:text-[#d4b87a] transition-colors mt-2 cursor-pointer`}
-            >
-              Clear filters
-            </button>
-          </div>
+          posts.length === 0 ? (
+            /* ── Genuine empty blog — no posts published yet ─────────────── */
+            <div className="flex flex-col items-center gap-14 py-24 lg:py-32">
+              {/* Icon */}
+              <div className="w-16 h-16 flex items-center justify-center border border-[#c8a96e]/20 bg-[#c8a96e]/5">
+                <BookOpen className="w-7 h-7 text-[#c8a96e]/60" />
+              </div>
+
+              {/* Copy */}
+              <div className="flex flex-col items-center gap-4 text-center max-w-xl">
+                <span className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
+                  Coming Soon
+                </span>
+                <h2 className={`${headlineFont.className} text-[#faf8f5] text-3xl sm:text-4xl font-semibold leading-tight`}>
+                  Expert Insights Are on Their Way
+                </h2>
+                <p className={`${bodyFont.className} text-white/40 text-sm leading-relaxed`}>
+                  Our team is preparing in-depth commentary on Australian migration law,
+                  visa pathways, and policy changes. Check back soon — or get in touch
+                  directly if you have an immigration question that can&apos;t wait.
+                </p>
+              </div>
+
+              {/* Teaser topics */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/6 border border-white/6 w-full max-w-3xl">
+                {[
+                  { label: "Employer-Sponsored Visas", sub: "482 / 186 pathways explained" },
+                  { label: "Partner & Family Visas", sub: "Eligibility, timelines & common pitfalls" },
+                  { label: "ART Appeals", sub: "What to do after a refusal" },
+                ].map((topic) => (
+                  <div key={topic.label} className="flex flex-col gap-1.5 bg-[#141414] px-6 py-6">
+                    <p className={`${headlineFont.className} text-[#faf8f5] text-base font-medium`}>{topic.label}</p>
+                    <p className={`${bodyFont.className} text-white/30 text-xs`}>{topic.sub}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <a
+                href="/contact"
+                className={`${bodyFont.className} inline-flex items-center gap-2 px-6 py-3 bg-[#c8a96e] text-[#0f0f0f] text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#d4b87a] transition-colors duration-300`}
+              >
+                Speak to a Lawyer Now
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          ) : (
+            /* ── Filter / search returned nothing ────────────────────────── */
+            <div className="flex flex-col items-center justify-center gap-4 py-32 text-center">
+              <BookOpen className="w-8 h-8 text-white/10" />
+              <p className={`${headlineFont.className} text-white/20 text-xl`}>No articles found</p>
+              <p className={`${bodyFont.className} text-white/15 text-xs`}>
+                Try a different category or search term
+              </p>
+              <button
+                onClick={() => { setActiveCategory("All"); setSearch(""); }}
+                className={`${bodyFont.className} text-xs text-[#c8a96e] hover:text-[#d4b87a] transition-colors mt-2 cursor-pointer`}
+              >
+                Clear filters
+              </button>
+            </div>
+          )
         ) : (
           <div className="pt-10 flex flex-col gap-10">
             {/* Featured — page 1 only */}
