@@ -27,7 +27,7 @@ const sections = [
       },
       {
         type: "p",
-        text: "You will be deemed to have engaged the services of Miller & Co Lawyers & Migration Agent Pty Ltd upon payment of the Service fee. Once payment is received, an Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law will contact you to gather all information needed to prepare and submit your application to the Department of Immigration on your behalf. Miller & Co will agree to act on your behalf only if it forms the view that the application has a favourable chance of success, based on the initial assessment.",
+        text: "You will be deemed to have engaged the services of Miller & Co Lawyers & Migration Agent Pty Ltd upon payment of the Service fee. Once payment is received, an Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law will contact you to gather all information needed to prepare and submit your application to the Department of Home Affairs on your behalf. Miller & Co will agree to act on your behalf only if it forms the view that the application has a favourable chance of success, based on the initial assessment.",
       },
       {
         type: "heading",
@@ -39,7 +39,7 @@ const sections = [
       },
       {
         type: "p",
-        text: "There are three scheduled times of the year during which the Department of Immigration legislation, policy and processing fees undergo significant amendment — 1 March, 1 July and 1 November. Miller & Co cannot be held responsible for any inaccuracy arising from changes to such legislation and policy which are not publicly available at the time the service is provided.",
+        text: "There are three scheduled times of the year during which the Department of Home Affairs legislation, policy and processing fees undergo significant amendment — 1 March, 1 July and 1 November. Miller & Co cannot be held responsible for any inaccuracy arising from changes to such legislation and policy which are not publicly available at the time the service is provided.",
       },
       {
         type: "note",
@@ -77,7 +77,7 @@ const sections = [
       },
       {
         type: "p",
-        text: "All amounts paid by you within Australia are subject to a 10% Goods and Services Tax (GST). This amount is included in all fees displayed on the website or quoted by staff. Fees paid from outside of Australia do not attract GST. There is no GST applicable to the Department of Immigration lodgement fees.",
+        text: "All amounts paid by you within Australia are subject to a 10% Goods and Services Tax (GST). This amount is included in all fees displayed on the website or quoted by staff. Fees paid from outside of Australia do not attract GST. There is no GST applicable to the Department of Home Affairs lodgement fees.",
       },
     ],
   },
@@ -151,7 +151,7 @@ const sections = [
     content: [
       {
         type: "p",
-        text: "As your representative before the Department of Immigration, it is imperative that you consult your migration agent before communicating with the Department of Immigration or taking any action which may affect your visa status or application. The types of events which could affect the application include:",
+        text: "As your representative before the Department of Home Affairs, it is imperative that you consult your migration agent before communicating with the Department of Home Affairs or taking any action which may affect your visa status or application. The types of events which could affect the application include:",
       },
       {
         type: "list",
@@ -164,7 +164,7 @@ const sections = [
       },
       {
         type: "p",
-        text: "It is essential that Miller & Co be advised of any changes of address or contact details in a timely manner. Migration legislation deems a person to have received the Department of Immigration correspondence if it was sent to the last known address given to the Department of Immigration regardless of whether or not they have in fact received it.",
+        text: "It is essential that Miller & Co be advised of any changes of address or contact details in a timely manner. Migration legislation deems a person to have received Department of Home Affairs correspondence if it was sent to the last known address given to the Department of Home Affairs regardless of whether or not they have in fact received it.",
       },
     ],
   },
@@ -174,7 +174,7 @@ const sections = [
     content: [
       {
         type: "p",
-        text: "It is difficult to predict the time taken to complete the service. This will be dependent on the service purchased and the speed with which information is received from the client, as well as the time taken by the relevant third party body and/or the Department of Immigration to process the respective applications.",
+        text: "It is difficult to predict the time taken to complete the service. This will be dependent on the service purchased and the speed with which information is received from the client, as well as the time taken by the relevant third party body and/or the Department of Home Affairs to process the respective applications.",
       },
       {
         type: "p",

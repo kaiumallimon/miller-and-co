@@ -14,7 +14,7 @@ export interface FaqItem {
 const FALLBACK_FAQS: FaqItem[] = [
   {
     q: "Is there a guarantee of success?",
-    a: "We are not in the position of granting visas. The decision to grant or refuse a visa solely belongs to the Department of Immigration (DOHA). However, we do guarantee that we will do all that it takes — starting from preparation of documents, submissions and all communication with your allocated DOHA case manager — in order to receive the most favourable outcome. We will fight for you till the end!",
+    a: "We are not in the position of granting visas. The decision to grant or refuse a visa solely belongs to the Department of Home Affairs. However, we do guarantee that we will do all that it takes — starting from preparation of documents, submissions and all communication with your allocated Department of Home Affairs case officer — in order to receive the most favourable outcome. We will fight for you till the end!",
   },
   {
     q: "How long is the process?",
@@ -22,7 +22,7 @@ const FALLBACK_FAQS: FaqItem[] = [
   },
   {
     q: "What are the fees like?",
-    a: "We do not charge hourly rates to our clients. We provide a lump sum agreement, with all fees broken down and paid for each individual bulk of work completed and invoiced. This approach enables our clients to track the progress of a visa preparation from the start to the final stage of submitting an application with the DOHA.",
+    a: "We do not charge hourly rates to our clients. We provide a lump sum agreement, with all fees broken down and paid for each individual bulk of work completed and invoiced. This approach enables our clients to track the progress of a visa preparation from the start to the final stage of submitting an application with the Department of Home Affairs.",
   },
   {
     q: "How much for the initial consultation?",
