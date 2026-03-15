@@ -3,54 +3,93 @@ import CustomHeader from "@/components/custom/shared/header";
 import Footer from "@/components/custom/shared/footer";
 import { headlineFont, bodyFont } from "@/lib/typographies";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
-import { Lock, UserCheck, Share2, Database, ArrowRight } from "lucide-react";
+import { Lock, UserCheck, Share2, Database, ArrowRight, ShieldCheck, Scale, Globe } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Miller & Co. Migration Lawyers",
   description:
-    "Read the privacy policy for Miller & Co Lawyers & Migration Agents Pty Ltd regarding the collection, use and disclosure of personal information.",
+    "Australian Privacy Principles (APP) compliant privacy policy for Miller & Co Lawyers & Migration Agents Pty Ltd, including collection, use, disclosure, access, correction and complaint handling.",
 };
 
 const COMPANY = "Miller & Co Lawyers & Migration Agents Pty Ltd (trading as Miller & Co Lawyers & Migration Agents)";
+const CONTACT_EMAIL = "info@visa-australia.legal";
+const CONTACT_PHONE = "+61 2 8095 6369";
+const CONTACT_ADDRESS = "Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction NSW 2022, Australia";
 
 const privacySections = [
   {
     number: "01",
-    icon: Database,
-    title: "Collection of Information",
+    icon: ShieldCheck,
+    title: "APP 1 — Open & Transparent Management",
     paragraphs: [
-      `Personal information will only be collected with your consent.`,
-      `Depending on the service you require, we may ask you to provide information such as your name, email address or your educational or employment history, but it is your choice whether to respond or not.`,
-      `We will not collect personal information secretly or in an improper manner.`,
+      `${COMPANY} manages personal information in accordance with the Privacy Act 1988 (Cth), including the Australian Privacy Principles (APPs).`,
+      `This Privacy Policy explains what personal information we collect, how we use and disclose it, how you can access or correct it, and how to lodge a privacy complaint.`,
+      `We review this policy periodically and update it where legal, operational, or technological changes require.`
     ],
   },
   {
     number: "02",
-    icon: UserCheck,
-    title: "Use of Information",
-    bullets: [
-      "Information will only be used for the purpose for which it was collected.",
-      `Information may be used to keep you better informed about services provided by ${COMPANY} — such as by way of a newsletter or other communication medium.`,
-      "Personal information will not be used for a secondary purpose unless required by law enforcement authorities.",
+    icon: Database,
+    title: "APP 2, APP 3 & APP 4 — Collection of Personal Information",
+    paragraphs: [
+      `We collect personal information that is reasonably necessary for our legal and migration services, including your name, contact details, visa and immigration history, identity documents, employment and education history, and other information relevant to your matter.`,
+      `Where necessary to provide legal services, we may collect sensitive information (for example, health, biometric, criminal history, or other sensitive data) with your consent or where otherwise permitted by law.`,
+      `We generally collect personal information directly from you through website forms, email, phone calls, consultations, onboarding forms, and supporting documents you provide. We may also collect from third parties (such as the Department of Home Affairs, ART, courts, medical providers, employers, referees, or other agents) where authorised by you or required/permitted by law.`,
+      `If we receive unsolicited personal information and it is not reasonably necessary for our functions and activities, we will destroy or de-identify it where lawful and practicable.`
     ],
   },
   {
     number: "03",
-    icon: Share2,
-    title: "Disclosure",
-    paragraphs: [
-      `Information will only be used or disclosed for the purpose for which it was collected. However, personal information will be disclosed for a secondary purpose or disclosed to a third party to provide the services you require or if required by law enforcement authorities.`,
-      `We may provide your personal information to third parties to continue to provide you with the services for which you originally supplied the information.`,
+    icon: UserCheck,
+    title: "APP 5 — Collection Notice",
+    bullets: [
+      `We collect your personal information so we can assess your enquiry, provide legal and migration advice, prepare and lodge applications, communicate with government bodies and third parties, manage billing and administration, and comply with legal/professional obligations.`,
+      `If you do not provide requested information, we may be unable to assess your eligibility, progress your matter, or provide complete legal services.`,
+      `Our collection notices are provided at or before the time of collection (including on our contact form and engagement documents).`,
     ],
   },
   {
     number: "04",
-    icon: Lock,
-    title: "Your Rights & The Privacy Act",
+    icon: Share2,
+    title: "APP 6, APP 7, APP 8 & APP 9 — Use, Disclosure, Direct Marketing, Overseas Disclosure & Government Identifiers",
     paragraphs: [
-      `This Privacy Policy has been drafted with regard to the Privacy Act 1988 (Cth). You have the right to access personal information that ${COMPANY} holds about you and to request corrections where the information is inaccurate, out of date, incomplete or misleading.`,
-      `To request access to or correction of your personal information, or to make a privacy complaint, please contact us at info@visa-australia.legal.`,
+      `We use and disclose personal information primarily for the purpose for which it was collected and for related purposes you would reasonably expect. This includes disclosure to government agencies, tribunals, courts, barristers/experts, interpreters/translators, technology providers, and other service providers who assist us to deliver services.`,
+      `We may disclose personal information where required or authorised by law, court order, professional conduct rules, or to protect legal rights.`,
+      `We do not sell personal information. We do not use personal information for unrelated direct marketing without consent or other legal basis. You may opt out of marketing communications at any time.`,
+      `Some service providers may store or process data outside Australia (for example, cloud-based communication and document systems). Where overseas disclosure occurs, we take reasonable steps to ensure privacy protections are in place consistent with APP 8.`,
+      `Government-related identifiers (such as passport details or visa reference numbers) are used only where reasonably necessary for legal/migration service delivery or as required by law.`
+    ],
+  },
+  {
+    number: "05",
+    icon: Lock,
+    title: "APP 10, APP 11, APP 12 & APP 13 — Data Quality, Security, Access, Correction & Complaints",
+    paragraphs: [
+      `We take reasonable steps to ensure personal information is accurate, up to date, complete and relevant, and we implement safeguards to protect information from misuse, interference, loss, and unauthorised access, modification or disclosure.`,
+      `You may request access to personal information we hold about you and request correction if it is inaccurate, out of date, incomplete, irrelevant, or misleading. In limited circumstances permitted by law, access may be refused and we will provide reasons.`,
+      `You can make a privacy complaint by contacting us using the details below. We aim to acknowledge complaints promptly and provide a substantive response within a reasonable time (generally within 30 days). If you are dissatisfied, you may complain to the Office of the Australian Information Commissioner (OAIC).`,
+      `Retention: we keep personal information only for as long as required for legal, regulatory, professional indemnity, and operational purposes, after which information is securely destroyed or de-identified where lawful and practicable.`
+    ],
+  },
+  {
+    number: "06",
+    icon: Globe,
+    title: "Website, Cookies & Analytics",
+    paragraphs: [
+      `Our website may use cookies and similar technologies for security, performance, and analytics. Some technical information (such as IP address, browser type, and device data) may be collected automatically when you visit our site.`,
+      `You can control cookies through your browser settings; however, some website functions may be affected if cookies are disabled.`
+    ],
+  },
+  {
+    number: "07",
+    icon: Scale,
+    title: "How to Contact Us",
+    bullets: [
+      `Email: ${CONTACT_EMAIL}`,
+      `Phone: ${CONTACT_PHONE}`,
+      `Address: ${CONTACT_ADDRESS}`,
+      "Please include your full name, preferred contact details, and sufficient detail to identify the matter when making an access, correction, or complaint request."
     ],
   },
 ];
@@ -84,7 +123,7 @@ export default function PrivacyPolicyPage() {
             </StaggerItem>
             <StaggerItem>
               <p className={`${bodyFont.className} text-white/35 text-base leading-relaxed max-w-xl`}>
-                This Privacy Policy sets out the approach ${COMPANY.split(" (")[0]} will take in relation to the collection, use and disclosure of your personal information under the Privacy Act 1988.
+                This policy explains how we collect, hold, use and disclose your personal information under the Privacy Act 1988 (Cth) and the Australian Privacy Principles.
               </p>
             </StaggerItem>
           </StaggerContainer>
@@ -164,7 +203,10 @@ export default function PrivacyPolicyPage() {
                 Questions about your privacy?
               </p>
               <p className={`${bodyFont.className} text-white/35 text-base`}>
-                Contact us to access, correct or enquire about personal information we hold.
+                Contact us to request access/correction of your personal information or to lodge a privacy complaint.
+              </p>
+              <p className={`${bodyFont.className} text-white/45 text-sm`}>
+                {CONTACT_EMAIL} · {CONTACT_PHONE}
               </p>
             </div>
             <a
@@ -177,6 +219,8 @@ export default function PrivacyPolicyPage() {
           </div>
         </AnimateIn>
       </section>
+
+      <Footer />
 
     </div>
   );

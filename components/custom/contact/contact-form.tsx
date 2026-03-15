@@ -249,8 +249,8 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                 )}
               </AnimatePresence>
 
-              {/* Submit + Privacy consent */}
-              <StaggerItem className="flex flex-col gap-3">
+              {/* Submit + APP collection notice */}
+              <StaggerItem className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-4 md:gap-5 items-start">
                 <Button
                   type="submit"
                   disabled={status === "loading"}
@@ -274,37 +274,34 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                   )}
                 </Button>
 
-                {/* Privacy consent notice */}
-                <p className={`${bodyFont.className} text-[12px] leading-relaxed ${
-                  dark ? "text-white/25" : "text-[#1a1a1a]/40"
+                <div className={`border px-4 py-3 ${
+                  dark ? "border-white/10 bg-white/4" : "border-[#1a1a1a]/12 bg-[#faf8f5]"
                 }`}>
-                  By submitting this form you consent to Miller &amp; Co Lawyers &amp; Migration Agents Pty Ltd
-                  collecting and using the personal information provided to respond to your enquiry and
-                  deliver our legal services, in accordance with the{" "}
-                  <a
-                    href="/privacy-policy"
-                    className={`underline underline-offset-2 transition-colors duration-200 ${
-                      dark
-                        ? "text-white/40 hover:text-[#c8a96e]"
-                        : "text-[#1a1a1a]/60 hover:text-[#c8a96e]"
-                    }`}
-                  >
-                    Privacy Act 1988 (Cth)
-                  </a>{" "}
-                  and our{" "}
-                  <a
-                    href="/privacy-policy"
-                    className={`underline underline-offset-2 transition-colors duration-200 ${
-                      dark
-                        ? "text-white/40 hover:text-[#c8a96e]"
-                        : "text-[#1a1a1a]/60 hover:text-[#c8a96e]"
-                    }`}
-                  >
-                    Privacy Policy
-                  </a>
-                  . Your information will not be disclosed to third parties except as required by law or to
-                  facilitate your immigration matter.
-                </p>
+                  <p className={`${bodyFont.className} text-[11px] font-semibold tracking-[0.18em] uppercase mb-1.5 ${
+                    dark ? "text-[#c8a96e]/85" : "text-[#756341]"
+                  }`}>
+                    Collection Notice
+                  </p>
+                  <p className={`${bodyFont.className} text-[12px] leading-relaxed ${
+                    dark ? "text-white/35" : "text-[#1a1a1a]/55"
+                  }`}>
+                    We collect your personal information to assess and respond to your enquiry and provide legal and migration services.
+                    If this information is not provided, we may be unable to progress your matter. We may disclose information to government
+                    agencies, tribunals, and service providers where necessary to act for you or as required by law. For details about overseas
+                    disclosures, access/correction requests, and complaints, see our{" "}
+                    <a
+                      href="/privacy-policy"
+                      className={`underline underline-offset-2 transition-colors duration-200 ${
+                        dark
+                          ? "text-white/55 hover:text-[#c8a96e]"
+                          : "text-[#1a1a1a]/75 hover:text-[#c8a96e]"
+                      }`}
+                    >
+                      Privacy Policy
+                    </a>
+                    .
+                  </p>
+                </div>
               </StaggerItem>
 
             </StaggerContainer>

@@ -96,10 +96,10 @@ const SERVICE_CATEGORIES = [
           "Five-year provisional visa for skilled workers nominated by a state or sponsored by an eligible relative in a designated regional area of Australia.",
       },
       {
-        label: "Skilled Regional Resident Visa",
-        sub: "Subclass 489 (legacy)",
+        label: "Skilled Regional Resident Visa (Legacy Pathway)",
+        sub: "Subclass 489 (legacy only — closed to new applicants)",
         detail:
-          "Permanent pathway for holders of the Subclass 489 provisional visa who have lived and worked in a specified regional area.",
+          "Legacy pathway for existing Subclass 489 holders only. This pathway is not open to new primary applications and is included for current 489 visa holders seeking transition guidance.",
       },
     ],
     highlights: [
@@ -178,38 +178,54 @@ const SERVICE_CATEGORIES = [
     ],
   },
   {
-    id: "global-talent",
+    id: "national-innovation-visa",
     icon: Star,
-    label: "National Innovation visa",
-    tagline: "Fast-tracked pathways for exceptional talent",
+    label: "National Innovation Visa",
+    tagline: "Subclass 858 for exceptional global talent",
     description:
-      "For individuals at the top of their field, or those seeking to formalise their connection to Australia, we offer expert guidance on the Global Talent program and Australian citizenship applications.",
+      "Focused guidance for high-achieving individuals pursuing the National Innovation Visa (Subclass 858), with a strategy tailored to evidentiary thresholds and nomination requirements.",
     services: [
       {
-        label: "National Innovation visa",
+        label: "National Innovation Visa",
         sub: "Subclass 858",
         detail:
-          "Permanent residence for individuals with exceptional achievement in a target sector — including AgriFood, CleanTech, CyberSecurity, FinTech, MedTech, Infrastructure, and Space & Advanced Manufacturing.",
-      },
-      {
-        label: "Australian Citizenship",
-        sub: "By conferral",
-        detail:
-          "Assistance with citizenship applications including eligibility assessment, residence calculations, character and identity documentation, and the citizenship test.",
+          "Permanent residence pathway for individuals with exceptional achievement in target sectors including AgriFood, CleanTech, CyberSecurity, FinTech, MedTech, Infrastructure, and Space & Advanced Manufacturing.",
       },
     ],
     highlights: [
       "Sector-specific endorser identification",
       "Exceptional achievement portfolio preparation",
+      "Evidence and narrative strategy",
+      "Nomination and lodgement support",
+    ],
+  },
+  {
+    id: "australian-citizenship",
+    icon: Users,
+    label: "Australian Citizenship",
+    tagline: "Clear guidance from eligibility to ceremony",
+    description:
+      "Dedicated citizenship support for eligible permanent residents, including eligibility analysis, residence calculations, documentation checks, and preparation for each stage of the process.",
+    services: [
+      {
+        label: "Australian Citizenship",
+        sub: "By conferral",
+        detail:
+          "Assistance with citizenship applications including eligibility assessment, residence calculations, character and identity documentation, and citizenship test preparation.",
+      },
+    ],
+    highlights: [
       "Citizenship eligibility assessments",
+      "Residence and absences calculation",
+      "Application and document preparation",
       "Naturalisation ceremony guidance",
     ],
   },
   {
     id: "legal-advisory",
     icon: Scale,
-    label: "Legal Advice & Appeals",
-    tagline: "Expert representation when decisions go wrong",
+    label: "Reviews / Refusals / ART Matters",
+    tagline: "Strategic representation when decisions go wrong",
     description:
       "When a visa is refused or cancelled, the consequences can be life-changing. Our Australian legal practitioners holding current practising certificates in NSW specializing in Migration Law provide robust representation before the Administrative Review Tribunal (ART) and strategic legal advice on complex immigration matters.",
     services: [
