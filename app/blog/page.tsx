@@ -58,10 +58,10 @@ export default function BlogPage() {
             <StaggerItem>
               <p className={`${bodyFont.className} text-white/40 text-base leading-relaxed max-w-lg`}>
                 Expert commentary on Australian migration law, visa pathways,
-                and immigration policy — from our team of registered migration lawyers.
+                and immigration policy — from our team of Australian legal practitioners holding current practising certificates in NSW specializing in Migration Law.
               </p>
             </StaggerItem>
-            
+
           </StaggerContainer>
         </div>
 

@@ -107,7 +107,7 @@ export default function Footer() {
 
               {/* Registration note */}
               <div className={`${bodyFont.className} flex flex-col gap-1 pt-2 border-t border-white/6`}>
-                <span className="text-[#c8a96e] text-[11px] tracking-[0.25em] uppercase font-semibold">Registered Migration Lawyer</span>
+                <span className="text-[#c8a96e] text-[11px] tracking-[0.25em] uppercase font-semibold">Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law</span>
                 <span className="text-white/90 text-[12px]">LPN: 5511850</span>
               </div>
             </StaggerItem>

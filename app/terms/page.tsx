@@ -27,7 +27,7 @@ const sections = [
       },
       {
         type: "p",
-        text: "You will be deemed to have engaged the services of Miller & Co Lawyers & Migration Agent Pty Ltd upon payment of the Service fee. Once payment is received, a Registered Migration Lawyer will contact you to gather all information needed to prepare and submit your application to the Department of Immigration on your behalf. Miller & Co will agree to act on your behalf only if it forms the view that the application has a favourable chance of success, based on the initial assessment.",
+        text: "You will be deemed to have engaged the services of Miller & Co Lawyers & Migration Agent Pty Ltd upon payment of the Service fee. Once payment is received, an Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law will contact you to gather all information needed to prepare and submit your application to the Department of Immigration on your behalf. Miller & Co will agree to act on your behalf only if it forms the view that the application has a favourable chance of success, based on the initial assessment.",
       },
       {
         type: "heading",

@@ -12,7 +12,7 @@ const CREDENTIALS = [
   {
     icon: BadgeCheck,
     label: "Registration No. LPN: 5511850",
-    sub: "NSW Registered Migration Lawyer",
+    sub: "Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law",
   },
   {
     icon: GraduationCap,
@@ -60,7 +60,7 @@ export default function PrincipalSection() {
                   <span
                     className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.25em] uppercase`}
                   >
-                    NSW Registered Migration Lawyer
+                    Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law
                   </span>
                 </div>
               </div>

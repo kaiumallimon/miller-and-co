@@ -211,7 +211,7 @@ const SERVICE_CATEGORIES = [
     label: "Legal Advice & Appeals",
     tagline: "Expert representation when decisions go wrong",
     description:
-      "When a visa is refused or cancelled, the consequences can be life-changing. Our registered migration lawyers provide robust representation before the Administrative Review Tribunal (ART) and strategic legal advice on complex immigration matters.",
+      "When a visa is refused or cancelled, the consequences can be life-changing. Our Australian legal practitioners holding current practising certificates in NSW specializing in Migration Law provide robust representation before the Administrative Review Tribunal (ART) and strategic legal advice on complex immigration matters.",
     services: [
       {
         label: "Visa Refusal & ART Appeal",

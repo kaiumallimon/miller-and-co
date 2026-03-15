@@ -10,7 +10,7 @@ import CtaSection from "@/components/custom/home/cta-section";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Miller & Co Lawyers & Migration Agents — a Sydney-based migration law firm led by Edward Miller, Principal Migration Lawyer. With over 10,000 successful cases, we help individuals, families, and businesses navigate Australia's immigration system.",
+    "Learn about Miller & Co Lawyers & Migration Agents — a Sydney-based migration law firm led by Edward Miller, an Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law. With over 10,000 successful cases, we help individuals, families, and businesses navigate Australia's immigration system.",
 };
 
 export default function AboutPage() {
