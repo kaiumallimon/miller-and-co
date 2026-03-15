@@ -158,10 +158,16 @@ export default function Footer() {
               <ul className="flex flex-col gap-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-3.5 h-3.5 text-[#c8a96e] shrink-0 mt-0.5" />
-                  <span className={`${bodyFont.className} text-white/90 text-sm leading-relaxed`}>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Level+22%2C+Westfield+Tower+Two%2C+101+Grafton+Street%2C+Bondi+junction"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${bodyFont.className} text-white/90 text-sm leading-relaxed hover:text-[#c8a96e] transition-colors duration-300`}
+                    aria-label="Open office address in Google Maps"
+                  >
                     Level 22, Westfield Tower Two,<br />
-                    101 Grafton Street, Bondi Junction
-                  </span>
+                    101 Grafton Street, Bondi junction
+                  </a>
                 </li>
                 <li>
                   <a

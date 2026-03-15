@@ -39,7 +39,7 @@ export default function HomeHero() {
   const contactInfo = {
     phone: "+61 2 8095 6369",
     email: "info@visa-australia.legal",
-    address: "Level 22, Westfield Tower Two, 101 Grafton Street, Bondi Junction"
+    address: "Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction"
   }
 
   return (
@@ -158,7 +158,7 @@ export default function HomeHero() {
             </a>
             <span className="flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 shrink-0" />
-              Level 22, Westfield Tower Two, 101 Grafton Street, Bondi Junction
+              Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction
             </span>
           </motion.div>
         </motion.div>

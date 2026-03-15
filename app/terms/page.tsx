@@ -411,7 +411,7 @@ export default function TermsPage() {
               {[
                 {
                   term: '"We", "Our", "Us", "Miller & Co"',
-                  def: 'Edward Miller, principal place of business at Level 26, 44 Market Street, Sydney 2000, including all directors, employees, agents and sub-contractors.',
+                  def: 'Edward Miller, principal place of business at Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction, including all directors, employees, agents and sub-contractors.',
                 },
                 {
                   term: '"Client", "You", "Your"',

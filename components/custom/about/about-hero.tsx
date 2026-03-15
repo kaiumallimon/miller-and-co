@@ -109,7 +109,7 @@ export default function AboutHero() {
             className={`${bodyFont.className} flex items-center gap-2 mt-4 pt-8 border-t border-white/20 text-white/90 text-xs`}
           >
             <MapPin className="w-3.5 h-3.5 shrink-0 text-[#c8a96e]" />
-            Level 22, Westfield Tower Two, 101 Grafton Street, Bondi Junction
+            Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction
           </motion.div>
         </motion.div>
 

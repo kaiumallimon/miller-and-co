@@ -5,6 +5,21 @@ import PreloaderClient from "@/components/PreloaderClient";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import ConditionalShell from "@/components/ConditionalShell";
 
+const legalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: "Miller & Co Lawyers & Migration Agents",
+  url: "https://www.visa-australia.legal",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Level 22, Westfield Tower Two, 101 Grafton Street",
+    addressLocality: "Bondi junction",
+    addressRegion: "NSW",
+    postalCode: "2022",
+    addressCountry: "AU",
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.visa-australia.legal"),
   title: {
@@ -25,7 +40,7 @@ export const metadata: Metadata = {
     "investment visa Australia",
     "administrative review tribunal (ART) migration",
     "Australian citizenship",
-    "Bondi Junction immigration lawyer",
+    "Bondi junction immigration lawyer",
     "Miller and Co migration",
     "visa-australia.legal",
   ],
@@ -79,6 +94,10 @@ export default function RootLayout({
             document.documentElement.style.visibility = 'hidden';
           }
         ` }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(legalServiceSchema) }}
+        />
       </head>
       <body
         className={`${bodyFont.className} ${headlineFont.variable} antialiased`}
