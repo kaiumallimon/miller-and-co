@@ -105,7 +105,7 @@ export default function CustomHeader() {
 
       {/* Main header */}
       <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-500 overflow-x-hidden ${isScrolled ? "top-0" : "top-9"
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "top-0" : "top-9"
           } ${isScrolled
             ? "bg-[#0f0f0f]/90 backdrop-blur-xl shadow-2xl shadow-black/40 border-b border-white/8"
             : "bg-linear-to-b from-black/50 to-transparent"
