@@ -13,7 +13,7 @@ export default function ConditionalShell() {
   return (
     <>
       <Footer />
-      {/* <WhatsAppFab /> */}
+      <WhatsAppFab />
     </>
   );
 }

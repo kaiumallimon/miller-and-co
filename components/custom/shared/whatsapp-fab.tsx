@@ -18,7 +18,7 @@ export default function WhatsAppFab() {
   if (!ready) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-9999 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 left-6 z-9999 flex flex-col items-start gap-3">
       {/* Tooltip */}
       <div
         className={`${bodyFont.className} flex items-center gap-2 bg-[#1a1a1a] text-white text-xs font-medium tracking-wide px-4 py-2.5 shadow-xl whitespace-nowrap transition-all duration-300 ${
