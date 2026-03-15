@@ -41,7 +41,7 @@ const SERVICE_CATEGORIES = [
         label: "Employer Sponsored Visa",
         sub: "Subclass 482",
         detail:
-          "Temporary Skill Shortage (TSS) visa allows employers to address labour shortages by sponsoring skilled overseas workers. We handle Standard and Labour Agreement streams.",
+          "Skills in Demand (SID) visa allows employers to address labour shortages by sponsoring skilled overseas workers. We handle Standard and Labour Agreement streams.",
       },
       {
         label: "Employer Sponsored Permanent Visa",
@@ -53,13 +53,13 @@ const SERVICE_CATEGORIES = [
         label: "Start-Up Business Sponsored Visa",
         sub: "Subclass 482",
         detail:
-          "Tailored sponsorship strategies for emerging businesses and start-ups seeking to attract niche international talent under the TSS framework.",
+          "Tailored sponsorship strategies for emerging businesses and start-ups seeking to attract niche international talent under the SID visa.",
       },
       {
         label: "Training Visa",
         sub: "Subclass 407",
         detail:
-          "For occupational training to improve skills in a nominee's current occupation, or work-based training for overseas students and recent graduates.",
+          "For occupational training to improve skills in a nominee's current occupation, or full time work-based training.",
       },
     ],
     highlights: [
@@ -233,7 +233,7 @@ const SERVICE_CATEGORIES = [
         label: "Visa Refusal & ART Appeal",
         sub: null,
         detail:
-          "Merits review of refusals and cancellations before the Administrative Appeals Tribunal. We analyse the delegate's decision, prepare written submissions, and represent clients at hearings.",
+          "Merits review of refusals and cancellations before the Administrative Review Tribunal. We analyse the delegate's decision, prepare written submissions, and represent clients at hearings.",
       },
       {
         label: "Migration Legal Advice",

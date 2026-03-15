@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 import { adminDb } from "@/lib/firebase/admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { writeLog } from "@/lib/logger";
+import { consumeRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface ContactPayload {
@@ -12,28 +13,19 @@ interface ContactPayload {
   subject: string;
   message: string;
   _honeypot?: string; // must be empty — filled only by bots
+  formStartedAt?: number;
 }
 
-// ─── In-memory rate limiter ────────────────────────────────────────────────────
-// Limits each IP to MAX_REQUESTS per WINDOW_MS
-const WINDOW_MS = 60 * 1000; // 1 minute
+const WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS = 3;
+const MIN_HUMAN_FILL_MS = 2500;
 
-const ipMap = new Map<string, { count: number; resetAt: number }>();
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = ipMap.get(ip);
-
-  if (!entry || now > entry.resetAt) {
-    ipMap.set(ip, { count: 1, resetAt: now + WINDOW_MS });
-    return false;
-  }
-
-  if (entry.count >= MAX_REQUESTS) return true;
-
-  entry.count += 1;
-  return false;
+function looksLikeLinkSpam(input: string): boolean {
+  const lower = input.toLowerCase();
+  const httpCount = (lower.match(/http:\/\//g) ?? []).length;
+  const httpsCount = (lower.match(/https:\/\//g) ?? []).length;
+  const wwwCount = (lower.match(/www\./g) ?? []).length;
+  return httpCount + httpsCount + wwwCount >= 2;
 }
 
 // ─── Origin / Referer guard ────────────────────────────────────────────────────
@@ -86,13 +78,13 @@ export async function POST(req: NextRequest) {
   }
 
   // 3. Rate limiting (by forwarded IP or socket IP)
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  if (isRateLimited(ip)) {
+  const ip = getClientIp(req.headers);
+  const rate = consumeRateLimit(`contact:${ip}`, MAX_REQUESTS, WINDOW_MS);
+  if (!rate.allowed) {
     console.warn("[contact] Rate limited IP:", ip);
     return NextResponse.json(
       { error: "Too many requests. Please wait a moment and try again." },
-      { status: 429 }
+      { status: 429, headers: { "Retry-After": String(rate.retryAfterSec) } }
     );
   }
 
@@ -104,12 +96,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { name, email, phone, subject, message, _honeypot } = body;
+  const { name, email, phone, subject, message, _honeypot, formStartedAt } = body;
 
   // 5. Honeypot check — bots fill hidden fields, humans don't
   if (_honeypot && _honeypot.length > 0) {
     console.warn("[contact] Honeypot triggered — blocked bot submission");
     return NextResponse.json({ success: true });
+  }
+
+  // 5b. Time-trap heuristic: block submissions that are unrealistically fast
+  if (
+    typeof formStartedAt === "number" &&
+    Number.isFinite(formStartedAt) &&
+    Date.now() - formStartedAt < MIN_HUMAN_FILL_MS
+  ) {
+    console.warn("[contact] Time-trap triggered — blocked fast submission");
+    return NextResponse.json({ error: "Please try again." }, { status: 400 });
   }
 
   // 6. Required field validation
@@ -133,6 +135,11 @@ export async function POST(req: NextRequest) {
   const safePhone = phone ? sanitise(phone) : "Not provided";
   const safeSubject = sanitise(subject);
   const safeMessage = sanitise(message);
+
+  if (looksLikeLinkSpam(`${safeSubject} ${safeMessage}`)) {
+    console.warn("[contact] Link-spam heuristic triggered");
+    return NextResponse.json({ error: "Please remove promotional links and try again." }, { status: 400 });
+  }
 
   // 8. Build and send email
   const transporter = createTransporter();

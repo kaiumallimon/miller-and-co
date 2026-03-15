@@ -1,8 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase/admin";
 import { writeLog } from "@/lib/logger";
+import { consumeRateLimit, getClientIp } from "@/lib/security/rate-limit";
+
+const LOGIN_WINDOW_MS = 10 * 60 * 1000;
+const LOGIN_MAX_ATTEMPTS = 5;
 
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req.headers);
+  const rate = consumeRateLimit(`admin-login:${ip}`, LOGIN_MAX_ATTEMPTS, LOGIN_WINDOW_MS);
+
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: "Too many login attempts. Please try again later." },
+      { status: 429, headers: { "Retry-After": String(rate.retryAfterSec) } }
+    );
+  }
+
   try {
     const body = await req.json();
     const { idToken } = body as { idToken?: string };

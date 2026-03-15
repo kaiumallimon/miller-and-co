@@ -27,6 +27,7 @@ type Variant = "light" | "dark";
 
 export default function ContactForm({ variant = "light" }: { variant?: Variant }) {
   const dark = variant === "dark";
+  const [formStartedAt, setFormStartedAt] = useState<number>(() => Date.now());
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -53,7 +54,7 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, _honeypot: form.website }),  // map to API field
+        body: JSON.stringify({ ...form, _honeypot: form.website, formStartedAt }),
       });
 
       const data = await res.json();
@@ -66,6 +67,7 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
 
       setStatus("success");
       setForm({ name: "", email: "", phone: "", subject: "", message: "", website: "" });
+      setFormStartedAt(Date.now());
     } catch {
       setErrorMsg("Network error. Please check your connection and try again.");
       setStatus("error");

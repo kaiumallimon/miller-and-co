@@ -4,6 +4,7 @@ import { bodyFont, headlineFont } from "@/lib/typographies";
 import PreloaderClient from "@/components/PreloaderClient";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import ConditionalShell from "@/components/ConditionalShell";
+import AnalyticsConsentBanner from "@/components/custom/shared/AnalyticsConsentBanner";
 
 const legalServiceSchema = {
   "@context": "https://schema.org",
@@ -104,12 +105,21 @@ export const metadata: Metadata = {
     title: "Miller & Co. | Sydney Migration Law Firm",
     description:
       "Sydney's trusted migration law firm with over 10,000 successful cases. Expert guidance on employer-sponsored visas, skilled visas, partner visas, investment visas, global talent visas, and more.",
+    images: [
+      {
+        url: "https://www.visa-australia.legal/reviews-header.png",
+        width: 1200,
+        height: 630,
+        alt: "Miller & Co. Sydney Migration Law Firm",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Miller & Co. | Sydney Migration Law Firm",
     description:
       "Sydney's trusted migration law firm with over 10,000 successful cases. Expert guidance on all Australian visa categories.",
+    images: ["https://www.visa-australia.legal/reviews-header.png"],
   },
   alternates: {
     canonical: "https://www.visa-australia.legal",
@@ -143,6 +153,7 @@ export default function RootLayout({
           <PreloaderClient />
           {children}
           <ConditionalShell />
+          <AnalyticsConsentBanner />
         </PreloaderProvider>
       </body>
     </html>
