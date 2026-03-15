@@ -14,6 +14,7 @@ interface ContactPayload {
   message: string;
   _honeypot?: string; // must be empty — filled only by bots
   formStartedAt?: number;
+  recaptchaToken?: string;
 }
 
 const WINDOW_MS = 60 * 1000;
@@ -47,6 +48,45 @@ function sanitise(str: string): string {
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+interface RecaptchaVerifyResponse {
+  success: boolean;
+  score?: number;
+  action?: string;
+  hostname?: string;
+  "error-codes"?: string[];
+}
+
+async function verifyRecaptcha(token: string, ip: string): Promise<boolean> {
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secret) return true;
+
+  try {
+    const body = new URLSearchParams({
+      secret,
+      response: token,
+      remoteip: ip,
+    });
+
+    const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body,
+      cache: "no-store",
+    });
+
+    if (!res.ok) return false;
+    const data = (await res.json()) as RecaptchaVerifyResponse;
+
+    const minScore = Number(process.env.RECAPTCHA_MIN_SCORE ?? "0.5");
+    const scoreOk = typeof data.score === "number" ? data.score >= minScore : false;
+    const actionOk = data.action === "contact_form_submit";
+
+    return Boolean(data.success && scoreOk && actionOk);
+  } catch {
+    return false;
+  }
 }
 
 // ─── Nodemailer transporter ────────────────────────────────────────────────────
@@ -96,12 +136,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { name, email, phone, subject, message, _honeypot, formStartedAt } = body;
+  const { name, email, phone, subject, message, _honeypot, formStartedAt, recaptchaToken } = body;
 
   // 5. Honeypot check — bots fill hidden fields, humans don't
   if (_honeypot && _honeypot.length > 0) {
     console.warn("[contact] Honeypot triggered — blocked bot submission");
     return NextResponse.json({ success: true });
+  }
+
+  if (process.env.RECAPTCHA_SECRET_KEY) {
+    if (!recaptchaToken || !(await verifyRecaptcha(recaptchaToken, ip))) {
+      console.warn("[contact] reCAPTCHA verification failed");
+      return NextResponse.json(
+        { error: "Security verification failed. Please try again." },
+        { status: 400 }
+      );
+    }
   }
 
   // 5b. Time-trap heuristic: block submissions that are unrealistically fast

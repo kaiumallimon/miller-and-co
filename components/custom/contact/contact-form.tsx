@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
 import { motion, AnimatePresence } from "motion/react";
+import Script from "next/script";
 
 const SUBJECTS = [
   "General Enquiry",
@@ -25,7 +26,20 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 type Status = "idle" | "loading" | "success" | "error";
 type Variant = "light" | "dark";
 
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (cb: () => void) => void;
+      execute: (
+        siteKey: string,
+        options: { action: string }
+      ) => Promise<string>;
+    };
+  }
+}
+
 export default function ContactForm({ variant = "light" }: { variant?: Variant }) {
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const dark = variant === "dark";
   const [formStartedAt, setFormStartedAt] = useState<number>(() => Date.now());
   const [form, setForm] = useState({
@@ -45,16 +59,46 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const getRecaptchaToken = async (): Promise<string | null> => {
+    if (!siteKey) return null;
+    if (typeof window === "undefined" || !window.grecaptcha) return null;
+
+    return new Promise((resolve) => {
+      window.grecaptcha?.ready(async () => {
+        try {
+          const token = await window.grecaptcha?.execute(siteKey, {
+            action: "contact_form_submit",
+          });
+          resolve(token ?? null);
+        } catch {
+          resolve(null);
+        }
+      });
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMsg("");
 
     try {
+      const recaptchaToken = await getRecaptchaToken();
+      if (siteKey && !recaptchaToken) {
+        setErrorMsg("Security verification failed. Please refresh and try again.");
+        setStatus("error");
+        return;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, _honeypot: form.website, formStartedAt }),
+        body: JSON.stringify({
+          ...form,
+          _honeypot: form.website,
+          formStartedAt,
+          recaptchaToken,
+        }),
       });
 
       const data = await res.json();
@@ -88,6 +132,13 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
         ? "bg-[#141414] border border-white/8"
         : "bg-white border border-[#1a1a1a]/8"
     }`}>
+      {siteKey && (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}
+          strategy="afterInteractive"
+        />
+      )}
+
       {/* Corner accent */}
       <span className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-[#c8a96e]" />
       <span className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-[#c8a96e]" />
