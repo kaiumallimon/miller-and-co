@@ -22,6 +22,7 @@ import {
   Star,
   Clock,
   FileText,
+  Home,
 } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -253,6 +254,34 @@ const SERVICE_CATEGORIES = [
       "Ministerial intervention requests",
       "Compliance audits for sponsors",
       "Second opinion legal reviews",
+    ],
+  },
+  {
+    id: "creative-mortgage-solutions",
+    icon: Home,
+    label: "Creative Mortgage Solutions",
+    tagline: "Securing your first home as a new permanent resident",
+    description:
+      "Once you obtain Australian permanent residence, the next important step for many new residents is securing their first home. We work with a trusted mortgage broker who specialises in helping new permanent residents navigate Australian lending requirements and structure their first property loan. Through strategic advice and access to multiple lenders, our broker assists clients in finding practical and competitive mortgage solutions tailored to their financial situation.",
+    services: [
+      {
+        label: "First Home Buyer Guidance",
+        sub: "For New Permanent Residents",
+        detail:
+          "Targeted assistance to understand your borrowing power, deposit requirements, and government grants available to new Australian permanent residents.",
+      },
+      {
+        label: "Loan Structuring & Negotiation",
+        sub: null,
+        detail:
+          "Access to strategic advice and multiple lenders through our trusted broker to find a competitive mortgage solution tailored to your financial scenario.",
+      },
+    ],
+    highlights: [
+      "Specialised broker introductions",
+      "Tailored for new permanent residents",
+      "Access to competitive lenders",
+      "Strategic loan structuring advice",
     ],
   },
 ];
