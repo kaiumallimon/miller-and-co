@@ -275,7 +275,7 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                 </Button>
 
                 {/* Privacy consent notice */}
-                <p className={`${bodyFont.className} text-[10px] leading-relaxed ${
+                <p className={`${bodyFont.className} text-[12px] leading-relaxed ${
                   dark ? "text-white/25" : "text-[#1a1a1a]/40"
                 }`}>
                   By submitting this form you consent to Miller &amp; Co Lawyers &amp; Migration Agents Pty Ltd
