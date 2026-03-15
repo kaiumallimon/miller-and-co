@@ -20,6 +20,43 @@ const legalServiceSchema = {
   },
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.visa-australia.legal/#localbusiness",
+  name: "Miller & Co Lawyers & Migration Agents",
+  url: "https://www.visa-australia.legal",
+  telephone: "+61 2 8095 6369",
+  image: "https://www.visa-australia.legal/reviews-header.png",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Level 22, Westfield Tower Two, 101 Grafton Street",
+    addressLocality: "Bondi junction",
+    addressRegion: "NSW",
+    postalCode: "2022",
+    addressCountry: "AU",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday", "Sunday"],
+      opens: "09:00",
+      closes: "12:00",
+    },
+  ],
+};
+
+const globalSchemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [legalServiceSchema, localBusinessSchema],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.visa-australia.legal"),
   title: {
@@ -96,7 +133,7 @@ export default function RootLayout({
         ` }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(legalServiceSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchemaGraph) }}
         />
       </head>
       <body
