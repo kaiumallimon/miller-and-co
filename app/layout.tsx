@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Miller & Co.",
   },
   description:
-    "Miller & Co. is a trusted Sydney-based migration law firm specialising in employer-sponsored visas, skilled visas, partner visas, investment visas, global talent visas, AAT appeals, and Australian citizenship. With over 10,000 successful cases, our experienced team delivers expert immigration solutions.",
+    "Miller & Co. is a trusted Sydney-based migration law firm specialising in employer-sponsored visas, skilled visas, partner visas, investment visas, global talent visas, ART appeals, and Australian citizenship. With over 10,000 successful cases, our experienced team delivers expert immigration solutions.",
   keywords: [
     "migration law firm Sydney",
     "Australian visa lawyer",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "partner visa Australia",
     "national innovation visa",
     "investment visa Australia",
-    "AAT appeal migration",
+    "administrative review tribunal (ART) migration",
     "Australian citizenship",
     "Bondi Junction immigration lawyer",
     "Miller and Co migration",

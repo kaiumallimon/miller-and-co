@@ -20,7 +20,7 @@ const FALLBACK_EXPERTISE: ExpertiseItem[] = [
   { label: "Employer Recruitment Services", sub: "For Sub 186/482 Visas" },
   { label: "Australian Citizenship", sub: null },
   { label: "Legal Advice", sub: null },
-  { label: "Visa Refusal & AAT Appeal", sub: null, isWide: true },
+  { label: "Visa Refusal & ART Appeal", sub: null, isWide: true },
 ];
 
 export default function ExpertiseSection() {
@@ -30,7 +30,7 @@ export default function ExpertiseSection() {
   return (
     <section className="relative w-full bg-[#1a1a1a] overflow-hidden">
       {/* Background radial accent */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_#c8a96e08_0%,_transparent_65%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,#c8a96e08_0%,transparent_65%)]" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32">
 

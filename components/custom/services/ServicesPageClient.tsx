@@ -174,7 +174,7 @@ const SERVICE_CATEGORIES = [
       "Relationship evidence strategy",
       "Onshore & offshore applications",
       "Bridging visa advice",
-      "AAT appeal support for refused applications",
+      "ART support for refused applications",
     ],
   },
   {
@@ -211,10 +211,10 @@ const SERVICE_CATEGORIES = [
     label: "Legal Advice & Appeals",
     tagline: "Expert representation when decisions go wrong",
     description:
-      "When a visa is refused or cancelled, the consequences can be life-changing. Our registered migration lawyers provide robust representation before the Administrative Appeals Tribunal (AAT) and strategic legal advice on complex immigration matters.",
+      "When a visa is refused or cancelled, the consequences can be life-changing. Our registered migration lawyers provide robust representation before the Administrative Review Tribunal (ART) and strategic legal advice on complex immigration matters.",
     services: [
       {
-        label: "Visa Refusal & AAT Appeal",
+        label: "Visa Refusal & ART Appeal",
         sub: null,
         detail:
           "Merits review of refusals and cancellations before the Administrative Appeals Tribunal. We analyse the delegate's decision, prepare written submissions, and represent clients at hearings.",
@@ -233,7 +233,7 @@ const SERVICE_CATEGORIES = [
       },
     ],
     highlights: [
-      "AAT submissions and hearing representation",
+      "ART submissions and hearing representation",
       "Ministerial intervention requests",
       "Compliance audits for sponsors",
       "Second opinion legal reviews",
