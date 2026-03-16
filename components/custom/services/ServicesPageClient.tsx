@@ -494,17 +494,17 @@ export default function ServicesPageClient() {
               </p>
             </StaggerItem>
             <StaggerItem>
-              <div className="flex flex-wrap items-center justify-center gap-6 mt-2">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-2 w-full max-w-md md:max-w-none mx-auto">
                 <a
                   href="/contact"
-                  className={`${bodyFont.className} flex px-6 py-3 text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#0f0f0f] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
+                  className={`${bodyFont.className} flex w-full justify-center md:w-auto px-6 py-3 text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#0f0f0f] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
                 >
                   Book a Consultation
                   <ArrowRight className="w-3.5 h-3.5 ml-1" />
                 </a>
                 <a
                   href="tel:+61280956369"
-                  className={`${bodyFont.className} flex py-3 px-6 border w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none `}
+                  className={`${bodyFont.className} flex py-3 px-6 border w-full justify-center md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none `}
                   onClick={() => (window.location.href = "tel:+61280956369")}
                 >
                   <Phone className="w-3.5 h-3.5 mr-1.5" />

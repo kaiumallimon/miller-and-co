@@ -320,12 +320,14 @@ export default function ContactForm({
 
               {siteKey && (
                 <StaggerItem>
-                  <div className={`mt-2 ${dark ? "theme-dark" : ""}`}>
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      sitekey={siteKey}
-                      theme={dark ? "dark" : "light"}
-                    />
+                  <div className={`mt-2 flex justify-start w-full overflow-hidden sm:overflow-visible ${dark ? "theme-dark" : ""}`}>
+                    <div className="transform origin-left scale-[0.85] min-[360px]:scale-95 sm:scale-100">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={siteKey}
+                        theme={dark ? "dark" : "light"}
+                      />
+                    </div>
                   </div>
                 </StaggerItem>
               )}
