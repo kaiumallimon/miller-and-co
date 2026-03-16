@@ -12,6 +12,7 @@ import { motion } from "motion/react";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Our Services", href: "/services" },
+  { label: "Other Services", href: "/other-services" },
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
