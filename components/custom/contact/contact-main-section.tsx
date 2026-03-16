@@ -129,6 +129,23 @@ export default function ContactMainSection() {
           </AnimateIn>
 
         </div>
+
+        {/* ── Map ─────────────────────────────────────────────────── */}
+        <AnimateIn
+          direction="up"
+          duration={0.75}
+          delay={0.2}
+          className="mt-16 lg:mt-24 w-full h-[400px] sm:h-[450px] border border-[#1a1a1a]/8 grayscale-[0.8] hover:grayscale-0 transition-all duration-700 overflow-hidden"
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3311.9328502545277!2d151.2483163!3d-33.8913832!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae3ede27678f%3A0x9bb1d1fff9867da2!2sMiller%20%26%20Co%20Lawyers%20%26%20Migration%20Agents!5e0!3m2!1sen!2sau!4v1773694549457!5m2!1sen!2sau"
+            className="w-full h-full"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </AnimateIn>
       </div>
     </section>
   );

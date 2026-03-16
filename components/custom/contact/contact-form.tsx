@@ -332,36 +332,68 @@ export default function ContactForm({
                 </StaggerItem>
               )}
 
-              {/* Terms and Privacy Policy Buffer */}
+              {/* APP collection notice & Privacy Policy Checkbox */}
               <StaggerItem>
-                <label className="flex items-start gap-3 cursor-pointer group max-w-xl">
-                  <div className="flex items-center h-5 mt-0.5">
-                    <input
-                      type="checkbox"
-                      required
-                      className={`w-4 h-4 rounded-none border outline-none focus:ring-0 focus:ring-offset-0 transition-colors duration-200 cursor-pointer accent-[#c8a96e] ${
+                <div
+                  className={`border px-4 py-3 ${
+                    dark
+                      ? "border-white/10 bg-white/4"
+                      : "border-[#1a1a1a]/12 bg-[#faf8f5]"
+                  }`}
+                >
+                  <p
+                    className={`${bodyFont.className} text-[11px] font-semibold tracking-[0.18em] uppercase mb-1.5 ${
+                      dark ? "text-[#c8a96e]/85" : "text-[#756341]"
+                    }`}
+                  >
+                    Privacy Notice
+                  </p>
+                  <p
+                    className={`${bodyFont.className} text-[12px] leading-relaxed mb-4 ${
+                      dark ? "text-white/35" : "text-[#1a1a1a]/55"
+                    }`}
+                  >
+                    By submitting this form you consent to us collecting and using your personal information to assess your visa enquiry and contact you regarding migration services. Your information will be handled in accordance with our{" "}
+                    <a
+                      href="/privacy-policy"
+                      className={`underline underline-offset-2 transition-colors duration-200 ${
                         dark
-                          ? "bg-transparent border-white/30 checked:bg-[#c8a96e] checked:border-[#c8a96e]"
-                          : "bg-transparent border-[#1a1a1a]/30 checked:bg-[#c8a96e] checked:border-[#c8a96e]"
+                          ? "text-white/55 hover:text-[#c8a96e]"
+                          : "text-[#1a1a1a]/75 hover:text-[#c8a96e]"
                       }`}
-                    />
-                  </div>
-                  <span className={`${bodyFont.className} text-sm leading-relaxed ${dark ? "text-white/70" : "text-[#1a1a1a]/70"}`}>
-                    I agree to the{" "}
-                    <a href="/privacy-policy" target="_blank" className={`underline underline-offset-4 hover:text-[#c8a96e] transition-colors ${dark ? "text-white" : "text-[#1a1a1a]"}`}>Privacy Policy</a>
-                    {" "}and{" "}
-                    <a href="/terms" target="_blank" className={`underline underline-offset-4 hover:text-[#c8a96e] transition-colors ${dark ? "text-white" : "text-[#1a1a1a]"}`}>Terms & Conditions</a>.
-                  </span>
-                </label>
+                    >
+                      Privacy Policy
+                    </a>
+                    .
+                  </p>
+
+                  <label className="flex items-start gap-3 cursor-pointer group max-w-xl">
+                    <div className="flex items-center h-4 mt-0.5">
+                      <input
+                        type="checkbox"
+                        required
+                        className={`w-4 h-4 rounded-none border outline-none focus:ring-0 focus:ring-offset-0 transition-colors duration-200 cursor-pointer accent-[#c8a96e] ${
+                          dark
+                            ? "bg-transparent border-white/30 checked:bg-[#c8a96e] checked:border-[#c8a96e]"
+                            : "bg-transparent border-[#1a1a1a]/30 checked:bg-[#c8a96e] checked:border-[#c8a96e]"
+                        }`}
+                      />
+                    </div>
+                    <span className={`${bodyFont.className} text-sm leading-relaxed ${dark ? "text-white/70" : "text-[#1a1a1a]/70"}`}>
+                      I agree to the{" "}
+                      <span>Privacy Policy</span>
+                    </span>
+                  </label>
+                </div>
               </StaggerItem>
 
-              {/* Submit + APP collection notice */}
-              <StaggerItem className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-4 md:gap-5 items-start">
+              {/* Submit */}
+              <StaggerItem>
                 <Button
                   type="submit"
                   disabled={status === "loading"}
                   size="lg"
-                  className={`${bodyFont.className} w-full sm:w-auto text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
+                  className={`${bodyFont.className} w-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
                     dark
                       ? "bg-[#c8a96e] text-[#1a1a1a] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e]"
                       : "bg-[#1a1a1a] text-white border border-[#1a1a1a] hover:bg-[#c8a96e] hover:text-[#1a1a1a] hover:border-[#c8a96e]"
@@ -379,47 +411,6 @@ export default function ContactForm({
                     </>
                   )}
                 </Button>
-
-                <div
-                  className={`border px-4 py-3 ${
-                    dark
-                      ? "border-white/10 bg-white/4"
-                      : "border-[#1a1a1a]/12 bg-[#faf8f5]"
-                  }`}
-                >
-                  <p
-                    className={`${bodyFont.className} text-[11px] font-semibold tracking-[0.18em] uppercase mb-1.5 ${
-                      dark ? "text-[#c8a96e]/85" : "text-[#756341]"
-                    }`}
-                  >
-                    Collection Notice
-                  </p>
-                  <p
-                    className={`${bodyFont.className} text-[12px] leading-relaxed ${
-                      dark ? "text-white/35" : "text-[#1a1a1a]/55"
-                    }`}
-                  >
-                    We collect your personal information to assess and respond
-                    to your enquiry and provide legal and migration services. If
-                    this information is not provided, we may be unable to
-                    progress your matter. We may disclose information to
-                    government agencies, tribunals, and service providers where
-                    necessary to act for you or as required by law. For details
-                    about overseas disclosures, access/correction requests, and
-                    complaints, see our{" "}
-                    <a
-                      href="/privacy-policy"
-                      className={`underline underline-offset-2 transition-colors duration-200 ${
-                        dark
-                          ? "text-white/55 hover:text-[#c8a96e]"
-                          : "text-[#1a1a1a]/75 hover:text-[#c8a96e]"
-                      }`}
-                    >
-                      Privacy Policy
-                    </a>
-                    .
-                  </p>
-                </div>
               </StaggerItem>
             </StaggerContainer>
           </motion.form>

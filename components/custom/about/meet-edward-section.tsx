@@ -37,7 +37,7 @@ export default function MeetEdwardSection() {
     <section className="relative w-full bg-[#faf8f5] overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#c8a96e08_0%,transparent_60%)]" />
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 lg:pt-22 pb-6 lg:pb-8">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 lg:pt-22 pb-6 lg:pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           {/* Left: Image */}
@@ -112,16 +112,15 @@ export default function MeetEdwardSection() {
 
             {/* Role line */}
             <StaggerItem>
-              <p className={`${bodyFont.className} text-[#756341] text-sm font-semibold tracking-[0.25em] uppercase`}>
-                Principal Migration Lawyer & Migration Agent
+              <p className={`${bodyFont.className} text-[#756341] text-sm font-semibold tracking-[0.05em] uppercase`}>
+                Australian Immigration Lawyer Practising Certificate (NSW) Migration Law Specialist
               </p>
             </StaggerItem>
 
             {/* Bio paragraphs */}
             <StaggerItem>
               <p className={`${bodyFont.className} text-[#1a1a1a]/75 text-base leading-relaxed`}>
-                Edward Miller is the Principal of Miller & Co Lawyers & Migration
-                Agents and a registered Australian Migration Lawyer who has helped
+                Edward Miller is an Australian Immigration Lawyer Practising Certificate (NSW) Migration Law Specialist who has helped
                 individuals, families, and businesses navigate Australia&apos;s
                 immigration system with confidence.
               </p>
