@@ -101,7 +101,7 @@ export default function ContactHero() {
             className={`${bodyFont.className} flex items-center gap-2 mt-4 pt-8 border-t border-white/20 text-white/50 text-xs`}
           >
             <MapPin className="w-3.5 h-3.5 shrink-0 text-[#c8a96e]" />
-            Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction
+            <a href="https://goo.gl/maps/C7SJN8y3KKGkhhuR7" target="_blank" rel="noopener noreferrer" className="hover:text-[#c8a96e] transition-colors duration-300">Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction</a>
           </motion.div>
         </motion.div>
 

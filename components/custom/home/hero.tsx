@@ -158,7 +158,7 @@ export default function HomeHero() {
             </a>
             <span className="flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 shrink-0" />
-              Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction
+              <a href="https://goo.gl/maps/C7SJN8y3KKGkhhuR7" target="_blank" rel="noopener noreferrer" className="hover:text-[#c8a96e] transition-colors duration-300">Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction</a>
             </span>
           </motion.div>
         </motion.div>

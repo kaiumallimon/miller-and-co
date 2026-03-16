@@ -24,8 +24,8 @@ const contactDetails = [
   {
     icon: MapPin,
     label: "Address",
-    value: "Level 22, Westfield Tower Two\n101 Grafton Street, Bondi junction\nNSW 2022, Australia",
-    href: "https://maps.google.com/?q=101+Grafton+Street+Bondi+Junction",
+    value: "Level 22, Westfield Tower Two\n101 Grafton Street, Bondi junction",
+    href: "https://goo.gl/maps/C7SJN8y3KKGkhhuR7",
   },
 ];
 
