@@ -219,9 +219,6 @@ export default function PrivacyPolicyPage() {
           </div>
         </AnimateIn>
       </section>
-
-      <Footer />
-
     </div>
   );
 }

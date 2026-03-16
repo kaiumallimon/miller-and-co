@@ -332,6 +332,29 @@ export default function ContactForm({
                 </StaggerItem>
               )}
 
+              {/* Terms and Privacy Policy Buffer */}
+              <StaggerItem>
+                <label className="flex items-start gap-3 cursor-pointer group max-w-xl">
+                  <div className="flex items-center h-5 mt-0.5">
+                    <input
+                      type="checkbox"
+                      required
+                      className={`w-4 h-4 rounded-none border outline-none focus:ring-0 focus:ring-offset-0 transition-colors duration-200 cursor-pointer accent-[#c8a96e] ${
+                        dark
+                          ? "bg-transparent border-white/30 checked:bg-[#c8a96e] checked:border-[#c8a96e]"
+                          : "bg-transparent border-[#1a1a1a]/30 checked:bg-[#c8a96e] checked:border-[#c8a96e]"
+                      }`}
+                    />
+                  </div>
+                  <span className={`${bodyFont.className} text-sm leading-relaxed ${dark ? "text-white/70" : "text-[#1a1a1a]/70"}`}>
+                    I agree to the{" "}
+                    <a href="/privacy-policy" target="_blank" className={`underline underline-offset-4 hover:text-[#c8a96e] transition-colors ${dark ? "text-white" : "text-[#1a1a1a]"}`}>Privacy Policy</a>
+                    {" "}and{" "}
+                    <a href="/terms" target="_blank" className={`underline underline-offset-4 hover:text-[#c8a96e] transition-colors ${dark ? "text-white" : "text-[#1a1a1a]"}`}>Terms & Conditions</a>.
+                  </span>
+                </label>
+              </StaggerItem>
+
               {/* Submit + APP collection notice */}
               <StaggerItem className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-4 md:gap-5 items-start">
                 <Button
