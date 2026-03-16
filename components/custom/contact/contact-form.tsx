@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { bodyFont, headlineFont } from "@/lib/typographies";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
-import { AnimateIn, StaggerContainer, StaggerItem } from "@/components/AnimateIn";
+import {
+  AnimateIn,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/AnimateIn";
 import { motion, AnimatePresence } from "motion/react";
-import Script from "next/script";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const SUBJECTS = [
   "General Enquiry",
@@ -32,13 +36,17 @@ declare global {
       ready: (cb: () => void) => void;
       execute: (
         siteKey: string,
-        options: { action: string }
+        options: { action: string },
       ) => Promise<string>;
     };
   }
 }
 
-export default function ContactForm({ variant = "light" }: { variant?: Variant }) {
+export default function ContactForm({
+  variant = "light",
+}: {
+  variant?: Variant;
+}) {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const dark = variant === "dark";
   const [formStartedAt, setFormStartedAt] = useState<number>(() => Date.now());
@@ -51,30 +59,16 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
     website: "",
   });
   const [status, setStatus] = useState<Status>("idle");
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const getRecaptchaToken = async (): Promise<string | null> => {
-    if (!siteKey) return null;
-    if (typeof window === "undefined" || !window.grecaptcha) return null;
-
-    return new Promise((resolve) => {
-      window.grecaptcha?.ready(async () => {
-        try {
-          const token = await window.grecaptcha?.execute(siteKey, {
-            action: "contact_form_submit",
-          });
-          resolve(token ?? null);
-        } catch {
-          resolve(null);
-        }
-      });
-    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -83,9 +77,9 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
     setErrorMsg("");
 
     try {
-      const recaptchaToken = await getRecaptchaToken();
-      if (siteKey && !recaptchaToken) {
-        setErrorMsg("Security verification failed. Please refresh and try again.");
+      const recaptchaToken = recaptchaRef.current?.getValue();
+      if (!recaptchaToken) {
+        setErrorMsg("Please complete the reCAPTCHA verification.");
         setStatus("error");
         return;
       }
@@ -110,8 +104,16 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
       }
 
       setStatus("success");
-      setForm({ name: "", email: "", phone: "", subject: "", message: "", website: "" });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        website: "",
+      });
       setFormStartedAt(Date.now());
+      recaptchaRef.current?.reset();
     } catch {
       setErrorMsg("Network error. Please check your connection and try again.");
       setStatus("error");
@@ -127,18 +129,13 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
   }`;
 
   return (
-    <div className={`relative p-8 lg:p-10 ${
-      dark
-        ? "bg-[#141414] border border-white/8"
-        : "bg-white border border-[#1a1a1a]/8"
-    }`}>
-      {siteKey && (
-        <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}
-          strategy="afterInteractive"
-        />
-      )}
-
+    <div
+      className={`relative p-8 lg:p-10 ${
+        dark
+          ? "bg-[#141414] border border-white/8"
+          : "bg-white border border-[#1a1a1a]/8"
+      }`}
+    >
       {/* Corner accent */}
       <span className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-[#c8a96e]" />
       <span className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-[#c8a96e]" />
@@ -157,16 +154,20 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
               <CheckCircle className="w-6 h-6 text-[#c8a96e]" />
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className={`${headlineFont.className} text-2xl font-semibold ${
-                dark ? "text-white" : "text-[#1a1a1a]"
-              }`}>
+              <h3
+                className={`${headlineFont.className} text-2xl font-semibold ${
+                  dark ? "text-white" : "text-[#1a1a1a]"
+                }`}
+              >
                 Message Sent
               </h3>
-              <p className={`${bodyFont.className} text-base max-w-sm leading-relaxed ${
-                dark ? "text-white/50" : "text-[#1a1a1a]/50"
-              }`}>
-                Thank you for reaching out. A member of our team will be in touch
-                with you shortly.
+              <p
+                className={`${bodyFont.className} text-base max-w-sm leading-relaxed ${
+                  dark ? "text-white/50" : "text-[#1a1a1a]/50"
+                }`}
+              >
+                Thank you for reaching out. A member of our team will be in
+                touch with you shortly.
               </p>
             </div>
             <button
@@ -197,11 +198,21 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
               tabIndex={-1}
               aria-hidden="true"
               autoComplete="new-password"
-              style={{ position: "absolute", left: "-9999px", top: "-9999px", width: "1px", height: "1px", overflow: "hidden" }}
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                top: "-9999px",
+                width: "1px",
+                height: "1px",
+                overflow: "hidden",
+              }}
             />
 
-            <StaggerContainer className="flex flex-col gap-4" stagger={0.07} delayChildren={0.05}>
-
+            <StaggerContainer
+              className="flex flex-col gap-4"
+              stagger={0.07}
+              delayChildren={0.05}
+            >
               {/* Name + Email */}
               <StaggerItem className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
@@ -237,9 +248,7 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
               {/* Phone + Subject */}
               <StaggerItem className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className={labelClass}>
-                    Phone Number
-                  </label>
+                  <label className={labelClass}>Phone Number</label>
                   <input
                     type="tel"
                     name="phone"
@@ -259,12 +268,18 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                     onChange={handleChange}
                     required
                     className={`${inputClass} appearance-none cursor-pointer ${
-                      dark ? "[&>option]:bg-[#1a1a1a] [&>option]:text-white/80" : ""
+                      dark
+                        ? "[&>option]:bg-[#1a1a1a] [&>option]:text-white/80"
+                        : ""
                     }`}
                   >
-                    <option value="" disabled>Select a subject</option>
+                    <option value="" disabled>
+                      Select a subject
+                    </option>
                     {SUBJECTS.map((s) => (
-                      <option key={s} value={s}>{s}</option>
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -302,6 +317,19 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                 )}
               </AnimatePresence>
 
+
+              {siteKey && (
+                <StaggerItem>
+                  <div className={`mt-2 ${dark ? "theme-dark" : ""}`}>
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={siteKey}
+                      theme={dark ? "dark" : "light"}
+                    />
+                  </div>
+                </StaggerItem>
+              )}
+
               {/* Submit + APP collection notice */}
               <StaggerItem className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-4 md:gap-5 items-start">
                 <Button
@@ -327,21 +355,33 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                   )}
                 </Button>
 
-                <div className={`border px-4 py-3 ${
-                  dark ? "border-white/10 bg-white/4" : "border-[#1a1a1a]/12 bg-[#faf8f5]"
-                }`}>
-                  <p className={`${bodyFont.className} text-[11px] font-semibold tracking-[0.18em] uppercase mb-1.5 ${
-                    dark ? "text-[#c8a96e]/85" : "text-[#756341]"
-                  }`}>
+                <div
+                  className={`border px-4 py-3 ${
+                    dark
+                      ? "border-white/10 bg-white/4"
+                      : "border-[#1a1a1a]/12 bg-[#faf8f5]"
+                  }`}
+                >
+                  <p
+                    className={`${bodyFont.className} text-[11px] font-semibold tracking-[0.18em] uppercase mb-1.5 ${
+                      dark ? "text-[#c8a96e]/85" : "text-[#756341]"
+                    }`}
+                  >
                     Collection Notice
                   </p>
-                  <p className={`${bodyFont.className} text-[12px] leading-relaxed ${
-                    dark ? "text-white/35" : "text-[#1a1a1a]/55"
-                  }`}>
-                    We collect your personal information to assess and respond to your enquiry and provide legal and migration services.
-                    If this information is not provided, we may be unable to progress your matter. We may disclose information to government
-                    agencies, tribunals, and service providers where necessary to act for you or as required by law. For details about overseas
-                    disclosures, access/correction requests, and complaints, see our{" "}
+                  <p
+                    className={`${bodyFont.className} text-[12px] leading-relaxed ${
+                      dark ? "text-white/35" : "text-[#1a1a1a]/55"
+                    }`}
+                  >
+                    We collect your personal information to assess and respond
+                    to your enquiry and provide legal and migration services. If
+                    this information is not provided, we may be unable to
+                    progress your matter. We may disclose information to
+                    government agencies, tribunals, and service providers where
+                    necessary to act for you or as required by law. For details
+                    about overseas disclosures, access/correction requests, and
+                    complaints, see our{" "}
                     <a
                       href="/privacy-policy"
                       className={`underline underline-offset-2 transition-colors duration-200 ${
@@ -356,7 +396,6 @@ export default function ContactForm({ variant = "light" }: { variant?: Variant }
                   </p>
                 </div>
               </StaggerItem>
-
             </StaggerContainer>
           </motion.form>
         )}

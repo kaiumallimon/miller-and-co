@@ -79,11 +79,7 @@ async function verifyRecaptcha(token: string, ip: string): Promise<boolean> {
     if (!res.ok) return false;
     const data = (await res.json()) as RecaptchaVerifyResponse;
 
-    const minScore = Number(process.env.RECAPTCHA_MIN_SCORE ?? "0.5");
-    const scoreOk = typeof data.score === "number" ? data.score >= minScore : false;
-    const actionOk = data.action === "contact_form_submit";
-
-    return Boolean(data.success && scoreOk && actionOk);
+    return Boolean(data.success);
   } catch {
     return false;
   }
