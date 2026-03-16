@@ -135,16 +135,34 @@ export default function ContactMainSection() {
           direction="up"
           duration={0.75}
           delay={0.2}
-          className="mt-16 lg:mt-24 w-full h-[400px] sm:h-[450px] border border-[#1a1a1a]/8 grayscale-[0.8] hover:grayscale-0 transition-all duration-700 overflow-hidden"
+          className="mt-16 lg:mt-24 relative p-8 lg:p-10 bg-white border border-[#1a1a1a]/8"
         >
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3311.9328502545277!2d151.2483163!3d-33.8913832!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae3ede27678f%3A0x9bb1d1fff9867da2!2sMiller%20%26%20Co%20Lawyers%20%26%20Migration%20Agents!5e0!3m2!1sen!2sau!4v1773694549457!5m2!1sen!2sau"
-            className="w-full h-full"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+          {/* Corner accents */}
+          <span className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-[#c8a96e] z-10 pointer-events-none" />
+          <span className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-[#c8a96e] z-10 pointer-events-none" />
+
+          <div className="flex flex-col mb-8 gap-4">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-[#c8a96e]" />
+              <span className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.3em] uppercase`}>
+                Our Location
+              </span>
+            </div>
+            <h3 className={`${headlineFont.className} text-[#1a1a1a] text-2xl sm:text-3xl font-semibold`}>
+              Visit Our <span className="italic text-[#c8a96e]">Office</span>
+            </h3>
+          </div>
+
+          <div className="w-full h-[400px] sm:h-[450px] border border-[#1a1a1a]/8 grayscale-[0.8] hover:grayscale-0 transition-all duration-700">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3311.9328502545277!2d151.2483163!3d-33.8913832!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae3ede27678f%3A0x9bb1d1fff9867da2!2sMiller%20%26%20Co%20Lawyers%20%26%20Migration%20Agents!5e0!3m2!1sen!2sau!4v1773694549457!5m2!1sen!2sau"
+              className="w-full h-full"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </AnimateIn>
       </div>
     </section>
