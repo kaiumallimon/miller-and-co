@@ -125,13 +125,13 @@ export default function HomeHero() {
           >
             <a
               href="/services"
-              className={`${bodyFont.className} flex py-3 px-6 border w-full md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none `}
+              className={`${bodyFont.className} flex py-3 px-6 border w-full justify-center md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-transparent border-white text-white hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer rounded-none `}
             >
               See Our Services
             </a>
             <a
               href="/contact"
-              className={`${bodyFont.className} flex py-3 px-6 text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#1a1a1a] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
+              className={`${bodyFont.className} flex py-3 px-6 w-full justify-center md:w-auto text-xs font-bold tracking-[0.2em] uppercase bg-[#c8a96e] text-[#1a1a1a] border border-[#c8a96e] hover:bg-transparent hover:text-[#c8a96e] transition-all duration-300 rounded-none cursor-pointer`}
             >
               Book a Consultation
             </a>
@@ -140,25 +140,29 @@ export default function HomeHero() {
           {/* Contact info strip */}
           <motion.div
             variants={itemVariants}
-            className={`${bodyFont.className} flex flex-row flex-wrap gap-x-8 gap-y-3 mt-6 pt-10 border-t border-white/20 text-white text-xs`}
+            className={`${bodyFont.className} flex flex-col sm:flex-row flex-wrap gap-x-8 gap-y-5 mt-6 pt-8 border-t border-white/20 text-white text-xs pb-20 md:pb-0`}
           >
-            <a
-              href="tel:+61280956369"
-              className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors duration-300"
-            >
-              <Phone className="w-3.5 h-3.5 shrink-0" />
-              +61 2 8095 6369
-            </a>
-            <a
-              href="mailto:info@visa-australia.legal"
-              className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors duration-300"
-            >
-              <Mail className="w-3.5 h-3.5 shrink-0" />
-              info@visa-australia.legal
-            </a>
-            <span className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 shrink-0" />
-              <a href="https://goo.gl/maps/C7SJN8y3KKGkhhuR7" target="_blank" rel="noopener noreferrer" className="hover:text-[#c8a96e] transition-colors duration-300">Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction</a>
+            <div className="flex flex-row flex-wrap gap-x-8 gap-y-5">
+              <a
+                href="tel:+61280956369"
+                className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors duration-300"
+              >
+                <Phone className="w-3.5 h-3.5 shrink-0" />
+                +61 2 8095 6369
+              </a>
+              <a
+                href="mailto:info@visa-australia.legal"
+                className="flex items-center gap-2 hover:text-[#c8a96e] transition-colors duration-300"
+              >
+                <Mail className="w-3.5 h-3.5 shrink-0" />
+                info@visa-australia.legal
+              </a>
+            </div>
+            <span className="flex items-start gap-2 w-full sm:w-auto">
+              <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+              <a href="https://goo.gl/maps/C7SJN8y3KKGkhhuR7" target="_blank" rel="noopener noreferrer" className="hover:text-[#c8a96e] transition-colors duration-300 leading-relaxed md:leading-tight pr-4 md:pr-0">
+                Level 22, Westfield Tower Two, 101 Grafton Street, Bondi junction
+              </a>
             </span>
           </motion.div>
         </motion.div>
