@@ -31,257 +31,92 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const SERVICE_CATEGORIES = [
   {
-    id: "employer-sponsored",
-    icon: Briefcase,
-    label: "Employer Sponsored Visas",
-    tagline: "Bringing skilled talent to Australian businesses",
-    description:
-      "We specialise in the full suite of employer-sponsored visa pathways — from temporary skilled workers to permanent residence. Our team manages complex sponsorship obligations, labour market testing, and nomination requirements so your business remains compliant.",
-    services: [
-      {
-        label: "Employer Sponsored Visa",
-        sub: "Subclass 482",
-        detail:
-          "Skills in Demand (SID) visa allows employers to address labour shortages by sponsoring skilled overseas workers. We handle Standard and Labour Agreement streams.",
-      },
-      {
-        label: "Employer Sponsored Permanent Visa",
-        sub: "Subclass 186",
-        detail:
-          "Employer Nomination Scheme (ENS) visa for skilled workers to live and work in Australia permanently. Available via the Direct Entry, Temporary Residence Transition, and Labour Agreement streams.",
-      },
-      {
-        label: "Start-Up Business Sponsored Visa",
-        sub: "Subclass 482",
-        detail:
-          "Tailored sponsorship strategies for emerging businesses and start-ups seeking to attract niche international talent under the SID visa.",
-      },
-      {
-        label: "Training Visa",
-        sub: "Subclass 407",
-        detail:
-          "For occupational training to improve skills in a nominee's current occupation, or full time work-based training.",
-      },
-    ],
-    highlights: [
-      "Standard Business Sponsorship (SBS) applications",
-      "Labour Market Testing compliance",
-      "Sponsorship obligation advice",
-      "Skills assessment coordination",
-    ],
-  },
-  {
-    id: "skilled-migration",
-    icon: Award,
-    label: "Skilled Migration",
-    tagline: "Merit-based pathways to Australian permanent residence",
-    description:
-      "Australia's points-tested skilled migration program offers multiple independent and state-nominated pathways. We assess your profile, maximise your points score, and manage your Expression of Interest through to grant.",
-    services: [
-      {
-        label: "Skilled Independent Visa",
-        sub: "Subclass 189",
-        detail:
-          "Points-tested permanent residence visa for skilled workers not sponsored by an employer or state. Requires an invitation through SkillSelect.",
-      },
-      {
-        label: "Skilled Nominated Visa",
-        sub: "Subclass 190",
-        detail:
-          "Permanent residence visa for skilled workers nominated by a state or territory government — attracting an additional 5 points toward the threshold.",
-      },
-      {
-        label: "Skilled Work Regional Visa",
-        sub: "Subclass 491",
-        detail:
-          "Five-year provisional visa for skilled workers nominated by a state or sponsored by an eligible relative in a designated regional area of Australia.",
-      },
-      {
-        label: "Skilled Regional Resident Visa (Legacy Pathway)",
-        sub: "Subclass 489 (legacy only — closed to new applicants)",
-        detail:
-          "Legacy pathway for existing Subclass 489 holders only. This pathway is not open to new primary applications and is included for current 489 visa holders seeking transition guidance.",
-      },
-    ],
-    highlights: [
-      "SkillSelect profile optimisation",
-      "Points score assessment & maximisation",
-      "State nomination strategy",
-      "Skills & English assessment preparation",
-    ],
-  },
-  {
-    id: "business-investment",
-    icon: TrendingUp,
-    label: "Business & Investment Visas",
-    tagline: "Pathways for entrepreneurs and high-net-worth investors",
-    description:
-      "Australia actively courts business innovators and high-net-worth investors. We guide clients through the Business Innovation and Investment Program — from initial Expression of Interest to the permanent residence stage.",
-    services: [
-      {
-        label: "Business Innovation & Investment (Provisional)",
-        sub: "Subclass 188",
-        detail:
-          "Provisional visa for businesspeople, investors, and entrepreneurs. Streams include Business Innovation, Investor, Significant Investor, Premium Investor, and Entrepreneur.",
-      },
-      {
-        label: "Business Innovation & Investment (Permanent)",
-        sub: "Subclass 888",
-        detail:
-          "Permanent residence visa for Subclass 188 holders who have fulfilled their provisional visa conditions and demonstrated a commitment to business or investment activity in Australia.",
-      },
-    ],
-    highlights: [
-      "BIIP stream selection advice",
-      "Business activity plan preparation",
-      "Complying investment guidance",
-      "State government nomination",
-    ],
-  },
-  {
-    id: "family-visas",
-    icon: Heart,
-    label: "Family & Partner Visas",
-    tagline: "Reuniting families across borders",
-    description:
-      "Family is the foundation of our practice. We handle the full spectrum of partner and family visas — onshore and offshore — with the sensitivity and expertise that these deeply personal applications deserve.",
-    services: [
-      {
-        label: "Partner Visa (Onshore)",
-        sub: "Subclass 820 / 801",
-        detail:
-          "Two-stage visa for partners of Australian citizens, permanent residents, or eligible New Zealand citizens applying while in Australia. Stage 1 (820) is temporary; Stage 2 (801) is permanent.",
-      },
-      {
-        label: "Partner Visa (Offshore)",
-        sub: "Subclass 309 / 100",
-        detail:
-          "Two-stage visa for partners applying from outside Australia. Subclass 309 is the provisional visa; Subclass 100 is granted after fulfilling relationship requirements.",
-      },
-      {
-        label: "Prospective Marriage Visa",
-        sub: "Subclass 300",
-        detail:
-          "Allows a fiancé(e) of an Australian citizen, permanent resident, or eligible New Zealand citizen to travel to Australia to marry their prospective spouse.",
-      },
-      {
-        label: "Carer Visa",
-        sub: "Subclass 836 / 116",
-        detail:
-          "For people who wish to travel to, or remain in, Australia to provide ongoing care to an Australian citizen or permanent resident with a medical condition.",
-      },
-    ],
-    highlights: [
-      "Relationship evidence strategy",
-      "Onshore & offshore applications",
-      "Bridging visa advice",
-      "ART support for refused applications",
-    ],
-  },
-  {
-    id: "national-innovation-visa",
-    icon: Star,
-    label: "National Innovation Visa",
-    tagline: "Subclass 858 for exceptional global talent",
-    description:
-      "Focused guidance for high-achieving individuals pursuing the National Innovation Visa (Subclass 858), with a strategy tailored to evidentiary thresholds and nomination requirements.",
-    services: [
-      {
-        label: "National Innovation Visa",
-        sub: "Subclass 858",
-        detail:
-          "Permanent residence pathway for individuals with exceptional achievement in target sectors including AgriFood, CleanTech, CyberSecurity, FinTech, MedTech, Infrastructure, and Space & Advanced Manufacturing.",
-      },
-    ],
-    highlights: [
-      "Sector-specific endorser identification",
-      "Exceptional achievement portfolio preparation",
-      "Evidence and narrative strategy",
-      "Nomination and lodgement support",
-    ],
-  },
-  {
-    id: "australian-citizenship",
+    id: "employer-recruitment",
     icon: Users,
-    label: "Australian Citizenship",
-    tagline: "Clear guidance from eligibility to ceremony",
+    label: "Employer Recruitment Services",
+    tagline: "For Subclass 186 & 482",
     description:
-      "Dedicated citizenship support for eligible permanent residents, including eligibility analysis, residence calculations, documentation checks, and preparation for each stage of the process.",
+      "End-to-end recruitment support for employers: sourcing overseas talent, assessing occupational eligibility, and preparing sponsorship and nomination documentation. We connect Australian businesses with top global talent to address critical skills shortages quickly and compliantly.",
     services: [
       {
-        label: "Australian Citizenship",
-        sub: "By conferral",
+        label: "Talent Sourcing & Assessment",
+        sub: "Global Recruitment",
         detail:
-          "Assistance with citizenship applications including eligibility assessment, residence calculations, character and identity documentation, and citizenship test preparation.",
+          "Targeted sourcing and pre-screening of overseas professionals against the relevant occupational requirements and skills assessing authority standards.",
+      },
+      {
+        label: "Sponsorship & Nomination Preparation",
+        sub: "End-to-End Support",
+        detail:
+          "Comprehensive preparation to help businesses meet sponsorship obligations, handle labour market testing, and submit robust nomination applications.",
       },
     ],
     highlights: [
-      "Citizenship eligibility assessments",
-      "Residence and absences calculation",
-      "Application and document preparation",
-      "Naturalisation ceremony guidance",
+      "Targeted global talent sourcing",
+      "Occupational eligibility assessment",
+      "Streamlined nomination processing",
+      "End-to-end migration compliance",
     ],
   },
   {
-    id: "legal-advisory",
-    icon: Scale,
-    label: "Reviews / Refusals / ART Matters",
-    tagline: "Strategic representation when decisions go wrong",
+    id: "creative-mortgage-solutions",
+    icon: Home,
+    label: "Creative Mortgage Solutions",
+    tagline: "Securing your first home as a new permanent resident",
     description:
-      "When a visa is refused or cancelled, the consequences can be life-changing. Our Australian legal practitioners holding current practising certificates in NSW specializing in Migration Law provide robust representation before the Administrative Review Tribunal (ART) and strategic legal advice on complex immigration matters.",
+      "Once you obtain Australian permanent residence, the next important step for many new residents is securing their first home. We work with a trusted mortgage broker who specialises in helping new permanent residents navigate Australian lending requirements and structure their first property loan. Through strategic advice and access to multiple lenders, our broker assists clients in finding practical and competitive mortgage solutions tailored to their financial situation.",
     services: [
       {
-        label: "Visa Refusal & ART Appeal",
-        sub: null,
+        label: "First Home Buyer Guidance",
+        sub: "For New Permanent Residents",
         detail:
-          "Merits review of refusals and cancellations before the Administrative Review Tribunal. We analyse the delegate's decision, prepare written submissions, and represent clients at hearings.",
+          "Targeted assistance to understand your borrowing power, deposit requirements, and government grants available to new Australian permanent residents.",
       },
       {
-        label: "Migration Legal Advice",
+        label: "Loan Structuring & Negotiation",
         sub: null,
         detail:
-          "Fixed-fee legal consultations covering visa options, compliance obligations, sponsorship duties, character issues, and complex immigration scenarios.",
+          "Access to strategic advice and multiple lenders through our trusted broker to find a competitive mortgage solution tailored to your financial scenario.",
       },
     ],
     highlights: [
-      "ART submissions and hearing representation",
-      "Ministerial intervention requests",
-      "Compliance audits for sponsors",
-      "Second opinion legal reviews",
+      "Specialised broker introductions",
+      "Tailored for new permanent residents",
+      "Access to competitive lenders",
+      "Strategic loan structuring advice",
     ],
   },
-
 ];
 
 const PROCESS_STEPS = [
   {
     step: "01",
     icon: FileText,
-    title: "Free Assessment",
+    title: "Initial Enquiry",
     description:
-      "We begin with a complimentary review of your enquiry — assessing your background, goals, and eligibility across relevant visa pathways before recommending next steps.",
+      "We begin with a complimentary review of your enquiry — assessing your exact needs, whether for employer recruitment or mortgage guidance.",
   },
   {
     step: "02",
     icon: Scale,
     title: "Strategy Session",
     description:
-      "Our migration lawyers present a clear, tailored strategy in a structured 30-minute consultation (AUD $220, in-person or via Zoom) — with honest advice on your best options, timelines, and what to expect.",
+      "We hold a structured consultation to outline targeted strategies, set clear timelines, and establish tailored pathways for your success.",
   },
   {
     step: "03",
     icon: Shield,
-    title: "Application Preparation",
+    title: "Action & Preparation",
     description:
-      "We handle all documentation, forms, and supporting evidence — ensuring your application is thorough, accurate, and compelling.",
+      "Our team manages sourcing, documentation, and coordination with trusted partners to ensure complete readiness and compliance.",
   },
   {
     step: "04",
     icon: CheckCircle,
-    title: "Lodgement & Follow-Up",
+    title: "Execution & Support",
     description:
-      "We lodge your application and manage all correspondence with the Department of Home Affairs through to a decision.",
-  }
+      "We execute the strategy from end-to-end and provide continuous support until your overarching goals are achieved.",
+  },
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -432,7 +267,7 @@ function CategorySection({
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export default function ServicesPageClient() {
+export default function OtherServicesPageClient() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
@@ -480,7 +315,7 @@ export default function ServicesPageClient() {
               <h1
                 className={`${headlineFont.className} text-[#faf8f5] text-5xl sm:text-6xl lg:text-7xl font-semibold leading-tight max-w-3xl`}
               >
-                Our{" "}
+                Other{" "}
                 <span className="italic text-[#c8a96e]">Services</span>
               </h1>
             </StaggerItem>
@@ -488,9 +323,7 @@ export default function ServicesPageClient() {
               <p
                 className={`${bodyFont.className} text-white text-base leading-relaxed max-w-xl`}
               >
-                Comprehensive migration law services for individuals,
-                families, and businesses — from initial assessment to visa
-                grant and beyond.
+                Specialised support extending beyond traditional migration services. We assist with employer recruitment strategies, and connect new permanent residents with tailored mortgage solutions.
               </p>
             </StaggerItem>
             <StaggerItem>
@@ -534,7 +367,7 @@ export default function ServicesPageClient() {
           >
             <a href="/">Home</a>
             <span className="text-[#c8a96e]">/</span>
-            <span className="text-white">Services</span>
+            <span className="text-white">Other Services</span>
           </div>
         </AnimateIn>
 
