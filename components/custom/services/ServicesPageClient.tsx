@@ -549,7 +549,7 @@ export default function ServicesPageClient() {
             to   { transform: translateX(-50%); }
           }
           .services-marquee-track {
-            animation: services-marquee 28s linear infinite;
+            animation: services-marquee 112s linear infinite;
           }
           .services-marquee-track:hover {
             animation-play-state: paused;
