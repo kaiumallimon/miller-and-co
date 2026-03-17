@@ -46,7 +46,7 @@ const SERVICE_CATEGORIES = [
       },
       {
         label: "Employer Sponsored Permanent Visa",
-        sub: "Subclass 186",
+        sub: "Subclass 186 (TRT, DE)",
         detail:
           "Employer Nomination Scheme (ENS) visa for skilled workers to live and work in Australia permanently. Available via the Direct Entry, Temporary Residence Transition, and Labour Agreement streams.",
       },

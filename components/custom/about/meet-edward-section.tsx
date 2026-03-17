@@ -120,8 +120,7 @@ export default function MeetEdwardSection() {
             {/* Bio paragraphs */}
             <StaggerItem>
               <p className={`${bodyFont.className} text-[#1a1a1a]/75 text-base leading-relaxed`}>
-                Edward Miller is an Australian Immigration Lawyer Practising Certificate (NSW) Migration Law Specialist who has helped
-                individuals, families, and businesses navigate Australia&apos;s
+                Edward Miller is the Principal of Miller & Co Lawyers & Migration Agents and a registered Australian legal practitioner holding a current practising certificate in NSW specializing in migration law who has helped individuals, families, and businesses navigate Australia&apos;s
                 immigration system with confidence.
               </p>
             </StaggerItem>
