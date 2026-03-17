@@ -58,9 +58,11 @@ export default function PrincipalSection() {
                     Edward Miller
                   </span>
                   <span
-                    className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.25em] uppercase`}
+                    className={`${bodyFont.className} text-[#c8a96e] text-[10px] font-semibold tracking-[0.15em] uppercase`}
                   >
-                    Australian legal practitioner holding a current practising certificate in NSW specializing in Migration Law
+                    Australian Immigration Lawyer
+                    Practising Certificate (NSW)
+                    Migration Law Specialist
                   </span>
                 </div>
               </div>
