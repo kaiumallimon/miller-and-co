@@ -412,6 +412,10 @@ export default function ContactForm({
                   )}
                 </Button>
               </StaggerItem>
+
+              <StaggerItem>
+                <p className={`${bodyFont.className} py-1 text-center text-sm leading-relaxed ${dark ? "text-white/70" : "text-[#1a1a1a]/70"}`} >We respond to all enquiries within 24 hours.</p>
+              </StaggerItem>
             </StaggerContainer>
           </motion.form>
         )}
